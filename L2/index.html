@@ -1,88 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page del Juego</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Pixelify+Sans&family=Quantico&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #efefef; /* Fondo blanco */
-            z-index: 1;
-            margin: 0;
-        }
-        .navbar {
-        background-color: #fffffff8; /* Barra de navegación verde */
-        margin: 0;
-        padding: 0;
-        z-index: 2;
-        font-family: 'Quantico', sans-serif;
-
-        }
-        .container {
-            padding: 50px;
-        }
-        .jumbotron {
-            background-color: #4CAF50; /* Fondo verde para la sección del juego */
-            color: #ffffff;
-            text-align: center;
-        }
-        .game-section {
-            margin-top: 50px;
-        }
-        .contact-section {
-            margin-top: 50px;
-        }
-        header {
-            background-image: url('img/header-bg.jpg'); /* Ruta de la imagen de fondo */
-            background-size: cover; /* Ajustar la imagen al tamaño del encabezado */
-            background-position: center; /* Centrar la imagen */
-            height: 550px; /* Altura del encabezado */
-            color: #fff; /* Color de texto */
-            text-align: center;
-            padding: 60px;
-        }
-        .navbar-brand img {
-        margin: 0;
-        padding: 0;
-        display: block;
-    }
-    .conten_encabezado{
-        padding-top: 160px;
-    }
-    
-    .minijuegos{
-        width: 200px;
-    }
-    .navbar-nav{
-        font-size: 25px;
-        padding: 15px;
-    }
-    h1{
-        font-family: 'Quantico', sans-serif;
-
-    }
-    h2{
-        font-family: 'Quantico', sans-serif;
-
-    }
-    h3{
-        font-family: 'Quantico', sans-serif;
-
-    }
-    .titulonav {
-        font-family: 'Quantico', sans-serif;
-        font-size: 70px;
-    }
-    </style>
-
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light" style="position: fixed; width: 100%;" >
         <a class="navbar-brand" href="#">
-            <img src="img/navbar-logo.png" alt="Logo" style="width: 100px;"> <!-- Ruta de tu imagen de logotipo -->
+            <img src="img/navbar-logo.png" alt="Logo" style="width: 85px;"> <!-- Ruta de tu imagen de logotipo -->
         </a>        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -105,11 +35,11 @@
             <h3>benvolguts al nostre projecte de segon de DAW!
             </h3>
             <h1 class="titulonav">El mon de la Laia</h1>
-            <a href="#" class="btn btn-success btn-lg">Saber més</a>
+            <a href="#" class=" saber btn btn-success btn-lg">Saber més</a>
         </div>
     </header>
     <!-- Sección de inicio -->
-    <div class="container" id="inicio">
+    <div class="container-game" id="inicio">
         <div class="row">
             <div class="col-md-12">
                 <h1>¡Comienza a Jugar!</h1>
@@ -120,8 +50,9 @@
     </div>
 
     <!-- Sección de minijuegos -->
-    <div class="container game-section" id="minijuegos">
+    <div class="container-games-section" id="minijuegos">
         <h2>Minijuegos</h2>
+        <br>
         <div class="row">
             <div class="col-md-3">
                 <h4>Brasil</h4>
@@ -145,11 +76,180 @@
             </div>
         </div>
     </div>
+    
+    <div class="procesos" id="procesos">
+        <div class="container">
+            <h1 class="project-name">Procés de treball</h1>
+                <div id="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                        </div>
+                        <div class="timeline-content">
+                            <h2></h2>
+                            <p>
+                            </p>
+                            
+                        </div>
+                    </div>
+        
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                        </div>
+                        <div class="timeline-content right">
+                            <h2></h2>
+                            <p>
+                            </p>
+                        </div>
+                    </div>
+        
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                        </div>
+                        <div class="timeline-content">
+                            <h2></h2>
+                            <p>
+                            </p>
+                        </div>
+                    </div>
+              
+              <div class="timeline-item">
+                        <div class="timeline-icon">
+                        </div>
+                        <div class="timeline-content right">
+                            <h2></h2>
+                            <p>
+                            </p>
+                        </div>
+                    </div>
+              
+              <div class="timeline-item">
+                        <div class="timeline-icon">
+                        </div>
+                        <div class="timeline-content">
+                            <h2></h2>
+                            <p>
+             
+                            </p>
+                        </div>
+                    </div>
+              
+              
+              
+              
+                </div>
+            </div>
+
+    </div>
+
+    <div class="equipo">
+        <h2>Nuestro equipo</h2>
+
+        <div class="responsive-container-block container">            
+            <div class="responsive-container-block">
+              <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                <div class="card">
+                  <div class="team-image-wrapper">
+                    <img class="team-member-image" src="">
+                  </div>
+                  <p class="text-blk name">
+                    Àlex Ventura
+                  </p>
+                  <p class="text-blk position">
+                    
+                  </p>
+                  <p class="text-blk feature-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </p>
+                  <div class="social-icons">
+                    <a href="" target="_blank">
+                      <img class="Linkedinicon" src="img/linkedin.png">
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                <div class="card">
+                  <div class="team-image-wrapper">
+                    <img class="team-member-image" src="">
+                  </div>
+                  <p class="text-blk name">
+                    Raul Ruiz
+                  </p>
+                  <p class="text-blk position">
+                  </p>
+                  <p class="text-blk feature-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </p>
+                  <div class="social-icons">
+                    <a href="" target="_blank">
+                        <img class="Linkedinicon" src="img/linkedin.png">
+                      </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                <div class="card">
+                  <div class="team-image-wrapper">
+                    <img class="team-member-image" src="">
+                  </div>
+                  <p class="text-blk name">
+                    Malena Montecino
+                  </p>
+                  <p class="text-blk position">
+                    
+                  </p>
+                  <p class="text-blk feature-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </p>
+                  <div class="social-icons">
+                    <a href="" target="_blank">
+                        <img class="Linkedinicon" src="img/linkedin.png">
+                      </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
+                <div class="card">
+                  <div class="team-image-wrapper">
+                    <img class="team-member-image" src="">
+                  </div>
+                  <p class="text-blk name">
+                    Jack Vickery
+                  </p>
+                  <p class="text-blk position">
+                    
+                  </p>
+                  <p class="text-blk feature-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </p>
+                  <div class="social-icons">
+                    <a href="" target="_blank">
+                        <img class="Linkedinicon" src="img/linkedin.png">
+                      </a>
+                  </div>
+                </div>
+              </div>
+
+ 
+      
+
+
+              
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
 
     <!-- Sección de contacto -->
     <div class="container contact-section" id="contacto">
-        <h2>Contacto</h2>
-        <p>¿Tienes alguna pregunta o comentario? ¡Contáctanos!</p>
+        <div class="textcontact">
+            <h2>Contacto</h2>
+            <p>¿Tienes alguna pregunta o comentario? ¡Contáctanos!</p>
+        </div>
+
         <form>
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
