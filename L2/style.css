@@ -403,3 +403,21 @@ font-size: 70px;
       margin-left: 0px;
     }
   }
+
+  .minijuegos {
+    position: relative; /* Necesario para posicionar el overlay */
+    width: 100%;
+    height: auto;
+    transition: filter 0.3s ease-in-out;
+    background-color: rgba(0, 255, 0, 0.7); /* Color verde con transparencia */
+
+}
+
+
+/* Resto del estilo, puedes mantener el filtro de brillo si lo deseas */
+.minijuegos:hover {
+    filter: brightness(60%);
+    cursor: pointer;
+}
+
+
