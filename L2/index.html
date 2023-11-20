@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page del Juego</title>
@@ -61,33 +62,40 @@
       <h2>Minijuegos</h2>
       <br>
       <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-3" onclick="showPopup('Brasil', 'img/portfolio/1.jpg', 'Descripción del Minijuego 1.')">
               <h4>Brasil</h4>
               <img class="minijuegos" src="img/portfolio/1.jpg" alt="Minijuego 1">
               <p>Descripción del Minijuego 1.</p>
+              <div class="overlay"></div>
           </div>
-          <div class="descripciongrande">
-            
-          </div>
-
-          <div class="col-md-3">
-              <h4>Kènia</h4>
+          <div class="col-md-3" onclick="showPopup('Brasil', 'img/portfolio/1.jpg', 'Descripción del Minijuego 1.')">
+            <h4>Kènia</h4>
               <img class="minijuegos" src="minijuego2.jpg" alt="Minijuego 2">
               <p>Descripción del Minijuego 2.</p>
+              <div class="overlay"></div>
           </div>
-          <div class="col-md-3">
-              <h4>India</h4>
+          <div class="col-md-3" onclick="showPopup('Brasil', 'img/portfolio/1.jpg', 'Descripción del Minijuego 1.')">
+            <h4>India</h4>
               <img class="minijuegos" src="minijuego3.jpg" alt="Minijuego 3">
               <p>Descripción del Minijuego 3.</p>
+              <div class="overlay"></div>
           </div>
-          <div class="col-md-3">
-              <h4>Europa</h4>
+          <div class="col-md-3" onclick="showPopup('Brasil', 'img/portfolio/1.jpg', 'Descripción del Minijuego 1.')">
+            <h4>Europa</h4>
               <img class="minijuegos" src="minijuego4.jpg" alt="Minijuego 4">
               <p>Descripción del Minijuego 4.</p>
+              <div class="overlay"></div>
+
           </div>
       </div>
   </div>
-    
+  <div class="popup" id="popup">
+    <span onclick="closePopup()" style="cursor: pointer; position: absolute; top: 10px; right: 20px; font-size: 20px;">&times;</span>
+    <h2 id="popupTitle"></h2>
+    <img id="popupImage" style="max-width: 100%; max-height: 300px;">
+    <p id="popupDescription"></p>
+</div>
+
     <div class="procesos" id="procesos">
         <div class="container">
             <h1 class="project-name">Procés de treball</h1>

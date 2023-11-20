@@ -421,3 +421,55 @@ font-size: 70px;
 }
 
 
+/*descripcion superpuesta*/
+
+.container-games-section {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.col-md-3 {
+
+  text-align: center;
+  position: relative;
+}
+.col-md-3:hover {
+  filter: brightness(60%);
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  
+}
+
+
+.overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 255, 0, 0); /* Inicialmente transparente */
+  z-index: 1;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.popup {
+  
+  display: none;
+  position: fixed;
+  align-items: center;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  z-index: 2;
+}
