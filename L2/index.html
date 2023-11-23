@@ -52,7 +52,33 @@
             <div class="col-md-12">
                 <h1>¡Comienza a Jugar!</h1>
                 <p>Haz clic en el botón de abajo para empezar a jugar a nuestro emocionante juego.</p>
-                <a href="#" class="btn btn-success btn-lg">Jugar Ahora</a>
+                 <!-- plane game -->
+                <div id="gameArea">
+                  <img id="wm" src="img/planeGame/w-map.jpg" alt="">
+                  <div id="flagContainer">
+                     <img id="flag" src="" alt="">
+                  </div>
+                  <div id="brazil" class="pin">
+               <img src="img/planeGame/pin.png" alt="pin" class="pin">
+                  </div>
+                  <div id="europe" class="pin">
+                     <img src="img/planeGame/pin.png" alt="pin" class="pin">
+                  </div>
+                  <div id="india" class="pin">
+                     <img src="img/planeGame/pin.png" alt="pin" class="pin">
+                  </div>
+                  <div id="kenya" class="pin">
+                     <img src="img/planeGame/pin.png" alt="pin" class="pin">
+                  </div>
+                  
+                  
+                               <div class="airplane" name="plane"  id="p1">
+                               <img src="./img/planeGame/planeUp.png" alt="plane" class="planeImage" id="planeimg">
+                               </div>
+                        </div>
+                        <script src="planeGameScript.js"></script>
+                         <!-- end plane game -->
+                <a href="#" class="btn btn-success btn-lg" onclick="playGame()">Jugar Ahora</a>
             </div>
         </div>
     </div>

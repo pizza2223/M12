@@ -473,3 +473,73 @@ font-size: 70px;
   background-color: #fff;
   z-index: 2;
 }
+
+
+body{
+  height: 100%;
+  width: 100%;
+                 
+  
+}   
+.airplane{
+  left: 92px;
+  top: 82px;
+  position: absolute;
+  height: 5%;
+  width: 5%;
+}
+.pin{
+  position: absolute;
+  height: 25%;
+  width: 15%;
+
+}
+#gameArea{
+ filter: none;
+  position: relative;
+  left: 28%;
+  height: 400px; 
+  width: 814px;
+}
+#wm{
+
+  height: 100%; 
+  width: 100%;
+}
+#europe{
+  top: 138px;
+  left: 314px;
+}
+#brazil{
+  top: 278px;
+  left: 201px;
+}
+#india{
+  top: 201px;
+    left: 486px;
+}
+#kenya{
+  top: 246px;
+  left: 398px;
+}
+#worldMap{
+  height: 200px;
+  width: 407px;
+}
+#planeimg{
+  
+  height: 100%;
+  width: 100%;
+}
+#flagContainer{
+  top: 0%;
+  left: 90%;
+  position: absolute;
+  height: 15%;
+  width: 10%;
+}
+#flag{
+  object-fit: fill; 
+  height: 100%;
+  width: 100%;
+}
