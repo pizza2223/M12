@@ -1,12 +1,13 @@
 let gameArea = document.getElementById("gameArea");
 gameArea.style.filter = "grayscale(1)";
+
 function playGame(){
-    
-    gameArea.style.filter = "grayscale(0)";
-    let moveRate = 2;
+gameArea.style.filter = "grayscale(0)";
+let moveRate = 2;
 let object1 = document.getElementById("p1");
 let image = document.getElementById("planeimg");
-
+showAndZoomInSection();
+noflow();
 if(getCookie("country")== null || getCookie("country")== 5){
     setCookie("country", 1, 1);
 }
@@ -179,4 +180,14 @@ function setFlag(){
     let flag = document.getElementById("flag");
     flag.src = "img/planeGame/"+ sources[countryToGoTo-1];
 }
+function noflow () {
+    document.body.style.overflow = "hidden";
+    document.body.style.userSelect = "none";
+   }
+   function showAndZoomInSection() {
+    var section2 = document.getElementById("gameArea");
+    section2.scrollIntoView(false, {behavior: "smooth"});
+    section2.style.display = "block";
+    section2.style.transform = "scale(1.2)";
+  }   
 }

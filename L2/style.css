@@ -500,6 +500,7 @@ body{
   left: 28%;
   height: 400px; 
   width: 814px;
+  transition: transform 2s;
 }
 #wm{
 
@@ -542,4 +543,8 @@ body{
   object-fit: fill; 
   height: 100%;
   width: 100%;
+}
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
 }
