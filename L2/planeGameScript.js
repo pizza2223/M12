@@ -1,13 +1,7 @@
-let gameArea = document.getElementById("gameArea");
-gameArea.style.filter = "grayscale(1)";
-
-function playGame(){
-gameArea.style.filter = "grayscale(0)";
 let moveRate = 2;
 let object1 = document.getElementById("p1");
 let image = document.getElementById("planeimg");
-showAndZoomInSection();
-noflow();
+
 if(getCookie("country")== null || getCookie("country")== 5){
     setCookie("country", 1, 1);
 }
@@ -110,12 +104,12 @@ function startTimer(){
 }
 
 function checkCollisionWithCountry(){
-let tolerance = 2;
+let tolerance = 5;
     let countryCoordinates = [
-    [278, 201],
-    [246, 398],
-    [201, 486],
-    [138, 314]
+    [371, 320], //brazil coordinates
+    [333, 551], //kenya coordinates
+    [296, 674], //india coordinates
+    [231, 453] // europe coordinates
 ];
 
 if((position.y <= countryCoordinates[countryToGoTo-1][0] + tolerance &&
@@ -135,16 +129,16 @@ function sendToNewScreen(){
 
     switch (countryToGoTo) {
         case "1":
-            window.location.href = "brazil.html"; 
+            window.location.href = "Brasil/brazil.html"; 
           break;
         case "2":
-            window.location.href = "kenya.html"; 
+            window.location.href = "Kenia/kenya.html"; 
           break;
         case "3":
-            window.location.href = "india.html"; 
+            window.location.href = "India/india.html"; 
           break;
         case "4":
-            window.location.href = "europe.html"; 
+            window.location.href = "Europa/europe.html"; 
           break;
         default:
             setCookie("country", 1, 1);
@@ -180,14 +174,11 @@ function setFlag(){
     let flag = document.getElementById("flag");
     flag.src = "img/planeGame/"+ sources[countryToGoTo-1];
 }
-function noflow () {
-    document.body.style.overflow = "hidden";
-    document.body.style.userSelect = "none";
-   }
-   function showAndZoomInSection() {
-    var section2 = document.getElementById("gameArea");
-    section2.scrollIntoView(false, {behavior: "smooth"});
-    section2.style.display = "block";
-    section2.style.transform = "scale(1.2)";
-  }   
-}
+var arrow_keys_handler = function(e) {
+    switch(e.code){
+        case "ArrowUp": case "ArrowDown": case "ArrowLeft": case "ArrowRight": 
+            case "Space": e.preventDefault(); break;
+        default: break; // do not block other keys
+    }
+};
+window.addEventListener("keydown", arrow_keys_handler, false);
