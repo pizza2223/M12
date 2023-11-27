@@ -1,0 +1,100 @@
+body, html {
+    overflow: hidden
+  }
+  #imgBin{
+    max-width: 100%;
+    height: auto;
+  }
+
+  #bin {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+}
+
+#imgDragable{
+  max-width: 100%;
+  height: auto;
+}
+#background{
+  position: absolute;
+  z-index:-2
+}
+#clock{
+  position: absolute;
+ top: 50px;
+ left: 490px;
+ color: white;
+}
+.dragable {
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 150px;
+    position: absolute;
+    cursor: grab;
+}
+.card {
+  width: 190px;
+  height: 254px;
+  top: 600px;
+  left: 1500px;
+  position: absolute;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 30px #bebebe,
+                -20px -20px 60px #ffffff;
+                display: flex;
+    justify-content: center;
+    align-items: center
+ }
+
+ .help {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    
+    box-shadow:
+      0 0 800px 10px ,  /* inner white */
+      0 0 20px 5px rgb(255, 136, 0), /* middle magenta */
+      0 0 30px 18px rgb(255, 208, 0); /* outer cyan */
+ }
+ .girl{
+width: 596px;
+height: 861px;
+ }
+ .eye{
+width: 60px;
+height: 60px;
+left: 10px;
+
+position: absolute;
+background:
+#fff;
+border-radius:50%;
+}
+
+ .pupil{
+  width: 15px;
+height: 15px;
+background:#000;
+border-radius: 50%;
+position: absolute;
+left: 50%;
+top: 50%;
+margin-left: -7.5px;
+margin-top: -7.5px;
+ }
+
+ .eye:nth-child(1){
+  left: 226px;
+  top: 195px;
+  }
+
+  .eye:nth-child(2){
+  left: 290px;
+  top: 199px;
+  }
+  #alisha{
+    z-index: 10;
+  }

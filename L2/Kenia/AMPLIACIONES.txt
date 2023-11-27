@@ -1,0 +1,16 @@
+DISEÑO
+
+-cambiar el fondo
+-cambiar el camino
+-cambiar el personaje
+-poner corazones como vidas
+-añadir musiquita? o es en grupo
+
+ARREGLAR // AÑADIR
+
+-Que el monigote no se pare cuando le de a una tecla (como el espacio)
+-intentar arreglar que por abajo no toque la pared
+-añadir unos lvl
+-optimizar el codigo
+-mirar que ya no hacen falta los limites del mapa porque no se sale del camino
+-añadir objetos para recolectar

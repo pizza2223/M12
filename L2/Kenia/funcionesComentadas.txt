@@ -1,0 +1,55 @@
+
+// function actualizarVidas() {
+  
+//   document.getElementById('vidas').innerHTML = "VIDAS: " + vidas ;
+//   perder();
+// }
+
+// https://safeimagekit.com/   para pasar las imagenes a pixelart
+
+// function comprobarCamino() {
+//   // Calcula las coordenadas en la matriz
+//   const columna = Math.floor((leftPos - 10) / 100); //math.floor redondea el número
+//   const fila = Math.floor((topPos - 10) / 80);
+
+//   // // Verifica si la posición actual en la matriz es 1 (camino válido)
+//   if (arrayCamino[fila][columna] === 0) {
+//     // no es una posición válida, detén el movimiento
+//     clearInterval(intervalId);
+//     intervalId = setInterval(() => {
+//       personaje.style.top = (topPos + 10) + 'px';
+//       clearInterval(intervalId);
+//     },100);
+
+//   }
+//   // printea posición del personaje
+//   document.getElementById('cuadrante').innerHTML = "cuadrante = [" + columna + ", " + fila + "]";
+// }
+// function actualizarVidas(){
+//   vidas = 3;
+// }
+
+//DENTRO DE FUNCIÓN COMPROBAR CAMINO
+//para saber por consola por donde se está saliendo.
+// if (topLeftIsBlocked) {
+//   // Personaje está saliendo por la esquina superior izquierda.
+//   console.log("Personaje está saliendo por la esquina superior izquierda");
+// }
+
+// if (topRightIsBlocked) {
+//   // Personaje está saliendo por la esquina superior derecha.
+//   console.log("Personaje está saliendo por la esquina superior derecha");
+// }
+
+// if (bottomLeftIsBlocked) {
+//   // Personaje está saliendo por la esquina inferior izquierda.
+//   console.log("Personaje está saliendo por la esquina inferior izquierda");
+// }
+
+// if (bottomRightIsBlocked) {
+//   // Personaje está saliendo por la esquina inferior derecha.
+//   console.log("Personaje está saliendo por la esquina inferior derecha");
+// }
+
+
+
