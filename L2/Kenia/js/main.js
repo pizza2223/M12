@@ -11,29 +11,33 @@ let randomX;
 let randomY;
 const imagenPersonaje = document.getElementById('imagenPersonaje');
 let objetosBienPosicionados = true;
+// Agrega una variable global para almacenar la puntuación
+let puntos = 0;
 
 crearMapa();
 actualizarPosicionPersonaje();
 actualizarVidas();
 
-spawnObjeto("/images/objetos/piedra.png");
-spawnObjeto("/images/objetos/paloBuenoB.png");
-spawnObjeto("/images/objetos/placasolarBuenaB.png");
- 
+spawnObjeto("/L2/Kenia/images/objetos/piedra.png");
+spawnObjeto("/L2/Kenia/images/objetos/piedra.png");
+spawnObjeto("/L2/Kenia/images/objetos/paloBuenoB.png");
+spawnObjeto("/L2/Kenia/images/objetos/placasolarBuenaB.png");
+spawnObjeto("/L2/Kenia/images/objetos/placasolarBuenaB.png");
+
+
 inicioMovimientoAutomatico(); // que se mueva desde el principio
 movimientoPersonaje();
 
-
 function actualizarVidas() {
-  imagenPersonaje.src = "/images/personaje/personajeDetras.gif";
+  imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDetras.gif";
   for (let i = 1; i <= 3; i++) {
     const heart = document.getElementById(`heart${i}`);
     if (i <= vidas) {
       // Mostrar corazón lleno
-      heart.src = "/images/corazones/corazonPixel-entero.png";
+      heart.src = "/L2/Kenia/images/corazones/corazonPixel-entero.png";
     } else {
       // Ocultar corazón vacío
-      heart.src = "/images/corazones/corazonPixel-vacio.png";
+      heart.src = "/L2/Kenia/images/corazones/corazonPixel-vacio.png";
     }
   }
   perder();
@@ -53,11 +57,11 @@ function crearMapa() {
   arrayCamino = [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 1, 1, 1, 1, 1, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0],
+    [0, 0, 1, 0, 1, 0, 1, 0],
     [0, 1, 1, 0, 1, 1, 1, 0],
     [0, 1, 0, 0, 1, 0, 0, 0],
-    [1, 1, 0, 0, 1, 1, 1, 0],
-    [0, 0, 0, 0, 0, 0, 1, 0],
+    [1, 1, 0, 1, 1, 1, 1, 0],
+    [0, 1, 1, 1, 0, 0, 1, 0],
     [0, 0, 0, 0, 0, 0, 1, 0]
   ];
 
@@ -85,7 +89,7 @@ function actualizarPosicionPersonaje() {
   comprobarPersonajeDentroCamino();
 
   // printea posición del personaje
-  document.getElementById('posicion').innerHTML = "posición = [" + leftPos + ", " + topPos + "]";
+ // document.getElementById('posicion').innerHTML = "posición = [" + leftPos + ", " + topPos + "]";
 }
 
 function inicioMovimientoAutomatico() {
@@ -112,6 +116,16 @@ function movimiento(direction, step) {
 }
 
 
+// function colisionPersonajeObjeto(){
+//   //comparar si el personaje choca con objeto
+//   if(objetoTop==leftTop){
+//     puntos += 5;
+//   }
+//   document.getElementById('puntuacion').innerHTML = "Puntos: " + puntos;
+// }
+
+
+
 function spawnObjeto(imagenSrc) {
   const imagenObjeto = document.createElement('img');
   imagenObjeto.src = imagenSrc;
@@ -132,8 +146,12 @@ function spawnObjeto(imagenSrc) {
       contenedorImagen.style.top = objetoTop + 'px';
       contenedorImagen.appendChild(imagenObjeto);
       game.appendChild(contenedorImagen);
+
+       // Llamar a la función de colisión
+       
     }
   }
+
 }
 
 function generarPosicionAleatoria() {
@@ -179,22 +197,25 @@ function movimientoPersonaje() {
       switch (event.key) {
         case 'ArrowLeft':
           intervalId = movimiento('left', 10);
-          imagenPersonaje.src = "/images/personaje/personajeIzquierda.gif";
+          imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeIzquierda.gif";
           break;
         case 'ArrowRight':
           intervalId = movimiento('right', 10);
-          imagenPersonaje.src = "/images/personaje/personajeDerecha.gif";
+          imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDerecha.gif";
           break;
         case 'ArrowUp':
           intervalId = movimiento('up', 10);
-          imagenPersonaje.src = "/images/personaje/personajeDetras.gif";
+          imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDetras.gif";
           break;
         case 'ArrowDown':
           intervalId = movimiento('down', 10);
-          imagenPersonaje.src = "/images/personaje/personajeDelante.gif";
+          imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDelante.gif";
           break;
       }
+      
     }
+    //colisionPersonajeObjeto();
+    
   });
 }
 
@@ -230,7 +251,6 @@ function popupFuncion(resultado) {
     });
   });
 }
-
 
 function comprobarPersonajeDentroCamino() {
   const personajeWidth = personaje.offsetWidth;
@@ -278,5 +298,10 @@ function comprobarPersonajeDentroCamino() {
   // printea posición del personaje EN LA ARRAY
   document.getElementById('cuadrante').innerHTML =
     "cuadrante 1= [" + topLeftColumn + ", " + topLeftRow + "]    cuadrante 2= [" + topRightColumn + ", " + topRightRow + "]    cuadrante 3= [" + bottomLeftColumn + ", " + bottomLeftRow + "]    cuadrante 4= [" + bottomRightColumn + ", " + bottomRightRow + "]";
+
+   
 }
 
+//ADD TIMER
+//COLISION CON PUNTOS
+//BOTÓN PARA VOLVER A LA PAGINA PRINCIPAL?
