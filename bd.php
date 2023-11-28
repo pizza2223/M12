@@ -17,9 +17,11 @@ function closeBD(){
 
 function getPasswordByEmails($email){
     $conexion = openBD();
-    $sentenciaTxt = "select contrasenya from juego.usuario where correo = :email";
+    // $sentenciaTxt = "select contra from juego.usuario where correo = :email";
+    $sentenciaTxt = "select contra from juego.usuario where correo = '".$email."'";
     $sentencia = $conexion->prepare($sentenciaTxt);
-    $sentencia->bindParam(':email', $email);
+    print_r($sentencia);
+    // $sentencia->bindParam(':email', $email);
     $sentencia -> execute();
     $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     $conexion = closeBD();

@@ -10,9 +10,9 @@ $psswd = $_POST['passwd'];
 $passwords = getPasswordByEmails($userName);
 
 
-    if($psswd == $passwords["contrasenya"]){
+    if($psswd == $passwords['contra']){
         $id = getIDByEmails($userName);
-        $_SESSION['user_id'] = $id["id_birdwatcher"];
+        $_SESSION['user_id'] = $id["user_id"];
         header('Location: landing.html');  
         if($userName == "admin@admin.com"){
             header('Location: landing.html');    
