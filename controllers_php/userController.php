@@ -13,10 +13,8 @@ $passwords = getPasswordByEmails($userName);
     if($psswd == $passwords['contra']){
         $id = getIDByEmails($userName);
         $_SESSION['user_id'] = $id["user_id"];
-        header('Location: landing.html');  
-        if($userName == "admin@admin.com"){
-            header('Location: landing.html');    
-        } 
+        header('Location: ../L2/landing.php'); 
+        exit(); 
     } else {
         echo "false";
     }

@@ -39,12 +39,11 @@ function getPasswordByEmails($email){
   }
   function getPointsAndNames(){
     $conexion = openBD();
-    $sentenciaTxt = "select nom, puntos  from juego.usuario ORDER BY puntos ASC";
+    $sentenciaTxt = "select nombre, puntos  from juego.usuario ORDER BY puntos ASC";
     $sentencia = $conexion->prepare($sentenciaTxt);
-    $sentencia->bindParam(':email', $email);
     $sentencia -> execute();
     $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     $conexion = closeBD();
-    return $resultado[0];
+    return $resultado;
   }
 ?>

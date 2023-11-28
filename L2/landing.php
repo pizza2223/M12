@@ -126,6 +126,7 @@
         <div class="container">
             <h1 class="project-name">Ranking</h1>
             <table class="table">
+          
               <thead class="thead-dark">
                 <tr>
                   <th scope="col">#</th>
@@ -135,12 +136,19 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
+              <?php 
+               require '../bd.php';
+              $rankingList = getPointsAndNames();
+                $rowNum =  1;
+              foreach($rankingList as $row){
+                 echo "<tr>
+                 <th scope='row'>".$rowNum."</th>
+                 <td>".$row['nombre']."</td>
+                 <td>".$row['puntos']."</td>
+               </tr>";
+               $rowNum++;
+               }
+              ?>
               </tbody>
             </table>
 
