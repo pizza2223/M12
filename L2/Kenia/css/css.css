@@ -19,6 +19,17 @@ body {
   position: relative;
 
 }
+#malik{
+  position: absolute;
+  left: 73%;
+  top: 20%;
+}
+#malikTexto{
+  position: absolute;
+  left: 73%;
+  top: 15%;
+  
+}
 
 .camino {
   height: 80px;
@@ -29,19 +40,7 @@ body {
   position: absolute;
 }
 
-#objetos {
-  position: absolute;
-  align-items: center;
- 
-  z-index: 2;
-}
 
-#inventario {
-  position: absolute;
-  align-items: center;
- top: 0%;
-  z-index: 2;
-}
 #personaje {
   width: 40px;
   height: 40px;
@@ -116,7 +115,7 @@ body {
  
   z-index: 2; 
 }
-.palo{
+#imagenPalo{
 
   background-image: url('/images/paloPixelart.png');
   background-size: cover;

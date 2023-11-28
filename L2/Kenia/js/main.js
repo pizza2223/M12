@@ -4,18 +4,22 @@ let leftPos = 630;
 let topPos = 600;
 let arrayCamino;
 let intervalId = null;
-let vidas = 3;   
+let vidas = 3;
 let juegoEnCurso = true;
 let funciona = false;
 let randomX;
 let randomY;
 const imagenPersonaje = document.getElementById('imagenPersonaje');
+let objetosBienPosicionados = true;
 
 crearMapa();
-//generarPosicionRandomObjetos();
 actualizarPosicionPersonaje();
 actualizarVidas();
-//spawnObjetos();
+
+spawnObjeto("/images/objetos/piedra.png");
+spawnObjeto("/images/objetos/paloBuenoB.png");
+spawnObjeto("/images/objetos/placasolarBuenaB.png");
+ 
 inicioMovimientoAutomatico(); // que se mueva desde el principio
 movimientoPersonaje();
 
@@ -52,7 +56,7 @@ function crearMapa() {
     [0, 0, 1, 0, 0, 0, 1, 0],
     [0, 1, 1, 0, 1, 1, 1, 0],
     [0, 1, 0, 0, 1, 0, 0, 0],
-    [1, 1, 0 , 0, 1, 1, 1, 0],
+    [1, 1, 0, 0, 1, 1, 1, 0],
     [0, 0, 0, 0, 0, 0, 1, 0],
     [0, 0, 0, 0, 0, 0, 1, 0]
   ];
@@ -94,7 +98,7 @@ function inicioMovimientoAutomatico() {
 //FUNCION A CAMBIAR, YA NO HAY LIMITE DE MAPA
 function movimiento(direction, step) {
   return setInterval(() => {
-    if (direction === 'left'&& leftPos > 0) {
+    if (direction === 'left' && leftPos > 0) {
       leftPos -= step;
     } else if (direction === 'right') {
       leftPos += step;
@@ -107,71 +111,75 @@ function movimiento(direction, step) {
   }, 50); //PONER A 50 LUEGO
 }
 
-// function generarPosicionRandomObjetos(){
-//  randomX = Math.floor((Math.random() * 800));
-//  randomY = Math.floor((Math.random() * 640));
-//   console.log(randomX);
-//   console.log(randomY);
- 
-//   const ObjetoWidth = personaje.offsetWidth;
-//   const ObjetoHeight = personaje.offsetHeight;
-//   const ObjetoLeftTop = leftPos;
-//   const ObjetoLeftBottom = topPos;
-//   const ObjetoRightTop = leftPos + personajeWidth;
-//   const ObjetoRightBottom = topPos + personajeHeight;
 
+function spawnObjeto(imagenSrc) {
+  const imagenObjeto = document.createElement('img');
+  imagenObjeto.src = imagenSrc;
 
+  let posicionValida = false;
 
+  while (!posicionValida) {
+    const { objetoLeft, objetoTop } = generarPosicionAleatoria();
 
-// }
+    if (!verificarEsquinasEnCamino(objetoLeft, objetoTop, imagenObjeto)) {
+      // Si la posición es válida, salir del bucle
+      posicionValida = true;
 
-//funcion para hacer aparecer los objetos en sitios random
-//funcion para comprobar que estan dentro de la array / si no volver a generar
-//funcion para la colision con los objetos
+      const contenedorImagen = document.createElement('div');
+      contenedorImagen.style.position = 'absolute';
+      contenedorImagen.style.zIndex = 3;
+      contenedorImagen.style.left = objetoLeft + 'px';
+      contenedorImagen.style.top = objetoTop + 'px';
+      contenedorImagen.appendChild(imagenObjeto);
+      game.appendChild(contenedorImagen);
+    }
+  }
+}
 
-function spawnObjetos(){
-  const imagenPalo = document.getElementById('imagenPalo');
-  const imagenPiedra = document.getElementById('imagenPiedra');
-  const imagenPlacasolar = document.getElementById('imagenPlacasolar');
+function generarPosicionAleatoria() {
+  const randomX = Math.floor(Math.random() * 8);
+  const randomY = Math.floor(Math.random() * 8);
+  const objetoLeft = randomY * 100;
+  const objetoTop = randomX * 80;
+  return { objetoLeft, objetoTop };
+}
 
-  imagenPalo.src= "/images/objetos/paloPixelart.png";
-  imagenPiedra.src= "/images/objetos/piedraPixelart.png";
-  imagenPlacasolar.src= "/images/objetos/placaSolar.png";
+function verificarEsquinasEnCamino(objetoLeft, objetoTop, imagenObjeto) {
+  const objetoTopLeftRow = Math.floor(objetoTop / 80);
+  const objetoTopLeftColumn = Math.floor(objetoLeft / 100);
 
- imagenPalo = generarPosicionRandomObjetos();
+  const objetoTopRightRow = Math.floor(objetoTop / 80);
+  const objetoTopRightColumn = Math.floor((objetoLeft + imagenObjeto.offsetWidth) / 100);
 
- //PRUEBAS
- randomX = Math.floor((Math.random() * 800));
- randomY = Math.floor((Math.random() * 640));
-  console.log(randomX);
-  console.log(randomY);
- 
-  const objetoWidth = imagenPalo.offsetWidth;
-  const objetoHeight = imagenPalo.offsetHeight;
-  const objetoLeftTop = randomX;
-  const objetoLeftBottom = randomY;
-  const objetoRightTop = randomX + objetoWidth;
-  const objetoRightBottom = randomY + objetoHeight;
+  const objetoBottomLeftRow = Math.floor((objetoTop + imagenObjeto.offsetHeight) / 80);
+  const objetoBottomLeftColumn = Math.floor(objetoLeft / 100);
 
+  const objetoBottomRightRow = Math.floor((objetoTop + imagenObjeto.offsetHeight) / 80);
+  const objetoBottomRightColumn = Math.floor((objetoLeft + imagenObjeto.offsetWidth) / 100);
 
+  const esquinasBloqueadas =
+    arrayCamino[objetoTopLeftRow][objetoTopLeftColumn] === 0 ||
+    arrayCamino[objetoTopRightRow][objetoTopRightColumn] === 0 ||
+    arrayCamino[objetoBottomLeftRow][objetoBottomLeftColumn] === 0 ||
+    arrayCamino[objetoBottomRightRow][objetoBottomRightColumn] === 0;
 
-
-
+  return esquinasBloqueadas;
 }
 
 
 
+ 
 function movimientoPersonaje() {
   document.addEventListener('keydown', (event) => {
     if (juegoEnCurso) {
-    
+
       // Detener el intervalo anterior antes de comenzar uno nuevo
       clearInterval(intervalId);
 
       switch (event.key) {
         case 'ArrowLeft':
           intervalId = movimiento('left', 10);
-         imagenPersonaje.src = "/images/personaje/personajeIzquierda.gif";
+          imagenPersonaje.src = "/images/personaje/personajeIzquierda.gif";
           break;
         case 'ArrowRight':
           intervalId = movimiento('right', 10);
@@ -221,7 +229,7 @@ function popupFuncion(resultado) {
       }
     });
   });
-} 
+}
 
 
 function comprobarPersonajeDentroCamino() {
@@ -272,4 +280,3 @@ function comprobarPersonajeDentroCamino() {
     "cuadrante 1= [" + topLeftColumn + ", " + topLeftRow + "]    cuadrante 2= [" + topRightColumn + ", " + topRightRow + "]    cuadrante 3= [" + bottomLeftColumn + ", " + bottomLeftRow + "]    cuadrante 4= [" + bottomRightColumn + ", " + bottomRightRow + "]";
 }
 
- 
