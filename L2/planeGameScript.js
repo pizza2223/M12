@@ -1,4 +1,4 @@
-let moveRate = 2;
+let moveRate = 8;
 let object1 = document.getElementById("p1");
 let image = document.getElementById("planeimg");
 

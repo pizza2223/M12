@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title></head>
+<body>
+    <div class="all">
+        <div class="contenedorcontador">
+            <p id="counter">0</p>
+        </div>
+        <div class="gameBox">
+            <div class="areadelJuego">
+                <div class="paredDerecha"><img class="paredDerecha" src="imagenes/paredderech.png" alt=""></div>
+                <div class="paredizquierda"><img class="paredizquierda" src="imagenes/paredizq.png" alt=""></div>
+                <div class="juego" style="z-index: 1;">
+                    <div id="game" style="z-index: 1;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="start-screen" class="screen">
+        <h1>¡Bienvenido a Mi Juego!</h1>
+        <button id="start-button">Empezar Juego</button>
+    </div>
+    
+    <div id="game-over-screen" class="screen">
+        <h1>¡Has Perdido!</h1>
+        <p>Puntuación: <span id="final-score">0</span></p>
+        <button id="restart-button">Reiniciar</button>
+    </div>
+
+    <!-- Más contenido si es necesario -->
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+<style>
+  * {
+  margin: 0;
+  padding: 0;
+}
+
+.all{
+  width: 1030px;
+  margin-left: 20%;
+  margin-left: 20%;
+  position: fixed;
+  border-radius: 20px 20px 0px 0px;
+  -webkit-box-shadow: inset -1px 3px 8px 5px #000000, 2px 5px 16px 0px #0B325E, 5px 0px 4px 17px rgba(0,0,0,0); 
+box-shadow: inset -1px 3px 8px 5px #000000, 2px 5px 16px 0px #0B325E, 5px 0px 4px 17px rgba(0,0,0,0);
+}
+
+.gameBox{
+  height: 700px;
+  width: 1000px;
+  position: fixed;
+  border: 15px inset #339237;
+border-radius: 0px 0px 20px 20px;
+-webkit-box-shadow: inset -1px 3px 8px 5px #1fff3d, 2px 5px 16px 0px #0B325E, 5px 0px 4px 17px rgba(0,0,0,0); 
+box-shadow: inset -1px 3px 8px 5px #1fff57, 2px 5px 16px 0px #0B325E, 5px 0px 4px 17px rgba(0,0,0,0);
+}
+
+.contenedorcontador{
+  background-color: black;
+  position: relative;
+  z-index: 2;
+  border-radius: 20px 20px 0px 0px;
+
+}
+  #counter{
+    margin-left: 50%;
+    margin-right: 50%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: #FFFFFF;
+background: #232323;
+text-shadow: 0 0 3px #FFF, 0 0 3px #FFF, 0 0 3px #FFF, 0 0 10px #49ff18, 0 0 10px #49FF18, 0 0 10px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+color: #FFFFFF;
+background: #232323;
+
+  }
+  .areadelJuego{
+  height: 100%;
+  margin: 0;
+  background-image: url(imagenes/patio2.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+
+
+
+  html, body {
+  height: 100%;
+  margin: 0;
+}
+.paredDerecha{
+  position: relative;
+  height: 100%;
+  width: 150px;
+  float: right;
+  z-index: 2;
+}
+.paredizquierda{
+  position: relative;
+  height: 100%;
+  width: 150px;
+  float: left;
+  z-index: 2;
+}
+
+.square {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+
+}
+
+img{
+  width: 50px;
+  height: 50px;
+  z-index: 1;
+}
+
+@keyframes move {
+  from { left: 0%; }
+  to { left: 90%; }
+}
+
+</style>
+
+<script>
+
+var counter = 0;
+var squaresCompleted = []; // Arreglo para rastrear el estado de la animación de cada cuadrado
+
+document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+        counter++;
+        document.getElementById('counter').innerText = counter;
+        
+        var squares = document.getElementsByClassName('square');
+        
+        // Añadir un controlador de eventos 'animationend' a cada cuadrado
+      //  for (var i = 0; i < squares.length; i++) {
+        //    squares[i].addEventListener('animationend', function() {
+          //      squaresCompleted.push(true); // Marcar este cuadrado como completado
+                // Si el contador es igual a la cantidad del array y todos los cuadrados han completado su animación, ganas el juego
+                if (counter == squares.length) {
+                    alert('¡Has ganado! ' + squaresCompleted.length + ' cuadrados han completado su animación.');
+                    counter = 0; // Reiniciar el contador
+                    squaresCompleted = []; // Reiniciar el arreglo de cuadrados completados
+                    return;
+                }
+         //   });
+        //}
+    }
+}
+
+var counter = 0;
+var squaresCompleted = [];
+var isGameRunning = false;
+
+// Elementos de pantalla
+const startScreen = document.getElementById("start-screen");
+const gameScreen = document.getElementsByClassName("gameBox")[0]; // Elemento principal del juego
+const gameOverScreen = document.getElementById("game-over-screen");
+const startButton = document.getElementById("start-button");
+const restartButton = document.getElementById("restart-button");
+const finalScore = document.getElementById("final-score");
+
+// Evento para comenzar el juego
+startButton.addEventListener("click", function() {
+    startGame();
+});
+
+// Evento para reiniciar el juego
+restartButton.addEventListener("click", function() {
+    startGame();
+});
+
+// Función para iniciar el juego
+function startGame() {
+    if (!isGameRunning) {
+        counter = 0;
+        isGameRunning = true;
+        startScreen.style.display = "none";
+        gameScreen.style.display = "block";
+        gameOverScreen.style.display = "none";
+        createSquare();
+    }
+}
+
+// Función para crear un cuadrado
+function createSquare() {
+    var squares = document.getElementsByClassName('square');
+
+    if (squares.length < 8) {
+        var square = document.createElement('div');
+        square.className = 'square';
+
+        var img = document.createElement('img');
+        img.src = 'imagenes/walking.gif';
+        square.appendChild(img);
+
+        var areadelJuegoDiv = document.querySelector('.areadelJuego');
+        var areadelJuegoHeight = areadelJuegoDiv.offsetHeight;
+        var randomTop = Math.floor(Math.random() * areadelJuegoHeight);
+
+        if (randomTop > areadelJuegoHeight - 50) {
+            randomTop -= 50;
+        }
+
+        square.style.top = randomTop + 'px';
+        square.style.animation = 'move linear ' + (Math.random() * 5 + 5) + 's';
+
+        square.addEventListener('animationend', function() {
+            counter++;
+            document.getElementById('counter').innerText = counter;
+
+            if (counter >= squares.length) {
+                gameOver();
+            }
+        });
+
+        document.getElementById('game').appendChild(square);
+    }
+}
+
+// Función para mostrar la pantalla de "Has Perdido"
+function gameOver() {
+    isGameRunning = false;
+    gameOverScreen.style.display = "block";
+    finalScore.innerText = counter;
+    clearGameScreen();
+}
+
+// Función para limpiar la pantalla del juego
+function clearGameScreen() {
+    var game = document.getElementById('game');
+    while (game.firstChild) {
+        game.removeChild(game.firstChild);
+    }
+}
+
+// Llama a la función startGame para mostrar la pantalla de inicio
+startGame();
+</script>
+
+
