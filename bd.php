@@ -39,7 +39,16 @@ function getPasswordByEmails($email){
   }
   function getPointsAndNames(){
     $conexion = openBD();
-    $sentenciaTxt = "select nombre, puntos  from juego.usuario ORDER BY puntos ASC";
+    $sentenciaTxt = "select nombre, puntos, user_id  from juego.usuario ORDER BY puntos ASC";
+    $sentencia = $conexion->prepare($sentenciaTxt);
+    $sentencia -> execute();
+    $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $conexion = closeBD();
+    return $resultado;
+  }
+  function getObjByUser($id){
+    $conexion = openBD();
+    $sentenciaTxt = "select * from juego.usuario_tiene_objetos where user_id =".$id;
     $sentencia = $conexion->prepare($sentenciaTxt);
     $sentencia -> execute();
     $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
