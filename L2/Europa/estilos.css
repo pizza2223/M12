@@ -6,14 +6,23 @@ body {
     margin: 0;
     background-color: #f0f0f0;
 }
+#pantalla{
+    background-size: cover;
+    background-position: center;
+    background-image: url('imagenes/barcelona.jfif');
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color : #000;
+    filter: brightness(0.5); /* Ajusta el valor para controlar la oscuridad */
+    z-index: -1; /* Coloca la capa detrás del contenido */
+}
 #pantalla-inicial {
-    background-image: url('imagenes/barcenola.jfif');
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 70vh;
-    
 }
 #tiempo-container {
     position: fixed;
@@ -62,12 +71,7 @@ body {
     font-size: 18px;
     margin-bottom: 10px;
 }
-#pantalla{
-    width: 100%;
-    height: 100%;
-    position: relative;
-    background-color : #000; 
-}
+
 #game-container {
     width: 1000px;
     height: 700px;
@@ -78,6 +82,7 @@ body {
     border-radius: 80px  ;
 }
 #casillas-objetos-conseguidos {
+    background-color: black;
     width: 147px; /* Ajusta según sea necesario */
     height: 700px;
     border: 2px solid  wheat;
@@ -105,14 +110,16 @@ body {
     width: 100%;
     height: 100%;
     background-color: blanchedalmond;
-    border-radius: 80px  ;
+    background-image: url('imagenes/parquet.jfif');
+    /*border-radius: 80px ;*/
+    border: none;
 }
 
 #character {
     width: 20px;
     height: 20px;
     position: absolute;
-    background-color:cadetblue;
+    background-color:black;
 }
 
 #bordeDer {
