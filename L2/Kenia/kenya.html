@@ -6,22 +6,35 @@
   <link rel="stylesheet" href="/L2/Kenia/css/css.css">
 </head>
 
-<body>
+<body> 
   <div id="malik">
-      <img src="/L2/Kenia/images/Malik-removebg-preview.png" alt="">
-    </div>
-    <!--<img src="/L2/Kenia/images/speechBubble2 (1).gif" id="malikTexto"> --> 
-    <h5 class="tiempo">TIEMPO</h5>
-    <div id ="temporizador"> </div>
-    <h5 class="puntos">PUNTOS</h5>
-    <div id="puntuacion"></div> 
-  <div id="game"> 
-   
-   
+    <img src="/L2/Kenia/images/Malik-removebg-preview.png" alt="">
+  </div>
+  <!--<img src="/L2/Kenia/images/speechBubble2 (1).gif" id="malikTexto"> -->
+  <h5 class="tiempo">TIEMPO</h5>
+  <div id="temporizador"> </div>
+
+  <!--CONTENEDOR DE PUNTOS-->
+  <div class="container">
+    <h5 class="puntosObjetos">PUNTOS x OBJETOS</h5>
+    <div id="puntuacionObjetos"> </div>
+
+    <h5 class="puntosVidas">PUNTOS x VIDAS</h5>
+    <div id="puntuacionVidas"></div>
+
+    <h5 class="puntosTiempo">PUNTOS x TIEMPO</h5>
+    <div id="puntuacionTiempo"></div>
+
+  </div>
+
+
+  <div id="game">
+
+
     <div id="personaje">
       <img src="/L2/Kenia/images/personaje/personajeDetras.gif" id="imagenPersonaje">
     </div>
-   
+
     <div id="cuadrante"></div>
     <div id="vidas">
       <img src="/L2/Kenia/images/corazones/corazonPixel-entero.png" id="heart1" class="heart">
@@ -34,10 +47,11 @@
         <!-- Contenido del pop-up -->
         <div id="ganar">
           <h1>¡Ganaste!</h1>
-          <p>Puntos x objetos: </p>
+          <!--<p>Puntos x objetos: </p>
           <p>Puntos x tiempo: </p>
-          <p>Puntos x vidas: </p>
-          <h1>Puntuación final: </h1> 
+          <p>Puntos x vidas: </p>-->
+          <h1>Puntuación final: </h1>
+          <div id="sumaPuntos"></div>
           <h1>¡Corre a mirar los rankings!</h1><br>
           <button data-action="volver">Volver a jugar</button><br><br>
           <button onclick="volverAlMapa()">Volver al mapa</button>
@@ -46,7 +60,7 @@
         <div id="perder">
           <h1>¡Perdiste! <br> Te has quedado sin vidas :c</h1> <br>
           <button data-action="reiniciar">Reiniciar</button> <br><br>
-          <button onclick="volverAlMapa()">Volver al mapa</button>
+          <!--<button onclick="volverAlMapa()">Volver al mapa</button>-->
         </div>
 
       </div>

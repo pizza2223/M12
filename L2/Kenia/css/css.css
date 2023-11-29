@@ -22,7 +22,7 @@ body {
 #malik{
   position: absolute;
   left: 73%;
-  top: 20%;
+  top: 28%;
 }
 #malikTexto{
   position: absolute;
@@ -38,26 +38,53 @@ h5{
   font-size: large;
   
 } 
-.puntos{
+/*OBJETOS*/
+.puntosObjetos{
   position: absolute;
   top:5%;
-  left: 54%;
+  left: 35%;
 }
-#puntuacion{
+#puntuacionObjetos{
+  position: absolute;
+  top: 11%;
+  left:35%;
+}
+/*VIDA*/
+.puntosVidas{
+  position: absolute;
+  top:5%;
+  left: 45%;
+}
+#puntuacionVidas{
+  position: absolute;
+  top: 11%;
+  left:45%;
+}
+/*TIEMPO*/
+.puntosTiempo{
+  position: absolute;
+  top:5%;
+  left: 55%;
+}
+#puntuacionTiempo{
   position: absolute;
   top: 11%;
   left:55%;
 }
+
+
+/*TEMPORIZADOR*/
 .tiempo{
   position: absolute;
-  top:5%;
-  left: 48%;
+  top:20%;
+  left: 20%;
 }
 #temporizador{
   position: absolute;
-  top: 11%;
-  left:47.5%;
+  top: 26%;
+  left:19.5%;
 }
+
 .camino {
   height: 80px;
   width: 100px;

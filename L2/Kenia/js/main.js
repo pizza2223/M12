@@ -6,19 +6,27 @@ let arrayCamino;
 let intervalId = null;
 let vidas = 3;
 let juegoEnCurso = true;
-//let funciona = false;
-//let randomX;
-//let randomY;
 const imagenPersonaje = document.getElementById('imagenPersonaje');
-//let objetosBienPosicionados = true;
-// Agrega una variable global para almacenar la puntuación
-let puntos = 0;
+
+
+// VARIABLES DE PUNTUACIÓN
+let puntosVidas = 6; // resta 2 puntos por vida perdida
+let puntosObjetos = 0; //suma  2 puntos por objeto recogido
+let puntosTiempo; //resta 0.5 por s que pasa
+let puntosTiempoMax=13;
+let puntosXsegundo = 0.5;
+
 let gameTimer; // Variable para almacenar el temporizador
 let tiempoTranscurrido = 0; // Variable para almacenar el tiempo transcurrido en segundos
 let colisionConObjeto = false;
 console.log(tiempoTranscurrido);
 
-document.getElementById('puntuacion').innerHTML = "[ "+ puntos + " ]"
+//PUNTUACIONES INICIALES
+document.getElementById("puntuacionVidas").innerHTML =  puntosVidas;
+document.getElementById('puntuacionObjetos').innerHTML =  puntosObjetos;
+document.getElementById("puntuacionTiempo").innerHTML =  puntosTiempo;
+//document.getElementById("puntuacionVidas").innerHTML = puntosVidas ;
+
 iniciarTemporizador( );
 crearMapa();
 
@@ -26,23 +34,32 @@ actualizarPosicionPersonaje();
 actualizarVidas();
 
 spawnObjeto("/L2/Kenia/images/objetos/piedra.png");
-spawnObjeto("/L2/Kenia/images/objetos/piedra.png");
 spawnObjeto("/L2/Kenia/images/objetos/paloBuenoB.png");
-spawnObjeto("/L2/Kenia/images/objetos/placasolarBuenaB.png");
 spawnObjeto("/L2/Kenia/images/objetos/placasolarBuenaB.png");
 
 
 inicioMovimientoAutomatico(); // que se mueva desde el principio
 movimientoPersonaje();
 
-
+function puntuacionFinal(){
+  // sumar puntos de objetos con puntosVidas y PuntosObjetos
+  let sumaPuntos;
+  sumaPuntos = puntosObjetos + puntosTiempo + puntosVidas;
+  document.getElementById('sumaPuntos').innerHTML = sumaPuntos;
+  document.cookie = "Puntos finales=" + sumaPuntos+ ";  path=/;";
+  //expires=Thu, 01 Jan 1970 00:00:00 UTC;
+}
 // Agregar función para iniciar el temporizador
 function iniciarTemporizador() {
   document.getElementById('temporizador').innerHTML = "[ "+tiempoTranscurrido + " segundos  ] ";
   gameTimer = setInterval(() => {
     tiempoTranscurrido++;
     //document.getElementById('tiempo').innerHTML = "Tiempo";
-      
+
+        // Calcular puntos por tiempo (resta puntosPorSegundo por cada segundo)
+    puntosTiempo = Math.max(puntosTiempoMax - Math.floor(puntosXsegundo * tiempoTranscurrido), 0);
+    document.getElementById("puntuacionTiempo").innerHTML =  puntosTiempo;
+
     document.getElementById('temporizador').innerHTML = "[ "+tiempoTranscurrido + " segundos  ]";
   }, 1000); // Actualizar cada segundo (1000 milisegundos)
 }
@@ -71,15 +88,12 @@ function actualizarVidas() {
 function ganar() {
   if (leftPos === 0) {
     detenerTemporizador();
-    //guardarTiempoEnCookie(tiempoTranscurrido);
+    puntuacionFinal();
+    
     popupFuncion('ganar');
   }
 }
 
-//COOKIE FUNCION
-// function guardarTiempoEnCookie(tiempo) {
-//   document.cookie = "tiempoGanador=" + tiempo + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-// }
 
 
 function perder() {
@@ -150,7 +164,7 @@ function movimiento(direction, step) {
       topPos += step;
     }
     actualizarPosicionPersonaje();
-  }, 50); //PONER A 50 LUEGO
+  }, 60); //VELOCIDAD  PONER A 80 LUEGO
 }
 
 
@@ -210,9 +224,8 @@ function comprobarColisionObjeto() {
         // Colisión con el objeto
         console.log('Colisión con objeto');
         // Puedes realizar acciones adicionales aquí, como decrementar vidas, etc.
-        puntos +=5;
-        document.getElementById('puntuacion').innerHTML = "[ "+ puntos + " ]"
-        //console.log(puntos);
+        puntosObjetos +=2;
+        document.getElementById('puntuacionObjetos').innerHTML =  puntosObjetos;        //console.log(puntosObjetos);
         // Eliminar el objeto del mapa
         objeto.remove();
         // Establecer la propiedad haColisionado del objeto a true
@@ -254,32 +267,6 @@ function verificarColisionObjetos(objetoLeft, objetoTop, imagenObjeto) {
   return false;
 }
 
-// function spawnObjeto(imagenSrc) {
-//   const imagenObjeto = document.createElement('img');
-//   imagenObjeto.src = imagenSrc;
-
-//   let posicionValida = false;
-
-//   while (!posicionValida) {
-//     const { objetoLeft, objetoTop } = generarPosicionAleatoria();
-
-//     if (!verificarEsquinasEnCamino(objetoLeft, objetoTop, imagenObjeto)) {
-//       // Si la posición es válida, salir del bucle
-//       posicionValida = true;
-
-//       const contenedorImagen = document.createElement('div');
-//       contenedorImagen.style.position = 'absolute';
-//       contenedorImagen.style.zIndex = 3;
-//       contenedorImagen.style.left = objetoLeft + 'px';
-//       contenedorImagen.style.top = objetoTop + 'px';
-//       contenedorImagen.appendChild(imagenObjeto);
-//       game.appendChild(contenedorImagen);
-
-      
-//     }
-//   }
-
-// }
 
 function generarPosicionAleatoria() {
   const randomX = Math.floor(Math.random() * 8);
@@ -411,6 +398,8 @@ function comprobarPersonajeDentroCamino() {
     clearInterval(intervalId);
     //actualiza las vidas
     vidas = vidas - 1;
+    puntosVidas = puntosVidas -2;
+    document.getElementById("puntuacionVidas").innerHTML =  puntosVidas ;
     actualizarVidas();
     inicioMovimientoAutomatico();
 
@@ -422,8 +411,8 @@ function comprobarPersonajeDentroCamino() {
   }
 
   // printea posición del personaje EN LA ARRAY
-  document.getElementById('cuadrante').innerHTML =
-    "cuadrante 1= ["   + topLeftColumn + ", " + topLeftRow + "]    cuadrante 2= [" + topRightColumn + ", " + topRightRow + "]    cuadrante 3= [" + bottomLeftColumn + ", " + bottomLeftRow + "]    cuadrante 4= [" + bottomRightColumn + ", " + bottomRightRow + "]";
+  // document.getElementById('cuadrante').innerHTML =
+  //   "cuadrante 1= ["   + topLeftColumn + ", " + topLeftRow + "]    cuadrante 2= [" + topRightColumn + ", " + topRightRow + "]    cuadrante 3= [" + bottomLeftColumn + ", " + bottomLeftRow + "]    cuadrante 4= [" + bottomRightColumn + ", " + bottomRightRow + "]";
 
    
 }
@@ -433,6 +422,3 @@ function volverAlMapa() {
   window.location.href = "/L2/index.html";
 }
 
-//ADD TIMER
-//COLISION CON PUNTOS
-//BOTÓN PARA VOLVER A LA PAGINA PRINCIPAL?

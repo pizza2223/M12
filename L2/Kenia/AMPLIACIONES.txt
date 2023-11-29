@@ -14,3 +14,20 @@ ARREGLAR // AÑADIR
 -optimizar el codigo
 -mirar que ya no hacen falta los limites del mapa porque no se sale del camino
 -añadir objetos para recolectar
+
+
+
+
+///AHORA///
+25 puntos 
+sumar 2 puntos por objeto [6 puntos en total]
+
+segundos (0.5 x s) restar 0.5 por segundo que pasa [13 puntos]
+
+corazones restar 2 puntos por vida perdida [6 puntos]
+
+
+// VARIABLES DE PUNTUACIÓN
+let puntosVidas = 6; // resta 2 puntos por vida perdida
+let puntosTiempo = 13; //resta 0.5 por s que pasa
+let puntosObjetos = 0; //suma  2 puntos por objeto recogido
