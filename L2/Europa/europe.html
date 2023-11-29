@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+    <title>Juego de Control de Personaje con Obstáculos</title>
+</head>
+<body>
+    <div id="pantalla">
+        <div id="tiempo-container" style="display: none;">
+            <p>Tiempo: <span id="tiempo">0</span> segundos</p>
+        </div>
+        <div id="pantalla-inicial">
+            <div id="personaje">
+                <img src="imagenes/laia.png" alt="Laia">
+            </div>
+            <div id="dialogo">
+                <div id="bocadillo">
+                    <p id="mensaje">¡Hola! Soy Laia.</p>
+                </div>
+            </div>
+            <button id="siguienteBtn" onclick="cambiarMensaje()">Siguiente</button>
+            <button id="comenzarBtn" style="display: none;">Comenzar</button>
+        </div>
+
+    <div id="game-container" style="display: none;">
+
+
+        <div id="habitacion1" >
+            <div id="character"></div>
+            <div class="pared" id="bordeDer"></div>
+            <div class="pared" id="bordeIz"></div>
+            <div class="pared" id="bordeArrb"></div>
+            <div class="pared" id="bordeAbj"></div>
+
+            <div id="techo1"></div>
+            <div id="techo2"></div>
+            <div id="techo3"></div>
+            <div id="techo4"></div>
+
+            <div class="pared" id="pasillo1left"></div>
+            <div class="pared" id="pasillo1right"></div>
+            <div class="pared" id="top1left"></div>
+            <div class="pared" id="top1right"></div>
+
+            <div class="pared" id="pasillo2bottom"></div>
+            <div class="pared" id="pasillo2right"></div>
+
+            <div class="pared" id="pasillo3left"></div>
+            <div class="pared" id="pasillo3top"></div>
+            <div class= "pared" id="pasillo3bottom"></div>
+
+            <div class="puerta1" id="puerta12" data-next-room="2"></div>
+            <div class="puerta1" id="puerta13" data-next-room="4"></div>
+            <div class="puerta1" id="puerta14" data-next-room="6"></div>
+            <div class="puerta1" id="puerta15" data-next-room="8"></div>
+            <div class="puerta1" id="puerta16" data-next-room="10"></div>
+
+
+        </div>
+
+            <!-- Elementos específicos de la habitación 2 (oficina)-->
+        <div id="habitacion2" style="display: none;">
+            <div class="flecha" data-previous-room="1"></div>
+            <div id="puerta3" class="puerta" data-next-room="3"></div>
+            <div id="llave" class="conseguible"></div>
+        </div>
+                    <!-- Elementos específicos de la habitación 3 (cocina) -->
+                <div id="habitacion3" style="display: none;">
+                    <div class="flecha" data-previous-room="2"></div>
+                </div>
+
+            <!-- Elementos específicos de la habitación 4 (habitacion vacía) -->
+        <div id="habitacion4"style="display: none;">
+            <div class="flecha" data-previous-room="1"></div>
+            <div id="puerta5" class="puerta"data-next-room="5"></div>
+        </div>
+                    <!-- Elementos específicos de la habitación 5 (habitación madera) -->
+                <div id="habitacion5" style="display: none;">
+                    <div  class="flecha" data-previous-room="4"></div>
+                    <div id="guia" class="conseguible"></div>
+                    <div id="libro1H5" class="inspeccionable"></div>
+                </div>
+
+            <!-- Elementos específicos de la habitación 6 (hab puerta cerrada)-->
+        <div id="habitacion6" style="display: none;">
+            <div class="flecha" data-previous-room="1"></div>
+            <div id="puerta7" class="puerta"data-next-room="7"></div>
+        </div>
+                    <!-- Elementos específicos de la habitación 6 (cuarto aerogenerador)-->
+                <div id="habitacion7" style="display: none;">
+                    <div class="flecha" data-previous-room="6"></div>
+                    <div id="aerogenerador" class="conseguible"></div>
+                </div>
+            <!-- Elementos específicos de la habitación 8 (oficina2) -->
+        <div id="habitacion8" style="display: none;">
+            <div class="flecha" data-previous-room="1"></div>
+            <!-- Esto no es la puerta, es el cajón, pero tiene la misma función -->
+            <div id="puerta9" class="puerta"data-next-room="9"></div>
+        </div>
+                    <!-- Interior del cajón -->
+                <div id="habitacion9" style="display: none;">
+                    <div class="flecha" data-previous-room="8"></div>
+                    <div id="bombilla" class="conseguible"></div>
+                </div>
+
+                
+
+    </div>
+    <div id="casillas-objetos-conseguidos" style="display: none;">
+        <div class="casilla-objeto" id="casilla1"></div>
+        <div class="casilla-objeto" id="casilla2"></div>
+        <div class="casilla-objeto" id="casilla3"></div>
+        <div class="casilla-objeto" id="casilla4"></div>
+        <div class="casilla-objeto" id="casilla5"></div>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
