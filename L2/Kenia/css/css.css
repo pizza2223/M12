@@ -30,7 +30,10 @@ body {
   top: 15%;
   
 }
-
+ h1{
+  font-size:medium;
+  font-style: bold;
+ }
 h5{
   font-size: large;
   
