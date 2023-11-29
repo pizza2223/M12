@@ -294,8 +294,28 @@ function verificarVictoria() {
     if (guiaConseguida && aeroConseguido) {
         alert('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
         // Puedes realizar acciones adicionales aquí, como reiniciar el juego o redirigir a otra página
-        switch(tiempoTranscurrido > 0 )
-        setCookie('tiempoJuego', tiempoTranscurrido, 30); // 30 días de expiración, ajusta según sea necesario
+        switch(tiempoTranscurrido){
+            case tiempoTranscurrido <= 30 && tiempoTranscurrido:
+                puntos = 25;
+                break;
+            case tiempoTranscurrido <= 45 && tiempoTranscurrido > 30:
+                puntos = 20;
+                break;
+            case tiempoTranscurrido <= 65 && tiempoTranscurrido > 45:
+                puntos = 15;
+                break;
+            case tiempoTranscurrido <= 80 && tiempoTranscurrido > 65:
+                puntos = 10;
+                break;
+            case tiempoTranscurrido <= 95 && tiempoTranscurrido > 80:
+                puntos = 5;
+                break;
+            case tiempoTranscurrido > 95:
+                puntos = 0;
+                break;
+                default: puntos = 1;
+        }
+        setCookie('Puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
 
         reiniciarJuego();
     }
