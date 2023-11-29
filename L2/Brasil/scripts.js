@@ -27,10 +27,10 @@ function escribirEnPantalla(texto, callback) {
 
 // Primer llamado con una función de retorno de llamada
 escribirEnPantalla("¡Hola Laia! Soy Caucan Miri de la tribu Tatuyo   ", function () {
-  escribirEnPantalla("Te hemos contratado para conatar la cantidad total de niños que hay en la escuela", function () {
+  escribirEnPantalla("Te hemos contratado para contar la cantidad total de niños que hay en la escuela", function () {
       escribirEnPantalla("Vas a tener que apretar la tecla espacio cada vez que veas uno", function () {
-        escribirEnPantalla("Si al acabar el juego los has contado correctamente ganaras.", function () {
-          escribirEnPantalla("Y...¡Cuidado, encontraras obstaculos en tu camino!", function () {
+        escribirEnPantalla("Si al acabar el juego los has contado correctamente ganarás.", function () {
+          escribirEnPantalla("Y...¡Cuidado, encontrarás obstáculos en tu camino!", function () {
             // Puedes seguir encadenando llamadas para más textos si es necesario
         });      });
       });
@@ -192,7 +192,7 @@ function generacionEntidades() {
       }
       square.style.top = randomTop + 'px';
       // Animación
-      square.style.animation = 'move linear ' + (Math.random() * 5 + 5) + 's';
+      square.style.animation = 'move linear ' + (Math.random() * 4 + 4) + 's';
       document.getElementById('game').appendChild(square);
   
       // Incrementar el contador

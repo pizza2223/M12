@@ -36,14 +36,14 @@
    #volverJuego {
     margin-top: 15px;
     font-size: 20px;
-    color: rgb(5, 33, 136);
+    color: #ffffff;
     font-weight: bold;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Quantico', sans-serif;
-    background: #1add44;
+    background: #147FFA;
    }
    
    .ventanaInicio {
@@ -51,6 +51,13 @@
    }
    
    #bienvenido{
+    word-spacing: -5.2px;
+    letter-spacing: -0.7px;
+
+    -webkit-text-stroke: 3px rgb(220, 220, 220);
+    color: #FFFFFF;
+text-shadow: -5px 5px 0px #00e6326f, -10px 10px 0prgba(1, 204, 18, 0.321)12,rgba(0, 189, 41, 0.412)15px 0px #00bd2970;
+color: #ffffff;
     color: rgb(255, 255, 255);
     font-family: 'Quantico', sans-serif;
     font-size: 70px;
@@ -73,6 +80,12 @@
     font-family: 'Quantico', sans-serif;
     font-size: 20px;
    }
+.estadisticas{
+  margin-top: 80px;
+  font-family: 'Quantico', sans-serif;
+  border: 6px groove #00E01F;
+  padding: 20px;
+}
 
    .ventanaInicio {
     position: fixed;
@@ -88,19 +101,34 @@
     justify-content: center;
     align-items: center;
     z-index: 3;
+    border: 15px inset #00E01F;
+
    }
    
    #siguienteJuego{
     margin-top: 15px;
     font-size: 20px;
-    color: rgb(5, 33, 136);
+    color: rgb(255, 255, 255);
     font-weight: bold;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Quantico', sans-serif;
-    background: #1add44;
+    background: #147FFA;
+   }
+
+   #repetir{
+    margin-top: 15px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Quantico', sans-serif;
+    background: #147FFA;
    }
    
    #comenzarJuego {
@@ -189,6 +217,7 @@
    
     html, body {
     margin: 0;
+    font-family: 'Quantico', sans-serif;
 
    }
    .paredDerecha{
