@@ -14,8 +14,6 @@ body {
     height: 100%;
     position: relative;
     background-color : #000;
-    filter: brightness(0.5); /* Ajusta el valor para controlar la oscuridad */
-    z-index: -1; /* Coloca la capa detrás del contenido */
 }
 #pantalla-inicial {
     display: flex;
