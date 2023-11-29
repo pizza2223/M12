@@ -1,0 +1,427 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+#pantalla-inicial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    
+}
+
+#personaje img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+#dialogo {
+    display: flex;
+    align-items: center;
+}
+
+#bocadillo {
+    background-color: #fff;
+    border: 2px solid #000;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 300px;
+    text-align: center;
+    margin-left: 800px; /* Ajusta el margen izquierdo según sea necesario */
+    margin-top: -1000px;
+}
+
+#pantalla-inicial button {
+    margin-top: -400px;
+    margin-left: 800px;
+    cursor: pointer;
+}
+
+#mensaje {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+#pantalla{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color : #000; 
+}
+#game-container {
+    width: 1000px;
+    height: 700px;
+    position: relative;
+    top: 200px;
+    left: 500px;
+    background-color :rgb(255, 254, 253);
+    border-radius: 80px  ;
+}
+#casillas-objetos-conseguidos {
+    width: 147px; /* Ajusta según sea necesario */
+    height: 700px;
+    border: 2px solid  wheat;
+    padding: 10px;
+    top: 200px;
+    left: 1550px;
+    box-sizing: border-box;
+    position: absolute;
+    border-radius: 40px  ;
+}
+
+.casilla-objeto {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 40px  ;
+    height: 114px;
+    width: 110px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* estilos del plano de la casa*/
+#habitacion1{
+    width: 100%;
+    height: 100%;
+    background-color: blanchedalmond;
+    border-radius: 80px  ;
+}
+
+#character {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color:cadetblue;
+}
+
+#bordeDer {
+    width: 3px;
+    height: 100%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:100%;
+    top:0%;
+}
+#bordeIz {
+    width: 3px;
+    height: 100%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:0%;
+    top:0%;
+}
+#bordeArrb {
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:0%;
+    top:0%;
+}
+#bordeAbj{
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:0%;
+    top:100%;
+}
+#pasillo1left{
+    width: 3px;
+    height: 35%;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 45%;
+    top: 65%;
+}
+#pasillo1right{
+    width: 3px;
+    height: 20%;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 55%;
+    top: 80%;
+}
+#top1left{
+    width: 45%;
+    height: 3px;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 0%;
+    top: 65%;
+}
+#top1right{
+    width: 45%;
+    height: 3px;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 55%;
+    top: 80%;
+}
+#pasillo2bottom{
+    width: 45%;
+    height: 3px;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 0%;
+    top: 50%;
+}
+#pasillo2right{
+    width: 3px;
+    height: 50.4%;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 45%;
+    top: 0%;
+}
+#pasillo3bottom{
+    width: 35%;
+    height: 3px;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 65%;
+    top: 30%;
+}
+#pasillo3left{
+    width: 3px;
+    height: 20%;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 65%;
+    top: 10%;
+}
+#pasillo3top{
+    width: 35%;
+    height: 3px;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 65%;
+    top: 10%;
+}
+#puerta12{
+    width: 4%;
+    height: 1.5%;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 12%;
+    top: 63.5%;
+}
+#puerta13{
+    width: 4%;
+    height: 1.8%;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 65%;
+    top: 78.4%;
+}
+#puerta14{
+    width: 1.5%;
+    height: 5%;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 45%;
+    top: 28%;
+}
+#puerta15{
+    width: 1.5%;
+    height: 5%;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 63.5%;
+    top: 18%;
+}
+#puerta16{
+    width: 1.5%;
+    height: 10%;
+    background-color: #0c0c0c;
+    position: absolute;
+    left: 65%;
+    top: 0%;
+}
+/*Estilos de puertas al pasar el ratón por encima*/
+.puertaResaltada{
+    background-color: #464036; /* Color de fondo (en este caso, naranja) */
+    opacity: 0.5; /* Opacidad (puedes ajustarla según tu preferencia) */
+    position: absolute;
+}
+.objetoResaltado {
+    background-color: #464036; /* Color de fondo (en este caso, naranja) */
+    opacity: 0.5; /* Opacidad (puedes ajustarla según tu preferencia) */
+    border:white 2px solid ;
+    border-radius: 5%;
+    position: absolute;
+}
+.flecha{
+    background-color: burlywood;
+    background-image: url("imagenes/flecha.jpg");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    height: 14%;
+    width: 10%;
+    top: 85%;
+    left: 45%;
+    opacity: 0.5;
+}
+/*Estilos de la habitación 2*/
+#habitacion2{
+    background-color: burlywood;
+    background-image: url("imagenes/BocetoOficina.PNG");
+    background-size: cover;
+    background-position: center; /* Opcional: centra la imagen */
+    width: 100%;
+    height: 100%;
+    border-radius: 80px  ;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+#llave{
+    position: absolute;
+    width: 5.5%;
+    height: 6.5%;
+    top:38%;
+    left: 60%;
+}
+#puerta3{
+    width: 12%;
+    height: 32%;
+    position: absolute;
+    top: 22%;
+    left: 17.5%;
+}
+#habitacion3{
+    background-color: burlywood;
+    background-image: url("imagenes/cocina.png");
+    background-size: cover;
+    background-position: center; /* Opcional: centra la imagen */
+    width: 100%;
+    height: 100%;
+    border-radius: 80px  ;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+/*Estilos de la habitación 3*/
+#habitacion4{
+    background-color: chocolate;
+    background-image:url("imagenes/habitacionConPuertaAlFinal.jpg");
+    background-position: center; /* Opcional: centra la imagen */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 80px  ;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+#puerta5{
+    width: 8%;
+    height: 20%;
+    position: absolute;
+    top: 35%;
+    left: 25.5%;
+    
+}
+/*Estilos de la habitación 31*/
+#habitacion5{
+    background-color: chocolate;
+    background-image:url("imagenes/habitacionMadera.png");
+    background-position: center; /* Opcional: centra la imagen */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    top:90%;
+    left: 85%;
+    border-radius: 80px  ;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+#guia{
+    position: absolute;
+    width: 4%;
+    height: 10%;
+    top:82%;
+    left: 81%;
+}
+#libro1H5{
+    position: absolute;
+    width: 0.8%;
+    height: 8%;
+    top:14.9%;
+    left: 27.5%;
+}
+/*Estilos de la habitación 4*/
+
+#habitacion6{
+    background-color: chocolate;
+    background-image:url("imagenes/habitacionConPuertaCerrada.png");
+    background-position: center; /* Opcional: centra la imagen */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 80px  ;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+#puerta7{
+    width: 20%;
+    height: 45%;
+    position: absolute;
+    top: 40%;
+    left: 38.5%;
+}
+/*Estilos de la habitación 41*/
+
+#habitacion7{
+    background-color: chocolate;
+    background-image:url("imagenes/habitacion2.png");
+    background-position: center; /* Opcional: centra la imagen */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 80px  ;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+#aerogenerador{
+    width: 3%;
+    height: 5%;
+    position: absolute;
+    top: 50%;
+    left: 31%;
+}
+
+/*Estilos de la habitación 51*/
+#habitacion8{
+    background-color: chocolate;
+    background-image:url("imagenes/oficina2.jfif");
+    background-position: center; /* Opcional: centra la imagen */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 80px  ;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+#puerta9{
+    width: 13%;
+    height: 8%;
+    position: absolute;
+    top: 23%;
+    left: 30%;
+}
+/* Es el cajón con la bombilla dentro*/
+#habitacion9{
+    background-color: white;
+    background-image:url("imagenes/cajonConBombilla.png");
+    background-position: center; /* Opcional: centra la imagen */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 80px  ;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+#bombilla{
+    width: 23%;
+    height: 38%;
+    position: absolute;
+    top: 30%;
+    left: 38%;
+}
