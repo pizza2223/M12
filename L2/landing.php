@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -124,65 +125,50 @@
 
     <div class="procesos" id="procesos">
         <div class="container">
-            <h1 class="project-name">Procés de treball</h1>
-                <div id="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                        </div>
-                        <div class="timeline-content">
-                            <h2></h2>
-                            <p>
-                            </p>
-                            
-                        </div>
-                    </div>
-        
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                        </div>
-                        <div class="timeline-content right">
-                            <h2></h2>
-                            <p>
-                            </p>
-                        </div>
-                    </div>
-        
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                        </div>
-                        <div class="timeline-content">
-                            <h2></h2>
-                            <p>
-                            </p>
-                        </div>
-                    </div>
-              
-              <div class="timeline-item">
-                        <div class="timeline-icon">
-                        </div>
-                        <div class="timeline-content right">
-                            <h2></h2>
-                            <p>
-                            </p>
-                        </div>
-                    </div>
-              
-              <div class="timeline-item">
-                        <div class="timeline-icon">
-                        </div>
-                        <div class="timeline-content">
-                            <h2></h2>
-                            <p>
+            <h1 class="project-name">Ranking</h1>
+            <table class="table">
+          
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Usuari</th>
+                  <th scope="col">Ranking</th>
+                  <th scope="col">Objectes col·leccionats</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php 
+               require '../bd.php';
+              $rankingList = getPointsAndNames();
+                $rowNum =  1;
+              foreach($rankingList as $row){
+                $id = $row['user_id'];
+                $rutas = getObjByUser((int) $id);
+                 echo "<tr>
+                 <th scope='row'>".$rowNum."</th>";
+                 if((int) $_SESSION['user_id'] == (int) $id){
+                  echo "<td style='color: green;'>".$row['nombre']."</td>";
+                 } 
+                 else {
+                  echo "<td>".$row['nombre']."</td>";
+                 }
+                
+                echo "<td>".$row['puntos']."</td>".
+                 "<td>";
+
+                 foreach($rutas as $r){
+                  
+                 echo "<img src='/M12/L2/img/objetos/".$r['obj_id'].".png"."' alt='Description of the image'>";
+                
              
-                            </p>
-                        </div>
-                    </div>
-              
-              
-              
-              
-                </div>
-            </div>
+            }
+            echo "</td>"."</tr>";
+               $rowNum++;
+          }  
+
+              ?>
+              </tbody>
+            </table>
 
     </div>
 
