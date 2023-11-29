@@ -40,34 +40,35 @@ escribirEnPantalla("¡Hola Laia! Soy Caucan Miri de la tribu Tatuyo   ", functio
 
 //////
 var nivel = 1;
- document.getElementById('nivel').innerText = "Nivel: " + nivel;
+document.getElementById('nivel').innerText = "Nivel: " + nivel;
 
- let counter = 0; 
+let counter = 0;
+let elapsedTime; // Declarar la variable elapsedTime aquí
 
 function resetCounter() {
- counter = 0
- document.getElementById('counter').innerText = counter;
+  counter = 0;
+  document.getElementById('counter').innerText = counter;
 }
 
 var squares = document.getElementsByClassName('square');
 
-document.getElementById('finjuego').style.display = 'none'; 
+document.getElementById('finjuego').style.display = 'none';
 let timer; // Variable para el temporizador
 
-document.getElementById('comenzarJuego').addEventListener('click',inicializa );
+document.getElementById('comenzarJuego').addEventListener('click', inicializa);
 document.getElementById('all').style.display = 'none'; // Oculta la ventana de inicio
 
-function postintro(){
-    document.getElementById('intro').style.display = 'none'; // Oculta la ventana de inicio
-    document.getElementById('all').style.display = 'block'; // Oculta la ventana de inicio
-
+function postintro() {
+  document.getElementById('intro').style.display = 'none'; // Oculta la ventana de inicio
+  document.getElementById('all').style.display = 'block'; // Oculta la ventana de inicio
 }
 
 function inicializa() {
-  let startTime = Date.now(); // Marca de tiempo inicial
-  let counter = 0; // Variable para contar cuántas veces se presiona la tecla espacio
-
   startTimer();
+
+  let startTime = Date.now(); // Marca de tiempo inicial
+  counter = 0; // Variable para contar cuántas veces se presiona la tecla espacio
+
   var audio = document.getElementById("audio");
   audio.play();
   document.getElementById('inicioJuego').style.display = 'none'; // Oculta la ventana de inicio
@@ -76,48 +77,76 @@ function inicializa() {
   resetCounter();
   generacionEntidades();
   var gameStarted = false;
-  document.body.onkeyup = function(e) {
+  document.body.onkeyup = function (e) {
     if (e.keyCode == 32) {
       counter++;
       document.getElementById('counter').innerText = counter;
 
       if (counter === 5) {
         // Calcular el tiempo transcurrido en segundos
-        let elapsedTime = (Date.now() - startTime) / 1000;
+        elapsedTime = (Date.now() - startTime) / 1000;
+        document.cookie = "Tiempo(segundos)=" + elapsedTime.toFixed(2);
+        document.cookie = "Nivel=" + nivel;
 
         // Mostrar una alerta indicando el segundo exacto
-        alert('¡Counter es igual a la longitud de cuadrados en el segundo ' + elapsedTime.toFixed(2) + '!');
       }
     }
   };
 }
-
-
-
-
-
-
-var totalsq=5;
 function startTimer() {
- // Detiene el temporizador anterior (si existe)
- clearTimeout(timer);
- 
- // Inicia un nuevo temporizador
- timer = setTimeout(function() {
-    if (counter == totalsq) {
-      alert('ganaste');
-      document.getElementById('finjuego').style.display = 'block'; 
+  // Selecciona el primer elemento h2
+  var resultado = document.getElementById('ganarperder');
+  var tiempotext = document.getElementById('tiempottexto');
+  var puntostext = document.getElementById('puntostexto');
+
+  var puntos;
+
+  // Detiene el temporizador anterior (si existe)
+  clearTimeout(timer);
+
+  // Inicia un nuevo temporizador
+  timer = setTimeout(function () {
+    if (counter == 5) {
+      resultado.innerText = '¡Ganaste!';
+      resultado.style.color = 'green';
+      document.getElementById('finjuego').style.display = 'block';
+      tiempotext.innerText = 'Tiempo: ' + elapsedTime.toFixed(2) + ' segundos.';
+
+      // Calcular puntos según el rango de tiempo
+      switch (true) {
+        case elapsedTime < 5:
+          puntos = 25;
+          break;
+        case elapsedTime >= 5 && elapsedTime <= 8:
+          puntos = 20;
+          break;
+        case elapsedTime > 8 && elapsedTime <= 12:
+          puntos = 15;
+          break;
+        case elapsedTime > 12 && elapsedTime <= 16:
+          puntos = 10;
+          break;
+        default:
+          puntos = 0;
+      }
+
+      puntostext.innerText = 'Puntos: ' + puntos;
+      document.cookie = "Juego="+ puntos;
       counter = 0;
       squares = []; // Reiniciar el arreglo de cuadrados completados
       nivel++;
       document.getElementById('nivel').innerText = "Nivel: " + nivel; // Actualiza el nivel en la pantalla
       document.getElementById('contador').innerText = "Contador: " + counter;
-    } else if (counter == 0 || counter != squares.length) {
+    } else {
+      document.cookie = "Juego="+0;
+      resultado.innerText = '¡Perdiste!';
+      resultado.style.color = 'red';
       document.getElementById('finjuego').style.display = 'block';
-      alert('perdiste');
     }
- }, 16000);
+  }, 16000);
 }
+
+
 
  // 
 clearTimeout(timer); // Detiene el temporizador anterior

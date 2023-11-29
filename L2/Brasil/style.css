@@ -55,7 +55,25 @@
     font-family: 'Quantico', sans-serif;
     font-size: 70px;
    }
+
+   #ganarperder{
+    color: rgb(255, 255, 255);
+    font-family: 'Quantico', sans-serif;
+    font-size: 50px;
+   }
+
+   #tiempottexto{
+    color: rgb(240, 240, 20);
+    font-family: 'Quantico', sans-serif;
+    font-size: 20px;
+   }
    
+   #puntostexto{
+    color: rgb(65, 248, 15);
+    font-family: 'Quantico', sans-serif;
+    font-size: 20px;
+   }
+
    .ventanaInicio {
     position: fixed;
     height: 760px;
