@@ -15,6 +15,8 @@ function closeBD(){
     return null;
 }
 
+//SELECTS
+
 function getPasswordByEmails($email){
     $conexion = openBD();
     // $sentenciaTxt = "select contra from juego.usuario where correo = :email";
@@ -55,4 +57,32 @@ function getPasswordByEmails($email){
     $conexion = closeBD();
     return $resultado;
   }
+
+  //INSERTS
+  function insertObjectCollectedByUser($idObj, $user){
+    $conexion = openBD();
+    $sentenciaTxt = "insert (user_id, obj_id) values (:user, :id)";
+    $sentencia = $conexion->prepare($sentenciaTxt);
+    $sentencia->bindParam(':user', $user);
+    $sentencia->bindParam(':id', $idObj);
+    $sentencia -> execute();
+    $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $conexion = closeBD();
+    return $resultado;
+  } 
+  function updatePoints($puntos, $user){
+    $conexion = openBD();
+    $sentenciaTxt = "update users set puntos = :puntos WHERE user_id = :user";
+    $sentencia = $conexion->prepare($sentenciaTxt);
+    $sentencia->bindParam(':user', $user);
+    $sentencia->bindParam(':puntos', $puntos);
+    $sentencia -> execute();
+    $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $conexion = closeBD();
+    return $resultado;
+  } 
+
+
+  
+
 ?>

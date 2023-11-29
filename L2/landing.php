@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -140,21 +141,28 @@
                require '../bd.php';
               $rankingList = getPointsAndNames();
                 $rowNum =  1;
-                
               foreach($rankingList as $row){
                 $id = $row['user_id'];
                 $rutas = getObjByUser((int) $id);
                  echo "<tr>
-                 <th scope='row'>".$rowNum."</th>
-                 <td>".$row['nombre']."</td>
-                 <td>".$row['puntos']."</td>
-                 <td>";
+                 <th scope='row'>".$rowNum."</th>";
+                 if((int) $_SESSION['user_id'] == (int) $id){
+                  echo "<td style='color: green;'>".$row['nombre']."</td>";
+                 } 
+                 else {
+                  echo "<td>".$row['nombre']."</td>";
+                 }
+                
+                echo "<td>".$row['puntos']."</td>".
+                 "<td>";
+
                  foreach($rutas as $r){
                   
-                 echo "<img src='M12/L2/img/objetos/".$r['obj_id'].".png"."' alt='Description of the image'>";
+                 echo "<img src='/M12/L2/img/objetos/".$r['obj_id'].".png"."' alt='Description of the image'>";
                 
-              echo "</td>"."</tr>";
+             
             }
+            echo "</td>"."</tr>";
                $rowNum++;
           }  
 
