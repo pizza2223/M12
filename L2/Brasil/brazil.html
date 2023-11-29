@@ -3,6 +3,10 @@
 <html lang="en">
 </html>
 <head>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
   <link rel="stylesheet" href="style.css">
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +19,7 @@
 </head>
 <body>
   <div id="intro" class="intro">
-    <div class="contenedorExplicacionElementos">
+    <div class="contenedorExplicacionElementos animate__animated animate__fadeIn">
       <div class="elemento">
         <img class="imgelement"  src="imagenes/walking3.gif" alt="">
         <div class="cartelito">Niños </div>
@@ -51,14 +55,22 @@
     <img id="jefebrasil" src="imagenes/brasilboss.png" alt="">
 
 
-    <button type="button" id="botonlistoexplicacion" class="btn btn-success" onclick="postintro()">¡YA ESTOY LISTO!</button>
+    <button type="button" id="botonlistoexplicacion" class="btn btn-success animate__animated animate__pulse" onclick="postintro()">¡YA ESTOY LISTO!</button>
 </div>
  <div id="all" class="all">
 
     <div id="inicioJuego" class="ventanaInicio">
-      <h1 id="bienvenido">Little Runners Brazil</h1>
+      <h1 class="animate__animated animate__zoomInDown" id="bienvenido">Little Runners Brazil</h1>
       <hr style="width: 350px;">
-      <button id="comenzarJuego" >COMENZAR</button>
+      <button class="animate__animated animate__pulse" id="comenzarJuego" >JUGAR</button>
+      <div class="estadisticas animate__animated animate__zoomInUp">
+        <h3>Tus ultimas estadísticas</h3>
+        <p>Tiempo: </p>
+        <p>Puntos: 25</p>
+        <p>Nivel: 1</p>
+      </div>
+
+      
     </div> 
     <div class="contenedorcontador">
       <p id="counter"></p>
@@ -79,16 +91,20 @@
       </div>
     </div>
     <div id="finjuego" class="ventanaFin">
-      <h1 id="bienvenido">Little Runers Brazil</h1>
+      <h1 id="bienvenido">Little Runners Brazil</h1>
       <hr>
       <br>
       <h2 id="ganarperder"></h2>
       <br>
       <p id="tiempottexto"></p>
       <p id="puntostexto"></p>
+      <button id="repetir" onclick="location.reload();">REPETIR</button>
+      <button id="siguienteJuego" onclick="pantallasiguiente();">SIGUIENTE NIVEL</button>
+
+
       <a id="volverJuego" 
 href = "../index.html";>VOLVER A INICIO</a>
-      <button id="siguienteJuego" onclick="pantallasiguiente();">SIGUIENTE NIVEL</button>
+
     </div>
 </div>
  
