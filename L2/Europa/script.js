@@ -9,6 +9,7 @@ const objetosConseguibles = document.querySelectorAll('.conseguible');
 const objetosConseguidos = [];
 
 let tiempoFinal;
+let puntos;
 
 let currentRoom = 1; // El personaje comienza en la habitación 1 (casa)
 
@@ -293,6 +294,7 @@ function verificarVictoria() {
     if (guiaConseguida && aeroConseguido) {
         alert('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
         // Puedes realizar acciones adicionales aquí, como reiniciar el juego o redirigir a otra página
+        switch(tiempoTranscurrido > 0 )
         setCookie('tiempoJuego', tiempoTranscurrido, 30); // 30 días de expiración, ajusta según sea necesario
 
         reiniciarJuego();
