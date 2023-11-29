@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+</html>
+<head>
+  <link rel="stylesheet" href="style.css">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Pixelify+Sans&family=Quantico&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="intro" class="intro">
+    <div class="contenedorExplicacionElementos">
+      <div class="elemento">
+        <img class="imgelement"  src="imagenes/walking3.gif" alt="">
+        <div class="cartelito">Niños </div>
+
+  </div>
+
+      <div class="elemento">
+            <img class="imgelement" src="imagenes/mono2.gif" alt="">
+            <div class="cartelito">Obstaculos </div>
+
+      </div>
+
+      <div class="elemento">
+        <img class="imgelement" src="imagenes/contador.jpg" alt="">
+        <div class="cartelito">Contador </div>
+
+  </div>
+
+  <div class="elemento">
+    <img class="imgelement" src="imagenes/spacebar2.png" alt="">
+    <div class="cartelito">Spacebar </div>
+
+</div>
+<div class="cntenedoedetextelement">
+
+</div>
+
+
+    </div>
+    <div class="contenedorDialogoJB">
+        <p id="laiadialogo" class="laiadialogo" style="z-index: 11111;"></p>
+    </div>
+    <img id="jefebrasil" src="imagenes/brasilboss.png" alt="">
+
+
+    <button type="button" id="botonlistoexplicacion" class="btn btn-success" onclick="postintro()">¡YA ESTOY LISTO!</button>
+</div>
+ <div id="all" class="all">
+
+    <div id="inicioJuego" class="ventanaInicio">
+      <h1 id="bienvenido">Little Runners Brazil</h1>
+      <hr style="width: 350px;">
+      <button id="comenzarJuego" >COMENZAR</button>
+    </div> 
+    <div class="contenedorcontador">
+      <p id="counter"></p>
+      <p id="nivel"></p>
+    </div>
+    <div class="gameBox">
+      <div class="areadelJuego">
+        <audio id="audio" controls>
+         </audio> <source type="audio/wav" src="audio/brazilmusic.ogg">
+          </audio>
+
+        <div class="paredDerecha"><img class="paredDerecha" src="imagenes/paredderech.png" alt=""></div>
+        <div class="paredizquierda"><img class="paredizquierda" src="imagenes/paredizq.png" alt=""></div>
+        <div class="juego" style="z-index: 1;">
+          <div id="game" style="z-index: 1;"></div>
+   
+        </div>
+      </div>
+    </div>
+    <div id="finjuego" class="ventanaFin">
+      <h1 id="bienvenido">Little Runers Brazil</h1>
+      <hr>
+      <br>
+      <h2 id="ganarperder"></h2>
+      <br>
+      <p id="tiempottexto"></p>
+      <p id="puntostexto"></p>
+      <a id="volverJuego" 
+href = "../index.html";>VOLVER A INICIO</a>
+      <button id="siguienteJuego" onclick="pantallasiguiente();">SIGUIENTE NIVEL</button>
+    </div>
+</div>
+ 
+</body>
+</html>
+<script src="scripts.js"></script>
+
