@@ -6,15 +6,22 @@ let arrayCamino;
 let intervalId = null;
 let vidas = 3;
 let juegoEnCurso = true;
-let funciona = false;
-let randomX;
-let randomY;
+//let funciona = false;
+//let randomX;
+//let randomY;
 const imagenPersonaje = document.getElementById('imagenPersonaje');
-let objetosBienPosicionados = true;
+//let objetosBienPosicionados = true;
 // Agrega una variable global para almacenar la puntuación
 let puntos = 0;
+let gameTimer; // Variable para almacenar el temporizador
+let tiempoTranscurrido = 0; // Variable para almacenar el tiempo transcurrido en segundos
+let colisionConObjeto = false;
+console.log(tiempoTranscurrido);
 
+document.getElementById('puntuacion').innerHTML = "[ "+ puntos + " ]"
+iniciarTemporizador( );
 crearMapa();
+
 actualizarPosicionPersonaje();
 actualizarVidas();
 
@@ -27,6 +34,24 @@ spawnObjeto("/L2/Kenia/images/objetos/placasolarBuenaB.png");
 
 inicioMovimientoAutomatico(); // que se mueva desde el principio
 movimientoPersonaje();
+
+
+// Agregar función para iniciar el temporizador
+function iniciarTemporizador() {
+  document.getElementById('temporizador').innerHTML = "[ "+tiempoTranscurrido + " segundos  ] ";
+  gameTimer = setInterval(() => {
+    tiempoTranscurrido++;
+    //document.getElementById('tiempo').innerHTML = "Tiempo";
+      
+    document.getElementById('temporizador').innerHTML = "[ "+tiempoTranscurrido + " segundos  ]";
+  }, 1000); // Actualizar cada segundo (1000 milisegundos)
+}
+
+// Agregar función para detener el temporizador
+function detenerTemporizador() {
+  clearInterval(gameTimer);
+}
+
 
 function actualizarVidas() {
   imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDetras.gif";
@@ -45,11 +70,21 @@ function actualizarVidas() {
 
 function ganar() {
   if (leftPos === 0) {
+    detenerTemporizador();
+    //guardarTiempoEnCookie(tiempoTranscurrido);
     popupFuncion('ganar');
   }
 }
+
+//COOKIE FUNCION
+// function guardarTiempoEnCookie(tiempo) {
+//   document.cookie = "tiempoGanador=" + tiempo + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+// }
+
+
 function perder() {
   if (vidas === 0) {
+    detenerTemporizador();
     popupFuncion('perder');
   }
 }
@@ -80,7 +115,9 @@ function crearMapa() {
   }
 }
 function actualizarPosicionPersonaje() {
+  
   ganar();
+  comprobarColisionObjeto();
   //posición personaje
   personaje.style.left = leftPos + 'px';
   personaje.style.top = topPos + 'px';
@@ -93,6 +130,7 @@ function actualizarPosicionPersonaje() {
 }
 
 function inicioMovimientoAutomatico() {
+ 
   if (juegoEnCurso && vidas > 0) {
     intervalId = movimiento('up', 10);
   }
@@ -116,15 +154,6 @@ function movimiento(direction, step) {
 }
 
 
-// function colisionPersonajeObjeto(){
-//   //comparar si el personaje choca con objeto
-//   if(objetoTop==leftTop){
-//     puntos += 5;
-//   }
-//   document.getElementById('puntuacion').innerHTML = "Puntos: " + puntos;
-// }
-
-
 
 function spawnObjeto(imagenSrc) {
   const imagenObjeto = document.createElement('img');
@@ -135,8 +164,8 @@ function spawnObjeto(imagenSrc) {
   while (!posicionValida) {
     const { objetoLeft, objetoTop } = generarPosicionAleatoria();
 
-    if (!verificarEsquinasEnCamino(objetoLeft, objetoTop, imagenObjeto)) {
-      // Si la posición es válida, salir del bucle
+    if (!verificarEsquinasEnCamino(objetoLeft, objetoTop, imagenObjeto) && !verificarColisionObjetos(objetoLeft, objetoTop, imagenObjeto)) {
+      // Si la posición es válida y no hay colisiones con otros objetos, salir del bucle
       posicionValida = true;
 
       const contenedorImagen = document.createElement('div');
@@ -145,14 +174,112 @@ function spawnObjeto(imagenSrc) {
       contenedorImagen.style.left = objetoLeft + 'px';
       contenedorImagen.style.top = objetoTop + 'px';
       contenedorImagen.appendChild(imagenObjeto);
+      contenedorImagen.classList.add('objeto'); // Agregar clase que identifica a los objetos
       game.appendChild(contenedorImagen);
-
-       // Llamar a la función de colisión
-       
     }
   }
 
+  // Agregar la propiedad haColisionado al objeto
+  imagenObjeto.haColisionado = false;
 }
+
+function comprobarColisionObjeto() {
+
+  const personajeWidth = personaje.offsetWidth;
+  const personajeHeight = personaje.offsetHeight;
+  const leftTop = leftPos;
+  const leftBottom = topPos; 
+  const rightTop = leftPos + personajeWidth;
+  const rightBottom = topPos + personajeHeight;
+
+  const objetos = document.querySelectorAll('.objeto'); // Clase que identifica a los objetos
+
+  objetos.forEach((objeto) => {
+    if (!objeto.haColisionado) {
+      const objetoWidth = objeto.offsetWidth;
+      const objetoHeight = objeto.offsetHeight;
+      const objetoLeft = parseInt(objeto.style.left);
+      const objetoTop = parseInt(objeto.style.top);
+
+      if (
+        leftTop < objetoLeft + objetoWidth &&
+        rightTop > objetoLeft &&
+        leftBottom < objetoTop + objetoHeight &&
+        rightBottom > objetoTop
+      ) {
+        // Colisión con el objeto
+        console.log('Colisión con objeto');
+        // Puedes realizar acciones adicionales aquí, como decrementar vidas, etc.
+        puntos +=5;
+        document.getElementById('puntuacion').innerHTML = "[ "+ puntos + " ]"
+        //console.log(puntos);
+        // Eliminar el objeto del mapa
+        objeto.remove();
+        // Establecer la propiedad haColisionado del objeto a true
+        objeto.haColisionado = true;
+      }
+    }
+  });
+}
+
+function verificarColisionObjetos(objetoLeft, objetoTop, imagenObjeto) {
+  const objetos = document.querySelectorAll('.objeto');
+
+  for (const objeto of objetos) {
+    if (!objeto.haColisionado) {
+      const objetoWidth = objeto.offsetWidth;
+      const objetoHeight = objeto.offsetHeight;
+      const existingObjetoLeft = parseInt(objeto.style.left);
+      const existingObjetoTop = parseInt(objeto.style.top);
+
+      if (
+        objetoLeft < existingObjetoLeft + objetoWidth &&
+        objetoLeft + imagenObjeto.offsetWidth > existingObjetoLeft &&
+        objetoTop < existingObjetoTop + objetoHeight &&
+        objetoTop + imagenObjeto.offsetHeight > existingObjetoTop
+      ) {
+        // Hay colisión con otro objeto
+
+        // Eliminar el objeto del mapa
+        objeto.remove();
+        
+        // Establecer la propiedad haColisionado del objeto a true
+        objeto.haColisionado = true;
+
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+// function spawnObjeto(imagenSrc) {
+//   const imagenObjeto = document.createElement('img');
+//   imagenObjeto.src = imagenSrc;
+
+//   let posicionValida = false;
+
+//   while (!posicionValida) {
+//     const { objetoLeft, objetoTop } = generarPosicionAleatoria();
+
+//     if (!verificarEsquinasEnCamino(objetoLeft, objetoTop, imagenObjeto)) {
+//       // Si la posición es válida, salir del bucle
+//       posicionValida = true;
+
+//       const contenedorImagen = document.createElement('div');
+//       contenedorImagen.style.position = 'absolute';
+//       contenedorImagen.style.zIndex = 3;
+//       contenedorImagen.style.left = objetoLeft + 'px';
+//       contenedorImagen.style.top = objetoTop + 'px';
+//       contenedorImagen.appendChild(imagenObjeto);
+//       game.appendChild(contenedorImagen);
+
+      
+//     }
+//   }
+
+// }
 
 function generarPosicionAleatoria() {
   const randomX = Math.floor(Math.random() * 8);
@@ -214,8 +341,7 @@ function movimientoPersonaje() {
       }
       
     }
-    //colisionPersonajeObjeto();
-    
+  
   });
 }
 
@@ -297,9 +423,14 @@ function comprobarPersonajeDentroCamino() {
 
   // printea posición del personaje EN LA ARRAY
   document.getElementById('cuadrante').innerHTML =
-    "cuadrante 1= [" + topLeftColumn + ", " + topLeftRow + "]    cuadrante 2= [" + topRightColumn + ", " + topRightRow + "]    cuadrante 3= [" + bottomLeftColumn + ", " + bottomLeftRow + "]    cuadrante 4= [" + bottomRightColumn + ", " + bottomRightRow + "]";
+    "cuadrante 1= ["   + topLeftColumn + ", " + topLeftRow + "]    cuadrante 2= [" + topRightColumn + ", " + topRightRow + "]    cuadrante 3= [" + bottomLeftColumn + ", " + bottomLeftRow + "]    cuadrante 4= [" + bottomRightColumn + ", " + bottomRightRow + "]";
 
    
+}
+
+function volverAlMapa() {
+  // Coloca la dirección deseada en el atributo href
+  window.location.href = "/L2/index.html";
 }
 
 //ADD TIMER

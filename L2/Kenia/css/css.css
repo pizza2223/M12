@@ -26,11 +26,35 @@ body {
 }
 #malikTexto{
   position: absolute;
-  left: 73%;
+  left: 73%; 
   top: 15%;
   
 }
 
+h5{
+  font-size: large;
+  
+} 
+.puntos{
+  position: absolute;
+  top:5%;
+  left: 54%;
+}
+#puntuacion{
+  position: absolute;
+  top: 11%;
+  left:55%;
+}
+.tiempo{
+  position: absolute;
+  top:5%;
+  left: 48%;
+}
+#temporizador{
+  position: absolute;
+  top: 11%;
+  left:47.5%;
+}
 .camino {
   height: 80px;
   width: 100px;
@@ -71,12 +95,7 @@ body {
 
 
 /*INFORMACIÓN [POSICIÓN / CUADRANTE]*/
-#puntuacion {
-  top: 110%;
-  left: 10%;
-  position: absolute;
 
-}
 
 #cuadrante {
   top: 115%;

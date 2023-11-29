@@ -10,15 +10,18 @@
   <div id="malik">
       <img src="/L2/Kenia/images/Malik-removebg-preview.png" alt="">
     </div>
-    <img src="/L2/Kenia/images/speechBubble2 (1).gif" id="malikTexto">
-  
-  <div id="game">
-    
+    <!--<img src="/L2/Kenia/images/speechBubble2 (1).gif" id="malikTexto"> --> 
+    <h5 class="tiempo">TIEMPO</h5>
+    <div id ="temporizador"> </div>
+    <h5 class="puntos">PUNTOS</h5>
+    <div id="puntuacion"></div> 
+  <div id="game"> 
+   
    
     <div id="personaje">
       <img src="/L2/Kenia/images/personaje/personajeDetras.gif" id="imagenPersonaje">
     </div>
-    <div id="puntuacion"></div>
+   
     <div id="cuadrante"></div>
     <div id="vidas">
       <img src="/L2/Kenia/images/corazones/corazonPixel-entero.png" id="heart1" class="heart">
@@ -31,12 +34,14 @@
         <!-- Contenido del pop-up -->
         <div id="ganar">
           <p>¡Ganaste!</p>
-          <button data-action="volver">Volver a jugar</button>
+          <button data-action="volver">Volver a jugar</button><br><br>
+          <button onclick="volverAlMapa()">Volver al mapa</button>
         </div>
 
         <div id="perder">
           <p>¡Perdiste! <br> Te has quedado sin vidas :c</p>
-          <button data-action="reiniciar">Reiniciar</button>
+          <button data-action="reiniciar">Reiniciar</button> <br><br>
+          <button onclick="volverAlMapa()">Volver al mapa</button>
         </div>
 
       </div>
