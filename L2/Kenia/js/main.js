@@ -24,7 +24,7 @@ console.log(tiempoTranscurrido);
 //PUNTUACIONES INICIALES
 document.getElementById("puntuacionVidas").innerHTML =  puntosVidas;
 document.getElementById('puntuacionObjetos').innerHTML =  puntosObjetos;
-document.getElementById("puntuacionTiempo").innerHTML =  puntosTiempo;
+document.getElementById("puntuacionTiempo").innerHTML =  13;
 //document.getElementById("puntuacionVidas").innerHTML = puntosVidas ;
 
 iniciarTemporizador( );

@@ -8,7 +8,7 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "chrome",
-            "url": "http://localhost/GitHub/M12/index.php",
+            "url": "http://localhost/M12/index.php",
             "webRoot": "${workspaceFolder}"
         },
         {
