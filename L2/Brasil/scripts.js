@@ -156,6 +156,7 @@ function startTimer() {
       document.getElementById('contador').innerText = "Contador: " + counter;
     } else {
       reproducirAudio("audio/perder.mp3", 1);
+      console.log("pepe");
 
       document.cookie = "Juego="+0;
       resultado.innerText = '¡Perdiste!';

@@ -1,8 +1,5 @@
-antes de comenzar habra un menu donde sale el jefe de tribu explicando el juego. despues de dar al boton entendido, saldra el menu comenzar.
-para hacer lo dicho se hara un acooki que detecta si el usuario ha entrado antes para mostrar o no la  explixacion.
+amb els punts del joc la laia podra comprar endolls, cables i bombetes.
 
-contratena l a laia per contar l'asistencia de nens que entren i surten de l'escola despres de cada nivell la laia podra comprar elements per a la instalacio de xarxa electrica de l'escola
-objectes a comprar:
 
-endolls
-bombetes
+podemos separar la presentacion en 3 partes(m09, m06,m07) explicar que cosas hemos usado de cada modulo y sus pildoras.
+habra que gradar en un acookie si el usuario ya ha entrado a la pagina para no mostrarre la intro.
