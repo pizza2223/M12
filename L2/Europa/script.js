@@ -315,9 +315,8 @@ function verificarVictoria() {
                 break;
                 default: puntos = 1;
         }
-        setCookie('Puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
-
-        reiniciarJuego();
+        setCookie('puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
+        window.location.href = '../../controllers_php/updatePuntosController.php';
     }
 }
 objetosConseguibles.forEach((objeto) => {

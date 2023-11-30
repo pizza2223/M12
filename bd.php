@@ -57,6 +57,15 @@ function getPasswordByEmails($email){
     $conexion = closeBD();
     return $resultado;
   }
+  function getPointsByUser($id){
+    $conexion = openBD();
+    $sentenciaTxt = "select puntos from juego.usuario where user_id =".$id;
+    $sentencia = $conexion->prepare($sentenciaTxt);
+    $sentencia -> execute();
+    $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $conexion = closeBD();
+    return $resultado[0];
+  }
 
   //INSERTS
   function insertObjectCollectedByUser($idObj, $user){
