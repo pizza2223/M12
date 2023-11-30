@@ -36,10 +36,18 @@ escribirEnPantalla("¡Hola Laia! Soy Caucan Miri de la tribu Tatuyo   ", functio
       });
   });
 });
+function reproducirAudio(ruta, volumen) {
+  var audio = new Audio(ruta);
+  audio.volume = volumen; // Establecer el volumen
+  audio.play();
+}
+
 
 
 //////
 var nivel = 1;
+var targetSquares;
+
 document.getElementById('nivel').innerText = "Nivel: " + nivel;
 
 let counter = 0;
@@ -61,28 +69,31 @@ document.getElementById('all').style.display = 'none'; // Oculta la ventana de i
 function postintro() {
   document.getElementById('intro').style.display = 'none'; // Oculta la ventana de inicio
   document.getElementById('all').style.display = 'block'; // Oculta la ventana de inicio
+  reproducirAudio("audio/inicio.mp3", 1);
+
 }
 
 function inicializa() {
+
   startTimer();
 
   let startTime = Date.now(); // Marca de tiempo inicial
   counter = 0; // Variable para contar cuántas veces se presiona la tecla espacio
+  
 
-  var audio = document.getElementById("audio");
-  audio.play();
   document.getElementById('inicioJuego').style.display = 'none'; // Oculta la ventana de inicio
   document.getElementById('game').style.zIndex = 1; // Hace que el juego aparezca encima de la ventana de inicio
   document.getElementById('finjuego').style.display = 'none'; // Oculta la ventana de inicio
   resetCounter();
   generacionEntidades();
   var gameStarted = false;
+  
   document.body.onkeyup = function (e) {
     if (e.keyCode == 32) {
       counter++;
       document.getElementById('counter').innerText = counter;
 
-      if (counter === 5) {
+      if (counter === targetSquares) {
         // Calcular el tiempo transcurrido en segundos
         elapsedTime = (Date.now() - startTime) / 1000;
         document.cookie = "Tiempo(segundos)=" + elapsedTime.toFixed(2);
@@ -92,12 +103,15 @@ function inicializa() {
       }
     }
   };
+  reproducirAudio("audio/gameback.mp3", 0.2);
+
 }
 function startTimer() {
   // Selecciona el primer elemento h2
   var resultado = document.getElementById('ganarperder');
   var tiempotext = document.getElementById('tiempottexto');
   var puntostext = document.getElementById('puntostexto');
+  var tiempoinicio = document.getElementById('tiempoinicio');
 
   var puntos;
 
@@ -106,13 +120,16 @@ function startTimer() {
 
   // Inicia un nuevo temporizador
   timer = setTimeout(function () {
-    if (counter == 5) {
+    if (counter == targetSquares) {
+      reproducirAudio("audio/ganar.mp3", 0.5);
+
       resultado.innerText = '¡Ganaste!';
       resultado.style.color = 'green';
       document.getElementById('finjuego').style.display = 'block';
       tiempotext.innerText = 'Tiempo: ' + elapsedTime.toFixed(2) + ' segundos.';
+      console.log(tiempotext.innerText);
 
-      // Calcular puntos según el rango de tiempo
+      tiempoinicio.innerText = tiempotext.innerText; 
       switch (true) {
         case elapsedTime < 5:
           puntos = 25;
@@ -138,6 +155,8 @@ function startTimer() {
       document.getElementById('nivel').innerText = "Nivel: " + nivel; // Actualiza el nivel en la pantalla
       document.getElementById('contador').innerText = "Contador: " + counter;
     } else {
+      reproducirAudio("audio/perder.mp3", 1);
+
       document.cookie = "Juego="+0;
       resultado.innerText = '¡Perdiste!';
       resultado.style.color = 'red';
@@ -149,30 +168,50 @@ function startTimer() {
 
 
  // 
-clearTimeout(timer); // Detiene el temporizador anterior
 
 
-
+ let intervalNiños;
 function pantallasiguiente() {
- // Detiene el temporizador al pasar a la pantalla siguiente
- clearTimeout(timer);
- 
- document.getElementById('finjuego').style.display = 'none'; 
- document.getElementById('game').style.zIndex = 1;
- generacionEntidades();
- startTimer(); // Inicia un nuevo temporizador
- resetCounter();
+  detenerGeneracion(); // Detiene la generación actual
+
+  // Limpiar el contenido antes de empezar
+  let elemento = document.getElementById("laiadialogo");
+  elemento.innerHTML = "";
+
+  // Generar nuevas entidades
+  generacionEntidades();
+
+  // Detiene el temporizador al pasar a la pantalla siguiente
+  clearTimeout(timer);
+
+  document.getElementById('finjuego').style.display = 'none';
+  document.getElementById('game').style.zIndex = 1;
+
+  // Inicia un nuevo temporizador y resetea el contador
+  startTimer();
+  resetCounter();
+}
+
+function detenerGeneracion() {
+  // Detiene la generación de cuadrados
+  clearInterval(intervalNiños);
+  document.getElementById('game').innerHTML = '';
+
+  // Detiene la generación de monos
 }
 
 function generacionEntidades() {
+  targetSquares = nivel * getRandomNumber(4, 8);
+
   
-    let niños = setInterval(function() {
-      var squares = document.getElementsByClassName('square');
+  intervalNiños = setInterval(function niños() {
+    var squares = document.getElementsByClassName('square');
   
-      if (squares.length >= 5) {
-        clearInterval(niños);
-        return;
-      }
+
+    if (squares.length >= targetSquares) {
+      clearInterval(intervalNiños);
+      return;
+    }
   
       var square = document.createElement('div');
       square.className = 'square';
@@ -201,13 +240,15 @@ function generacionEntidades() {
 
     }, 1000 / Math.sqrt(nivel)); // Crea un nuevo cuadrado cada segundo/nivel
   
-  
+    function getRandomNumber(min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+    }
 
 
 
 //esto es el codigo de aparicion de los monos
 
-setInterval(function() {
+setInterval(function mono() {
  var mono = document.getElementsByClassName('mono');
 
  // Si ya hay 8 cuadrados en la pantalla, no se crea uno nuevo
