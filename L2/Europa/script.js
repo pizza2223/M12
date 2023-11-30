@@ -14,6 +14,8 @@ let tiempoTranscurrido = 0; // Tiempo en segundos transcurridos
 let contadorInterval; // Variable para almacenar el intervalo del contador
 let puntos;
 
+
+
 const mensajes = [
     "¡Hola! Soy Laia",
     "Estoy emocionada de que estés aquí.",
@@ -37,7 +39,6 @@ character.style.top = '675px';
 
 // Función principal para inicializar el juego
 function iniciarJuego() {
-    indiceMensajeActual = restablecerVariables();
 
     mostrarPantallaInicio(indiceMensajeActual);
     document.getElementById('siguienteBtn').addEventListener('click', mostrarSiguienteMensaje);    
@@ -51,7 +52,7 @@ function iniciarJuego() {
 
 // Función para asignar event listeners
 
-function restablecerVariables(){
+function reiniciarJuego(indiceMensajeActual) {
     // Restablece las variables y elementos a sus valores iniciales
     currentRoom = 1;
     nextRoom = 1;
@@ -93,9 +94,12 @@ function restablecerVariables(){
     const botonSiguiente = document.getElementById('siguienteBtn');
         botonSiguiente.style.display = 'block';
 
+
+    // Restablece el índice del mensaje actual
     indiceMensajeActual = 0;
-return indiceMensajeActual;
+    return indiceMensajeActual;
 }
+
 // Función para mostrar la pantalla de inicio
 function mostrarPantallaInicio() {
     const juegoContainer = document.getElementById('game-container');
@@ -107,6 +111,9 @@ function mostrarPantallaInicio() {
     // Muestra la pantalla de inicio y otros elementos según sea necesario
     const pantallaInicial = document.getElementById('pantalla-inicial');
     pantallaInicial.style.display = 'block';
+    pantallaInicial.style.display = 'flex'; // Cambia a flex para centrar vertical y horizontalmente
+    pantallaInicial.style.alignItems = 'center'; // Centra verticalmente
+    pantallaInicial.style.justifyContent = 'center'; // Centra horizontalmente
 
 }
 function mostrarSiguienteMensaje() {
@@ -511,7 +518,7 @@ function manejarObjetos(){
         return objetosDisponibles.find(objeto => objeto.id === id);
     }
 }
-function verificarVictoria() {
+function verificarVictoria(indiceMensajeActual) {
     const guiaConseguida = objetosConseguidos.some(objeto => objeto.id === 'guia');
     const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
 
@@ -541,8 +548,11 @@ function verificarVictoria() {
         }
         setCookie('Puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
 
-        iniciarJuego();
+        indiceMensajeActual = reiniciarJuego();
+
+        
     }
+    return indiceMensajeActual
 }
 function setCookie(nombre, valor, diasExpiracion) {
     const fechaExpiracion = new Date();
