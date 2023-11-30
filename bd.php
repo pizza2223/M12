@@ -72,7 +72,7 @@ function getPasswordByEmails($email){
   } 
   function updatePoints($puntos, $user){
     $conexion = openBD();
-    $sentenciaTxt = "update users set puntos = :puntos WHERE user_id = :user";
+    $sentenciaTxt = "update usuario set puntos = :puntos WHERE user_id = :user";
     $sentencia = $conexion->prepare($sentenciaTxt);
     $sentencia->bindParam(':user', $user);
     $sentencia->bindParam(':puntos', $puntos);

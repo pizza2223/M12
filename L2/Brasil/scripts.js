@@ -130,15 +130,14 @@ function startTimer() {
           puntos = 0;
       }
 
-      puntostext.innerText = 'Puntos: ' + puntos;
-      document.cookie = "Juego="+ puntos;
+    setCookie("puntos",puntos,1); 
       counter = 0;
       squares = []; // Reiniciar el arreglo de cuadrados completados
       nivel++;
       document.getElementById('nivel').innerText = "Nivel: " + nivel; // Actualiza el nivel en la pantalla
       document.getElementById('contador').innerText = "Contador: " + counter;
     } else {
-      document.cookie = "Juego="+0;
+      document.cookie = "puntos="+0;
       resultado.innerText = '¡Perdiste!';
       resultado.style.color = 'red';
       document.getElementById('finjuego').style.display = 'block';
@@ -240,3 +239,12 @@ setInterval(function() {
 }, 1000); // Crea un nuevo cuadrado cada segundo
 
 };
+function setCookie(name,value,days) {
+  var expires = "";
+  if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
