@@ -1,0 +1,194 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url('/L2/Kenia/images/paisaje3.png');
+  background-size: cover;
+}
+
+#game {
+  height: 640px;
+  width: 800px;
+  background-color: rgba(255, 228, 196, 0.76);
+  /*background-color: rgba(38, 94, 41, 0.89);*/
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+}
+#malik{
+  position: absolute;
+  left: 73%;
+  top: 28%;
+}
+#malikTexto{
+  position: absolute;
+  left: 73%; 
+  top: 15%;
+  
+}
+ h1{
+  font-size:medium;
+  font-style: bold;
+ }
+h5{
+  font-size: large;
+  
+} 
+/*OBJETOS*/
+.puntosObjetos{
+  position: absolute;
+  top:5%;
+  left: 35%;
+}
+#puntuacionObjetos{
+  position: absolute;
+  top: 11%;
+  left:35%;
+}
+/*VIDA*/
+.puntosVidas{
+  position: absolute;
+  top:5%;
+  left: 45%;
+}
+#puntuacionVidas{
+  position: absolute;
+  top: 11%;
+  left:45%;
+}
+/*TIEMPO*/
+.puntosTiempo{
+  position: absolute;
+  top:5%;
+  left: 55%;
+}
+#puntuacionTiempo{
+  position: absolute;
+  top: 11%;
+  left:55%;
+}
+
+
+/*TEMPORIZADOR*/
+.tiempo{
+  position: absolute;
+  top:20%;
+  left: 20%;
+}
+#temporizador{
+  position: absolute;
+  top: 26%;
+  left:19.5%;
+}
+
+.camino {
+  height: 80px;
+  width: 100px;
+  background-image: url('/L2/Kenia/images/camino.jpg');
+  /*border: 1px solid black; QUITAR LUEGO*/
+  z-index: 1;
+  position: absolute;
+}
+
+
+#personaje {
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  position: absolute;
+  z-index: 3;
+
+}
+
+#vidas {
+  top: 4%;
+  left: 340px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+
+  z-index: 4;
+}
+
+
+/*CORAZONES*/
+.heart {
+  width: 35px;
+  height: 35px;
+  margin-right: 5px;
+  /* Agrega un margen entre los corazones */
+}
+
+
+/*INFORMACIÓN [POSICIÓN / CUADRANTE]*/
+
+
+#cuadrante {
+  top: 115%;
+  left: 10%;
+  position: absolute;
+}
+
+
+/*POP UP*/
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+
+/*
+#banderaMeta{
+  position: absolute;
+  top: 420px;
+ 
+  z-index: 2; 
+}
+#imagenPalo{
+
+  background-image: url('/images/paloPixelart.png');
+  background-size: cover;
+  z-index: 1;
+} 
+
+.placaSolar {
+  width: 50px;
+  height: 50px;
+  background-image: url('/images/placaSolar.png');
+  position: absolute;
+}
+
+.piedra {
+  width: 30px;
+  height: 30px;
+  background-image: url('/images/piedraPixelart.png');
+  position: absolute;
+}
+
+.palo {
+  width: 20px;
+  height: 80px;
+  background-image: url('/images/paloPixelart.png');
+  position: absolute;
+}
+*/
