@@ -33,9 +33,9 @@ crearMapa();
 actualizarPosicionPersonaje();
 actualizarVidas();
 
-spawnObjeto("/L2/Kenia/images/objetos/piedra.png");
-spawnObjeto("/L2/Kenia/images/objetos/paloBuenoB.png");
-spawnObjeto("/L2/Kenia/images/objetos/placasolarBuenaB.png");
+spawnObjeto("/M12/L2/Kenia/images/objetos/piedra.png");
+spawnObjeto("/M12/L2/Kenia/images/objetos/paloBuenoB.png");
+spawnObjeto("/M12/L2/Kenia/images/objetos/placasolarBuenaB.png");
 
 
 inicioMovimientoAutomatico(); // que se mueva desde el principio
@@ -71,15 +71,15 @@ function detenerTemporizador() {
 
 
 function actualizarVidas() {
-  imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDetras.gif";
+  imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeDetras.gif";
   for (let i = 1; i <= 3; i++) {
     const heart = document.getElementById(`heart${i}`);
     if (i <= vidas) {
       // Mostrar corazón lleno
-      heart.src = "/L2/Kenia/images/corazones/corazonPixel-entero.png";
+      heart.src = "/M12/L2/Kenia/images/corazones/corazonPixel-entero.png";
     } else {
       // Ocultar corazón vacío
-      heart.src = "/L2/Kenia/images/corazones/corazonPixel-vacio.png";
+      heart.src = "/M12/L2/Kenia/images/corazones/corazonPixel-vacio.png";
     }
   }
   perder();
@@ -311,19 +311,19 @@ function movimientoPersonaje() {
       switch (event.key) {
         case 'ArrowLeft':
           intervalId = movimiento('left', 10);
-          imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeIzquierda.gif";
+          imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeIzquierda.gif";
           break;
         case 'ArrowRight':
           intervalId = movimiento('right', 10);
-          imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDerecha.gif";
+          imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeDerecha.gif";
           break;
         case 'ArrowUp':
           intervalId = movimiento('up', 10);
-          imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDetras.gif";
+          imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeDetras.gif";
           break;
         case 'ArrowDown':
           intervalId = movimiento('down', 10);
-          imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDelante.gif";
+          imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeDelante.gif";
           break;
       }
       
@@ -419,6 +419,6 @@ function comprobarPersonajeDentroCamino() {
 
 function volverAlMapa() {
   // Coloca la dirección deseada en el atributo href
-  window.location.href = "/L2/index.html";
+  window.location.href = "/M12/L2/index.html";
 }
 
