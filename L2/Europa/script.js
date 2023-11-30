@@ -321,6 +321,87 @@ objetosConseguibles.forEach((objeto) => {
         }
     });
 });
+function reiniciarJuego() {
+    // Restablece las variables y elementos a sus valores iniciales
+    currentRoom = 1;
+    nextRoom = 1;
+
+    tiempoTranscurrido = 0;
+    objetosConseguidos.length = 0; // Vacía el array de objetos conseguidos
+    character.style.left = '500px';
+    character.style.top = '675px';
+
+    // Oculta todas las habitaciones excepto la primera
+    for (let i = 1; i <= 9; i++) {
+        const habitacion = document.getElementById(`habitacion${i}`);
+        habitacion.style.display = i === 1 ? 'block' : 'none';
+    }
+
+    const pantallaInicial = document.getElementById('pantalla-inicial');
+    pantallaInicial.style.display = 'flex'; // Cambia a flex para centrar vertical y horizontalmente
+    pantallaInicial.style.alignItems = 'center'; // Centra verticalmente
+    pantallaInicial.style.justifyContent = 'center'; // Centra horizontalmente
+
+    const juegoContainer = document.getElementById('game-container');
+    juegoContainer.style.display = 'none';
+    
+    const tiempo = document.getElementById('tiempo-container');
+    tiempo.style.display = 'none';
+
+    const casillasObjetos = document.getElementById('casillas-objetos-conseguidos');
+    casillasObjetos.style.display = 'none';
+    const imagenesCasillas = casillasObjetos.querySelectorAll('.casilla-objeto img');
+
+    for (const imagenCasilla of imagenesCasillas) {
+        imagenCasilla.remove();
+    }
+
+    const botonComenzar = document.getElementById('comenzarBtn');
+        botonComenzar.style.display = 'none';
+
+    // Muestra el botón "Siguiente"
+    const botonSiguiente = document.getElementById('siguienteBtn');
+        botonSiguiente.style.display = 'block';
+
+        let tiempoFinal = tiempoTranscurrido;
+
+    // Restablece el índice del mensaje actual
+    indiceMensajeActual = 0;
+    mostrarSiguienteMensaje();
+    
+}
+function verificarVictoria() {
+    const guiaConseguida = objetosConseguidos.some(objeto => objeto.id === 'guia');
+    const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
+
+    if (guiaConseguida && aeroConseguido) {
+        alert('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
+        // Puedes realizar acciones adicionales aquí, como reiniciar el juego o redirigir a otra página
+        switch(tiempoTranscurrido){
+            case tiempoTranscurrido <= 30 && tiempoTranscurrido:
+                puntos = 25;
+                break;
+            case tiempoTranscurrido <= 45 && tiempoTranscurrido > 30:
+                puntos = 20;
+                break;
+            case tiempoTranscurrido <= 65 && tiempoTranscurrido > 45:
+                puntos = 15;
+                break;
+            case tiempoTranscurrido <= 80 && tiempoTranscurrido > 65:
+                puntos = 10;
+                break;
+            case tiempoTranscurrido <= 95 && tiempoTranscurrido > 80:
+                puntos = 5;
+                break;
+            case tiempoTranscurrido > 95:
+                puntos = 0;
+                break;
+                default: puntos = 1;
+        }
+        setCookie('puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
+        window.location.href = '../../controllers_php/updatePuntosController.php';
+    }
+}
 objetosConseguibles.forEach((objeto) => {
     objeto.addEventListener('click', () => {
         // Obtiene un identificador único del objeto 

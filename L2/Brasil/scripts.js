@@ -147,8 +147,7 @@ function startTimer() {
           puntos = 0;
       }
 
-      puntostext.innerText = 'Puntos: ' + puntos;
-      document.cookie = "Juego="+ puntos;
+    setCookie("puntos",puntos,1); 
       counter = 0;
       squares = []; // Reiniciar el arreglo de cuadrados completados
       nivel++;
@@ -158,7 +157,7 @@ function startTimer() {
       reproducirAudio("audio/perder.mp3", 1);
 
 
-      document.cookie = "Juego="+0;
+      document.cookie = "puntos="+0;
       resultado.innerText = '¡Perdiste!';
       resultado.style.color = 'red';
       document.getElementById('finjuego').style.display = 'block';
