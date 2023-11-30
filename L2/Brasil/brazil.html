@@ -65,7 +65,7 @@
       <button class="animate__animated animate__pulse" id="comenzarJuego" >JUGAR</button>
       <div class="estadisticas animate__animated animate__zoomInUp">
         <h3>Tus ultimas estadísticas</h3>
-        <p>Tiempo: </p>
+        <p id="tiempoinicio">Tiempo:</p>
         <p>Puntos: 25</p>
         <p>Nivel: 1</p>
       </div>
@@ -78,10 +78,6 @@
     </div>
     <div class="gameBox">
       <div class="areadelJuego">
-        <audio id="audio" controls>
-         </audio> <source type="audio/wav" src="audio/brazilmusic.ogg">
-          </audio>
-
         <div class="paredDerecha"><img class="paredDerecha" src="imagenes/paredderech.png" alt=""></div>
         <div class="paredizquierda"><img class="paredizquierda" src="imagenes/paredizq.png" alt=""></div>
         <div class="juego" style="z-index: 1;">
@@ -98,7 +94,7 @@
       <br>
       <p id="tiempottexto"></p>
       <p id="puntostexto"></p>
-      <button id="repetir" onclick="location.reload();">REPETIR</button>
+      <button id="repetir" onclick="location.reload();">REINICIAR</button>
       <button id="siguienteJuego" onclick="pantallasiguiente();">SIGUIENTE NIVEL</button>
 
 
