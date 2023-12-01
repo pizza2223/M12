@@ -193,8 +193,7 @@ function iniciarContadorTiempo() {
 }
 function asignarEventListeners() {
     document.addEventListener('keydown', manejarTeclaPresionada);
-    const botonComenzar = document.getElementById('comenzarBtn');
-    botonComenzar.addEventListener('click', comenzarJuego);
+
     document.getElementById('siguienteBtn').addEventListener('click', mostrarSiguienteMensaje);
     for (const puerta of puertas) {
         puerta.addEventListener('click', handleDoorClick);
