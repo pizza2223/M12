@@ -192,11 +192,28 @@ function iniciarContadorTiempo() {
     }, 1000); // El contador se actualiza cada segundo (1000 ms)
 }
 function asignarEventListeners() {
+    const puertaConContrasena = document.getElementById('puerta11');
+const dialog = document.getElementById('dialog');
+const passwordInput = document.getElementById('passwordInput');
+
+puertaConContrasena.addEventListener('click', () => {
+    // Mostrar el cuadro de diálogo
+    dialog.style.display = 'block';
+});
     document.addEventListener('keydown', manejarTeclaPresionada);
 
     document.getElementById('siguienteBtn').addEventListener('click', mostrarSiguienteMensaje);
     for (const puerta of puertas) {
-        puerta.addEventListener('click', handleDoorClick);
+        // Excluye la puerta con el ID 'puerta11'
+        if (puerta.id !== 'puerta11') {
+            puerta.addEventListener('click', handleDoorClick);
+        }else if (puerta.id === 'puerta11'){
+            puerta.addEventListener('click', () => {
+    // Mostrar el cuadro de diálogo
+    dialog.style.display = 'block';
+});
+
+        }
     }
     for (const flecha of flechas) {
         flecha.addEventListener('click', handleArrowClick);
@@ -478,25 +495,7 @@ function checkForDoor(){
             }
         }
 }
-function changeRoom(nextRoom) {
-    // Oculta los elementos de la habitación actual
-    const habitacionActual = document.getElementById(`habitacion${currentRoom}`);
-    habitacionActual.style.display = 'none';
 
-    // Muestra los elementos de la nueva habitación
-    const nuevaHabitacion = document.getElementById(`habitacion${nextRoom}`);
-    console.log(`mostrando habitacion ${nextRoom}`);
-    nuevaHabitacion.style.display = 'block';
-
-    // Actualiza el estado del juego
-    currentRoom = nextRoom;
-
-    // Ajusta la posición inicial del personaje en la nueva habitación
-
-
-    // Resto de la lógica para cambiar de habitación (puedes personalizar según tus necesidades)
-    // Cargar recursos específicos de la habitación, ajustar la lógica de colisiones, etc.
-}
 function changePreviousRoom(previousRoom) {
     // Oculta los elementos de la habitación actual
     const habitacionActual = document.getElementById(`habitacion${currentRoom}`);
@@ -640,11 +639,59 @@ function setCookie(nombre, valor, diasExpiracion) {
     const expiracion = "expires=" + fechaExpiracion.toUTCString();
     document.cookie = nombre + "=" + valor + ";" + expiracion + ";path=/";
 }
+const puertaConContrasena = document.getElementById('puerta11');
+const dialog = document.getElementById('dialog');
+const passwordInput = document.getElementById('passwordInput');
+
+puertaConContrasena.addEventListener('click', () => {
+    // Mostrar el cuadro de diálogo
+    dialog.style.display = 'block';
+});
+function verificarContrasena() {
+    const contrasenaIngresada = passwordInput.value;
+
+    // Verificar la contraseña (puedes compararla con una contraseña específica)
+    if (contrasenaIngresada === '123') {
+        // Contraseña correcta, realiza las acciones necesarias (cambia de habitación, etc.)
+        console.log('Contraseña correcta. Cambiando de habitación...');
+        // Llama a la función para cambiar de habitación
+        changeRoom(11);
+        // Ocultar el cuadro de diálogo después de verificar la contraseña
+        dialog.style.display = 'none';
+    } else {
+        // Contraseña incorrecta, puedes mostrar un mensaje de error o realizar otras acciones
+        console.log('Contraseña incorrecta. Inténtalo de nuevo.');
+        // Puedes también limpiar el campo de contraseña
+        passwordInput.value = '';
+    }
+}
+
+function changeRoom(nextRoom) {
+    // Oculta los elementos de la habitación actual
+    const habitacionActual = document.getElementById(`habitacion${currentRoom}`);
+    habitacionActual.style.display = 'none';
+
+    // Muestra los elementos de la nueva habitación
+    const nuevaHabitacion = document.getElementById(`habitacion${nextRoom}`);
+    console.log(`mostrando habitacion ${nextRoom}`);
+    nuevaHabitacion.style.display = 'block';
+
+    // Actualiza el estado del juego
+    currentRoom = nextRoom;
+
+    // Ajusta la posición inicial del personaje en la nueva habitación
+
+
+    // Resto de la lógica para cambiar de habitación (puedes personalizar según tus necesidades)
+    // Cargar recursos específicos de la habitación, ajustar la lógica de colisiones, etc.
+}
 // Llama a checkForDoor en cada fotograma
 function update() {
     checkForDoor();
     requestAnimationFrame(update);
 }
+
+
 
 // Iniciar el juego
 iniciarJuego();
