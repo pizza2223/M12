@@ -10,5 +10,7 @@ if (isset($_COOKIE['puntos'])) {
         updatePoints($newPuntos, $userId);
         setcookie("puntos", "", time() - 3600, "/");
         header('Location: ../L2/landing.php');
-} 
+} else {
+    header('Location: ../L2/landing.php');
+}
 ?>

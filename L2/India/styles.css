@@ -48,6 +48,20 @@ body, html {
     justify-content: center;
     align-items: center
  }
+ .cardbulbs {
+  width: 190px;
+  height: 254px;
+  top: 600px;
+  left: 1500px;
+  position: absolute;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 30px #bebebe,
+                -20px -20px 60px #ffffff;
+                display: flex;
+    justify-content: center;
+    align-items: center
+ }
 
  .help {
     width: 30px;
