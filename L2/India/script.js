@@ -55,7 +55,7 @@ function placeAmountOfHints(){
         x.setAttribute("width", "30");
         x.setAttribute("height", "30");
         x.setAttribute("alt", "light bulb");
-        document.body.appendChild(x);
+        document.getElementById("bulbCard").appendChild(x);
       }
 
 }

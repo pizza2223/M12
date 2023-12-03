@@ -31,6 +31,7 @@
   <div class="mb-3 form-check">
   </div>
   <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+  <a>Crea nou usuari</a>
 </form>
   </div>
 </div>
