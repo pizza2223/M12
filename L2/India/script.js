@@ -84,14 +84,22 @@ if ((dragItem.offsetLeft >= bin.offsetLeft && dragItem.offsetLeft <= bin.offsetL
     seconds = 0;
     isDragging = false;
     imgDragable.classList.remove('help'); 
-    progress+= 5;
+    progress+= 10;
     progressBar.value = progress;
+    checkUserWin();
   } else {  
    
 }
 
 }
+function checkUserWin(){
+    if(progress == 100){
+        setCookie("puntos", 25, 1);
+        alert("has guanyat!");
+        window.location = "../../controllers_php/updatePuntosController.php"
 
+    }
+}
 function updateClock(){
     seconds++;  
     clock.textContent = seconds
@@ -171,6 +179,15 @@ const handleMouseMove = (e) => {
     el.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
     })
 
+}
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
 
 window.addEventListener ('mousemove', handleMouseMove);
