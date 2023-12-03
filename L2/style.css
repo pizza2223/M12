@@ -1,20 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 body {
     background-color: #f9f9f9; /* Fondo blanco */
     z-index: 1;
     margin: 0;
+    font-family: 'Bebas Neue', serif;
+
 }
 .navbar {
 background-color: #fffffff8; /* Barra de navegación verde */
 margin: 0;
 padding: 0;
 z-index: 2;
-font-family: 'Quantico', sans-serif;
+font-family: 'Bebas Neue', serif;
 
 }
+
+.inicionubesyjuego{
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* 100% del viewport height */
+  overflow: hidden;
+}
+
+.titulopagina{
+  padding-top: 15px;
+}
+
 .container-game {
+  
     padding: 50px;
     text-align: center;
-    background-color: #f9f9f9;;
+    background-color: #ffffff;;
+
+}
+
+.nubesinicio{
+  float: left;
+  width: 440px;
+  height: 300px;
+}
+
+.nubesinicio2{
+  margin-top: 340px;
+  float: right;
+  width: 420px;
+  height: 330px;
 }
 
 .textcontact{
@@ -74,6 +106,8 @@ display: block;
     .saber btn btn-success btn-lg {
         font-size: 16px;
         padding: 10px 20px;
+        background-color: #147ffa;;
+        
     }
 }
 
@@ -86,21 +120,20 @@ font-size: 20px;
 padding: 6px;
 }
 h1{
-font-family: 'Quantico', sans-serif;
-
+font-family: 'Bebas Neue', serif;
 }
 h2{
-font-family: 'Quantico', sans-serif;
-color: #726f77;
+  font-family: 'Bebas Neue', serif;
+  color: #726f77;
 
 }
 h3{
-font-family: 'Quantico', sans-serif;
+  font-family: 'Bebas Neue', serif;
 
 }
 .titulonav {
-font-family: 'Quantico', sans-serif;
-font-size: 70px;
+  font-family: 'Bebas Neue', serif;
+  font-size: 70px;
 }
 
 
@@ -109,7 +142,7 @@ font-size: 70px;
     background-size: cover;
     margin: 0;
     padding: 0;
-    font-family: helvetica, arial, tahoma, verdana;
+    font-family: 'Bebas Neue', serif;
     line-height: 20px;
     font-size: 14px;
     color: #726f77;
@@ -213,16 +246,16 @@ font-size: 70px;
     border-left: 0;
     border-right: 7px solid #00b321;
 }
-.btn {
+.boton {
     padding: 5px 15px;
     text-decoration: none;
-    background: transparent;
-    border: 2px solid #00b321;
-    color: #1e2327;
+    background-color: #147ffa;
+    border: 2px solid #67a9f5;
+    color: #fdfdfd;
     display: inline-block;
     position: relative;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 20px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
@@ -236,7 +269,7 @@ font-size: 70px;
     -ms-box-shadow: 2px 2px 0 #1e2327;
     box-shadow: 2px 2px 0 #1e2327;
 }
-.btn:hover {
+.boton:hover {
     box-shadow: none;
     top: 2px;
     left: 2px;
@@ -269,9 +302,13 @@ font-size: 70px;
    }
 }
 
+.despopout{
+  font-size: 23px;
+}
+
 * {
-    font-family: Nunito, sans-serif;
-  }
+  font-family: 'Bebas Neue', serif;
+}
   
   .responsive-cell-block {
     min-height: 75px;

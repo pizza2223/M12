@@ -2,6 +2,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <meta charset="UTF-8">
@@ -14,12 +19,14 @@
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light" style="position: fixed; width: 100%;" >
         <a class="navbar-brand" href="#">
-            <img src="img/navbar-logo.png" alt="Logo" style="width: 85px;"> <!-- Ruta de tu imagen de logotipo -->
+            <img class="animate__animated animate__fadeInLeft"; src="img/navbar-logo.png" alt="Logo" style="width: 85px;"> 
         </a>        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
+            
         </button>
+        <h1 class="titulopagina animate__animated animate__zoomInLeft"; >El món de la Laia</h1>
         <div class="collapse navbar-collapse text-light justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav animate__animated animate__zoomInRight">
                 <li class="nav-item">
                     <a class="nav-link" href="#inicio">Inici</a>
                 </li>
@@ -39,16 +46,10 @@
             </ul>
         </div>
     </nav>
-    <header>
-        <div class="conten_encabezado">
-            <h3>Jugueu al vostre joc interactiu, el vostre diseny fet realitat!
-            </h3>
-            <h1 class="titulonav">El mon de la Laia</h1>
-            
-        </div>
-    </header>
+    <div class="inicionubesyjuego ">
+    <img class="nubesinicio animate__animated animate__fadeInLeft" src="img/nubes.webp" alt="">
     <!-- Sección de inicio -->
-    <div class="container-game" id="inicio">
+    <div class="container-game animate__animated animate__pulse" id="inicio">
         <div class="row">
             <div class="col-md-12">
                  <!-- plane game -->
@@ -80,34 +81,41 @@
                         </div>
                         <script src="planeGameScript.js"></script>
                          <!-- end plane game -->
+
             </div>
+
         </div>
+
     </div>
+    <img class="nubesinicio2 animate__animated animate__fadeInRight" src="img/nubes.webp" alt="">
+
+    </div>
+    
 
     <!-- Sección de minijuegos -->
     <div class="container-games-section" id="minijuegos">
       <h2>Minijuegos</h2>
       <br>
       <div class="row">
-          <div class="col-md-3" onclick="showPopup('Brasil', 'img/portfolio/1.jpg', 'Descripción del Minijuego 1.')">
+          <div class="col-md-3" onclick="showPopup('Brasil', 'img/portfolio/1.jpg', 'Laia se encuentra a la Tribu de Caucan Miri i haurà de ajudar-lo a comtar tots els nens de la escola per poder crear-ne la xarxa electrica.')">
               <h4>Brasil</h4>
               <img class="minijuegos" src="img/portfolio/1.jpg" alt="Minijuego 1">
-              <p>Descripción del Minijuego 1.</p>
+              <p class="despopout">Little runners Brazil</p>
               <div class="overlay"></div>
           </div>
-          <div class="col-md-3" onclick="showPopup('Brasil', 'img/portfolio/1.jpg', 'Descripción del Minijuego 1.')">
+          <div class="col-md-3" onclick="showPopup('Kènia', 'img/', 'Descripción del Minijuego 1.')">
             <h4>Kènia</h4>
               <img class="minijuegos" src="minijuego2.jpg" alt="Minijuego 2">
               <p>Descripción del Minijuego 2.</p>
               <div class="overlay"></div>
           </div>
-          <div class="col-md-3" onclick="showPopup('Brasil', 'img/portfolio/1.jpg', 'Descripción del Minijuego 1.')">
+          <div class="col-md-3" onclick="showPopup('India', 'img/', 'Descripción del Minijuego 1.')">
             <h4>India</h4>
               <img class="minijuegos" src="minijuego3.jpg" alt="Minijuego 3">
               <p>Descripción del Minijuego 3.</p>
               <div class="overlay"></div>
           </div>
-          <div class="col-md-3" onclick="showPopup('Brasil', 'img/portfolio/1.jpg', 'Descripción del Minijuego 1.')">
+          <div class="col-md-3" onclick="showPopup('Europa', 'img/portfolio/1.jpg', 'Descripción del Minijuego 1.')">
             <h4>Europa</h4>
               <img class="minijuegos" src="minijuego4.jpg" alt="Minijuego 4">
               <p>Descripción del Minijuego 4.</p>
@@ -123,7 +131,7 @@
     <p id="popupDescription"></p>
 </div>
 
-    <div class="procesos" id="procesos">
+<div class="procesos" id="procesos">
         <div class="container">
             <h1 class="project-name">Ranking</h1>
             <table class="table">
@@ -294,7 +302,7 @@
                 <label for="mensaje">Mensaje:</label>
                 <textarea class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí"></textarea>
             </div>
-            <button type="submit" class="btn btn-success">Enviar Mensaje</button>
+            <button type="submit" class="boton">Enviar Mensaje</button>
         </form>
     </div>
 
