@@ -9,11 +9,11 @@ body {
 #pantalla{
     background-size: cover;
     background-position: center;
-    background-image: url('imagenes/ciudad4.png');
+ 
     width: 100%;
     height: 100%;
     position: relative;
-    background-color : #000;
+    background-color : #cbf3f7;
 }
 #pantalla-inicial {
     display: flex;
@@ -21,6 +21,16 @@ body {
     align-items: center;
     justify-content: center;
     height: 70vh;
+}
+#containerInicial{
+    background-color: white;
+    background-size: cover;
+    background-position: center; /* Opcional: centra la imagen */
+    width: 50%;
+    height: 100%;
+    border-radius: 80px  ;
+    border: 20px solid #393e46;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
 #tiempo-container {
     position: fixed;
