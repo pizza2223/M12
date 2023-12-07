@@ -13,17 +13,18 @@
         </div>
         <div id="pantalla-inicial">
             <div id="containerInicial">
-                    <img src="imagenes/laia.png" alt="Laia">
-                
+                <div id="personaje">
+                    <img src="imagenes/laia2.png" alt="Laia">
+                </div>
                 <div id="dialogo">
                     <div id="bocadillo">
                         <p id="mensaje">¡Hola! Soy Laia.</p>
                     </div>
                 </div>
-            </div>
-            <button id="siguienteBtn" onclick="mostrarSiguienteMensaje()">Siguiente</button>
-            <button id="comenzarBtn" style="display: none;">Comenzar</button>
+                <button id="siguienteBtn" onclick="mostrarSiguienteMensaje()">Siguiente</button>
+                <button id="comenzarBtn" style="display: none;">Comenzar</button>
         </div>
+    </div>
 
     <div id="game-container" style="display: none;">
 
@@ -109,16 +110,16 @@
         <div id="habitacion10" style="display: none;">
             <div id="puerta11" class="puerta" data-next-room="11"></div>
             <div class="flecha" data-previous-room="1"></div>
-            
         </div>
-        <div id="dialog" class="dialog">
-            <p>Ingrese la contraseña:</p>
-            <input type="text" id="passwordInput">
-            <button onclick="verificarContrasena()">Aceptar</button>
-        </div>
-        <div id="habitacion11" style="display: none;">
-            <div class="flecha" data-previous-room="10"></div>
-        </div>
+
+            <div id="dialog" class="dialog">
+                <p>Ingrese la contraseña:</p>
+                <input type="text" id="passwordInput">
+                <button onclick="verificarContrasena()">Aceptar</button>
+            </div>
+            <div id="habitacion11" style="display: none;">
+                <div class="flecha" data-previous-room="10"></div>
+        
         <!---->
 
                 

@@ -192,12 +192,28 @@ function iniciarContadorTiempo() {
     }, 1000); // El contador se actualiza cada segundo (1000 ms)
 }
 function asignarEventListeners() {
+    const puertaConContrasena = document.getElementById('puerta11');
+const dialog = document.getElementById('dialog');
+const passwordInput = document.getElementById('passwordInput');
+
+puertaConContrasena.addEventListener('click', () => {
+    // Mostrar el cuadro de diálogo
+    dialog.style.display = 'block';
+});
     document.addEventListener('keydown', manejarTeclaPresionada);
-    const botonComenzar = document.getElementById('comenzarBtn');
-    botonComenzar.addEventListener('click', comenzarJuego);
+
     document.getElementById('siguienteBtn').addEventListener('click', mostrarSiguienteMensaje);
     for (const puerta of puertas) {
-        puerta.addEventListener('click', handleDoorClick);
+        // Excluye la puerta con el ID 'puerta11'
+        if (puerta.id !== 'puerta11') {
+            puerta.addEventListener('click', handleDoorClick);
+        }else if (puerta.id === 'puerta11'){
+            puerta.addEventListener('click', () => {
+    // Mostrar el cuadro de diálogo
+    dialog.style.display = 'block';
+});
+
+        }
     }
     for (const flecha of flechas) {
         flecha.addEventListener('click', handleArrowClick);
@@ -370,6 +386,38 @@ function reiniciarJuego() {
     mostrarSiguienteMensaje();
     
 }
+function verificarVictoria() {
+    const guiaConseguida = objetosConseguidos.some(objeto => objeto.id === 'guia');
+    const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
+
+    if (guiaConseguida && aeroConseguido) {
+        alert('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
+        // Puedes realizar acciones adicionales aquí, como reiniciar el juego o redirigir a otra página
+        switch(tiempoTranscurrido){
+            case tiempoTranscurrido <= 30 && tiempoTranscurrido:
+                puntos = 25;
+                break;
+            case tiempoTranscurrido <= 45 && tiempoTranscurrido > 30:
+                puntos = 20;
+                break;
+            case tiempoTranscurrido <= 65 && tiempoTranscurrido > 45:
+                puntos = 15;
+                break;
+            case tiempoTranscurrido <= 80 && tiempoTranscurrido > 65:
+                puntos = 10;
+                break;
+            case tiempoTranscurrido <= 95 && tiempoTranscurrido > 80:
+                puntos = 5;
+                break;
+            case tiempoTranscurrido > 95:
+                puntos = 0;
+                break;
+                default: puntos = 1;
+        }
+        setCookie('puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
+        window.location.href = '../../controllers_php/updatePuntosController.php';
+    }
+}
 objetosConseguibles.forEach((objeto) => {
     objeto.addEventListener('click', () => {
         // Obtiene un identificador único del objeto 
@@ -447,25 +495,7 @@ function checkForDoor(){
             }
         }
 }
-function changeRoom(nextRoom) {
-    // Oculta los elementos de la habitación actual
-    const habitacionActual = document.getElementById(`habitacion${currentRoom}`);
-    habitacionActual.style.display = 'none';
 
-    // Muestra los elementos de la nueva habitación
-    const nuevaHabitacion = document.getElementById(`habitacion${nextRoom}`);
-    console.log(`mostrando habitacion ${nextRoom}`);
-    nuevaHabitacion.style.display = 'block';
-
-    // Actualiza el estado del juego
-    currentRoom = nextRoom;
-
-    // Ajusta la posición inicial del personaje en la nueva habitación
-
-
-    // Resto de la lógica para cambiar de habitación (puedes personalizar según tus necesidades)
-    // Cargar recursos específicos de la habitación, ajustar la lógica de colisiones, etc.
-}
 function changePreviousRoom(previousRoom) {
     // Oculta los elementos de la habitación actual
     const habitacionActual = document.getElementById(`habitacion${currentRoom}`);
@@ -595,9 +625,9 @@ function verificarVictoria(indiceMensajeActual) {
                 break;
                 default: puntos = 1;
         }
-        setCookie('puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
+        setCookie('Puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
 
-        window.location.href = '../../controllers_php/updatePuntosController.php';
+        indiceMensajeActual = reiniciarJuego();
 
         
     }
@@ -609,11 +639,59 @@ function setCookie(nombre, valor, diasExpiracion) {
     const expiracion = "expires=" + fechaExpiracion.toUTCString();
     document.cookie = nombre + "=" + valor + ";" + expiracion + ";path=/";
 }
+const puertaConContrasena = document.getElementById('puerta11');
+const dialog = document.getElementById('dialog');
+const passwordInput = document.getElementById('passwordInput');
+
+puertaConContrasena.addEventListener('click', () => {
+    // Mostrar el cuadro de diálogo
+    dialog.style.display = 'block';
+});
+function verificarContrasena() {
+    const contrasenaIngresada = passwordInput.value;
+
+    // Verificar la contraseña (puedes compararla con una contraseña específica)
+    if (contrasenaIngresada === '123') {
+        // Contraseña correcta, realiza las acciones necesarias (cambia de habitación, etc.)
+        console.log('Contraseña correcta. Cambiando de habitación...');
+        // Llama a la función para cambiar de habitación
+        changeRoom(11);
+        // Ocultar el cuadro de diálogo después de verificar la contraseña
+        dialog.style.display = 'none';
+    } else {
+        // Contraseña incorrecta, puedes mostrar un mensaje de error o realizar otras acciones
+        console.log('Contraseña incorrecta. Inténtalo de nuevo.');
+        // Puedes también limpiar el campo de contraseña
+        passwordInput.value = '';
+    }
+}
+
+function changeRoom(nextRoom) {
+    // Oculta los elementos de la habitación actual
+    const habitacionActual = document.getElementById(`habitacion${currentRoom}`);
+    habitacionActual.style.display = 'none';
+
+    // Muestra los elementos de la nueva habitación
+    const nuevaHabitacion = document.getElementById(`habitacion${nextRoom}`);
+    console.log(`mostrando habitacion ${nextRoom}`);
+    nuevaHabitacion.style.display = 'block';
+
+    // Actualiza el estado del juego
+    currentRoom = nextRoom;
+
+    // Ajusta la posición inicial del personaje en la nueva habitación
+
+
+    // Resto de la lógica para cambiar de habitación (puedes personalizar según tus necesidades)
+    // Cargar recursos específicos de la habitación, ajustar la lógica de colisiones, etc.
+}
 // Llama a checkForDoor en cada fotograma
 function update() {
     checkForDoor();
     requestAnimationFrame(update);
 }
+
+
 
 // Iniciar el juego
 iniciarJuego();
