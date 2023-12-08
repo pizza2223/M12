@@ -1,4 +1,5 @@
 // Definición de constantes y variables globales
+
 const character = document.getElementById('character');
 const paredes = document.querySelectorAll('.pared');
 const puertas = document.querySelectorAll('.puerta');
@@ -13,13 +14,16 @@ let indiceMensajeActual = 0;
 let tiempoTranscurrido = 0; // Tiempo en segundos transcurridos
 let contadorInterval; // Variable para almacenar el intervalo del contador
 let puntos;
-
+document.addEventListener('DOMContentLoaded', iniciarJuego);
 
 
 const mensajes = [
     "¡Hola! Soy Laia",
     "Estoy emocionada de que estés aquí.",
+    "Estoy emocionada de que estés aquí.",
     "Explora y descubre los secretos que aguardan.",
+    "Explora y descubre los secretos que aguardan."
+
     // Añade más mensajes según sea necesario
 ];
 const mensajesObjetos = {
@@ -39,7 +43,8 @@ character.style.top = '675px';
 
 // Función principal para inicializar el juego
 function iniciarJuego() {
-
+    
+    mostrarMensaje(mensajes[indiceMensajeActual]);
     mostrarPantallaInicio(indiceMensajeActual);
     document.getElementById('siguienteBtn').addEventListener('click', mostrarSiguienteMensaje);    
 
@@ -117,25 +122,23 @@ function mostrarPantallaInicio() {
 
 }
 function mostrarSiguienteMensaje() {
-
-        
-
-      if (indiceMensajeActual < mensajes.length - 1) {
+    if (indiceMensajeActual < mensajes.length - 1) {
         // Muestra el siguiente mensaje
         indiceMensajeActual++;
         mostrarMensaje(mensajes[indiceMensajeActual]);
-      } else {
+    } else {
         // Muestra el mensaje de inicio y oculta el botón de siguiente
         mostrarMensaje("¡Empecemos!");
         ocultarBotonSiguiente();
         mostrarBotonComenzar();
-      }
     }
+}
     
     function mostrarMensaje(mensaje) {
-      // Lógica para mostrar el mensaje en el bocadillo
-      // Puedes adaptar esto según tu implementación
-      document.getElementById('bocadillo').textContent = mensaje;
+        const bocadillo = document.getElementById('bocadillo');
+        bocadillo.innerText = mensaje;// Cambia textContent por innerText
+        // Asegúrate de que el estilo del bocadillo sea visible en la página.
+        bocadillo.classList.add('mensaje'); // Añade la clase para aplicar los estilos de la fuente
     }
     
     function ocultarBotonSiguiente() {
@@ -626,9 +629,7 @@ function verificarVictoria(indiceMensajeActual) {
                 default: puntos = 1;
         }
         setCookie('Puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
-
-        indiceMensajeActual = reiniciarJuego();
-
+        window.location.href = '../../controllers_php/updatePuntosController.php';
         
     }
     return indiceMensajeActual

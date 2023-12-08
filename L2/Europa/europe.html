@@ -13,12 +13,8 @@
         </div>
         <div id="pantalla-inicial">
             <div id="containerInicial">
-                <div id="personaje">
-                    <img src="imagenes/laia2.png" alt="Laia">
-                </div>
                 <div id="dialogo">
                     <div id="bocadillo">
-                        <p id="mensaje">¡Hola! Soy Laia.</p>
                     </div>
                 </div>
                 <button id="siguienteBtn" onclick="mostrarSiguienteMensaje()">Siguiente</button>
@@ -26,6 +22,7 @@
         </div>
     </div>
 
+    
     <div id="game-container" style="display: none;">
 
 
@@ -119,16 +116,18 @@
             </div>
             <div id="habitacion11" style="display: none;">
                 <div class="flecha" data-previous-room="10"></div>
-        
+            </div>
         <!---->
+    
+        <div id="casillas-objetos-conseguidos" style="display: none;">
+            <div class="casilla-objeto" id="casilla1"></div>
+            <div class="casilla-objeto" id="casilla2"></div>
+            <div class="casilla-objeto" id="casilla3"></div>
+            <div class="casilla-objeto" id="casilla4"></div>
+            <div class="casilla-objeto" id="casilla5"></div>
+        </div>
     </div>
-    <div id="casillas-objetos-conseguidos" style="display: none;">
-        <div class="casilla-objeto" id="casilla1"></div>
-        <div class="casilla-objeto" id="casilla2"></div>
-        <div class="casilla-objeto" id="casilla3"></div>
-        <div class="casilla-objeto" id="casilla4"></div>
-        <div class="casilla-objeto" id="casilla5"></div>
-    </div>
+
 
     <script src="script.js"></script>
 </body>

@@ -9,28 +9,35 @@ body {
 #pantalla{
     background-size: cover;
     background-position: center;
- 
     width: 100%;
     height: 100%;
     position: relative;
-    background-color : #cbf3f7;
+    background-color : white;
 }
 #pantalla-inicial {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    width: 1100px;
+    height: 1000px;
+    margin-left: 600px;
+    margin-top: 70px;
+
 }
 #containerInicial{
     background-color: white;
     background-size: cover;
     background-position: center; /* Opcional: centra la imagen */
+    background-image: url(imagenes/pantallaInicial.png);
     width: 50%;
     height: 100%;
     border-radius: 80px  ;
     border: 20px solid #393e46;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+    height: 70vh;
+    width: 1000px;
+    height: 2000px;
 }
 #tiempo-container {
     position: fixed;
@@ -54,30 +61,37 @@ body {
 }
 
 #dialogo {
-    display: flex;
-    align-items: center;
+    position: absolute;
+    left: 1225px; /* Posición desde el lado izquierdo de la pantalla */
+    top: 330px;
 }
-
 #bocadillo {
-    background-color: #fff;
-    border: 2px solid #000;
     padding: 10px;
     border-radius: 10px;
     max-width: 300px;
     text-align: center;
-    margin-left: 800px; /* Ajusta el margen izquierdo según sea necesario */
-    margin-top: -1000px;
 }
-
-#pantalla-inicial button {
-    margin-top: -400px;
-    margin-left: 800px;
+#siguienteBtn, #comenzarBtn {
+    position: absolute;
+    top: 752px; /* Posición desde el fondo de la pantalla */
+    left: 1378px; /* Posición desde el lado izquierdo de la pantalla */
+    transform: translateX(-50%); /* Centra el botón */
     cursor: pointer;
+    padding: 10px 20px; /* Ajusta el padding como sea necesario */
+    font-size: 38px; /* Ajusta el tamaño de fuente como sea necesario */
+    background-color: #f9934a; /* Color de fondo naranja */
+    border: none;
+    border-radius: 50px;
+    color: white; /* Color de texto blanco */
+    width: 330px;
+    height: 100px;
+    
 }
 
-#mensaje {
-    font-size: 18px;
-    margin-bottom: 10px;
+.mensaje {
+    font-size: 38px; /* o el tamaño que prefieras */
+    /* Añade aquí cualquier otro estilo que necesites */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 #game-container {
@@ -90,10 +104,8 @@ body {
     border-radius: 80px  ;
 }
 #casillas-objetos-conseguidos {
-    background-color: black;
     width: 147px; /* Ajusta según sea necesario */
     height: 700px;
-    border: 2px solid  wheat;
     padding: 10px;
     top: 200px;
     left: 1550px;
