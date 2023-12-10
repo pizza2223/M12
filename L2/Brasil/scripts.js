@@ -99,10 +99,11 @@ function inicializa() {
   reproducirAudio("audio/gameback.mp3", 0.2);
 
 }
+var puntostext = document.getElementsByClassName('puntostexto');
+
 function startTimer() {
   var resultado = document.getElementById('ganarperder');
   var tiempotext = document.getElementById('tiempottexto');
-  var puntostext = document.getElementById('puntostexto');
   var tiempoinicio = document.getElementById('tiempoinicio');
   var puntos;
 
@@ -137,11 +138,16 @@ function startTimer() {
       }
 
     setCookie("puntos",puntos,1); 
+    
+    for (var i = 0; i < puntostext.length; i++) {
+      puntostext[i].innerText = 'Puntos: ' + puntos + ' puntos.';
+    }
       counter = 0;
       squares = []; // Reiniciar el arreglo de cuadrados completados
       nivel++;
       document.getElementById('nivel').innerText = "Nivel: " + nivel; // Actualiza el nivel en la pantalla
       document.getElementById('contador').innerText = "Contador: " + counter;
+
     } else {
       reproducirAudio("audio/perder.mp3", 1);
 
@@ -259,3 +265,29 @@ intervalmonos = setInterval(function generarMonos() {
   document.getElementById('game').appendChild(nuevoMono);
 }, 1000); // Crea un nuevo cuadrado cada segundo
 };
+
+var juegoPausado = false;
+
+function pausarJuego() {
+  juegoPausado = !juegoPausado;
+
+  var gameBoxPause = document.getElementsByClassName('gameBoxPause')[0];
+
+  if (juegoPausado) {
+    detenerGeneracion();
+    clearInterval(intervalNiños);
+    clearInterval(intervalmonos);
+    clearTimeout(timer);
+    document.getElementById('pausaBtn').innerText = '';
+    pausaBtn.style.backgroundImage = 'url(imagenes/pausa.png)';
+    gameBoxPause.style.display = 'block'; // Mostrar la capa gris
+  } else {
+    generacionEntidades();
+    startTimer();
+    document.getElementById('pausaBtn').innerText = '';
+    pausaBtn.style.backgroundImage = 'url(imagenes/resume.png)';
+    gameBoxPause.style.display = 'none'; // Ocultar la capa gris
+  }
+}
+
+

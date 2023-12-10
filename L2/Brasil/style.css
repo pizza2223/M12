@@ -384,3 +384,40 @@ font-family: 'Quantico', sans-serif;
   z-index: 1; /* Asegura que el cartelito esté encima de la imagen */
 
 }
+#pausaBtn {
+  z-index: 2;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  height: 60px; /* Tamaño deseado en altura */
+  width: 60px; /* Tamaño deseado en anchura */
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  padding: 0; /* Elimina el relleno */
+  background-image: url(imagenes/resume.png);
+  -webkit-border-radius: 25px; /* Mitad del tamaño deseado */
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  /* Otros estilos según sea necesario */
+}
+
+
+.gameBoxPause{
+  position: fixed;
+  height: 710px;
+  width: 1000px;
+  background-color: rgba(0, 0, 0, 0.891);
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  display: none;
+}
