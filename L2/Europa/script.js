@@ -14,7 +14,6 @@ let indiceMensajeActual = 0;
 let tiempoTranscurrido = 0; // Tiempo en segundos transcurridos
 let contadorInterval; // Variable para almacenar el intervalo del contador
 let puntos;
-document.addEventListener('DOMContentLoaded', iniciarJuego);
 
 
 const mensajes = [
@@ -38,7 +37,7 @@ const mensajesObjetos = {
 
 // Establecer posiciones iniciales en JavaScript
 character.style.position = 'absolute';
-character.style.left = '500px';
+character.style.left = '600px';
 character.style.top = '675px';
 
 // Función principal para inicializar el juego
@@ -347,7 +346,7 @@ function reiniciarJuego() {
 
     tiempoTranscurrido = 0;
     objetosConseguidos.length = 0; // Vacía el array de objetos conseguidos
-    character.style.left = '500px';
+    character.style.left = '700px';
     character.style.top = '675px';
 
     // Oculta todas las habitaciones excepto la primera
