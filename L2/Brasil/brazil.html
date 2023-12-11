@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 </html>
@@ -66,15 +65,21 @@
       <div class="estadisticas animate__animated animate__zoomInUp">
         <h3>Tus ultimas estadísticas</h3>
         <p id="tiempoinicio">Tiempo:</p>
-        <p>Puntos: 25</p>
+        <p class="puntostexto"></p>
         <p>Nivel: 1</p>
       </div>
 
       
     </div> 
     <div class="contenedorcontador">
+      <button id="pausaBtn" onclick="pausarJuego()"></button>
+
       <p id="counter"></p>
       <p id="nivel"></p>
+
+    </div>
+    <div class="gameBoxPause">
+      
     </div>
     <div class="gameBox">
       <div class="areadelJuego">
@@ -93,7 +98,7 @@
       <h2 id="ganarperder"></h2>
       <br>
       <p id="tiempottexto"></p>
-      <p id="puntostexto"></p>
+      <p class="puntostexto"></p>
       <button id="repetir" onclick="location.reload();">REINICIAR</button>
       <button id="siguienteJuego" onclick="pantallasiguiente();">SIGUIENTE NIVEL</button>
 

@@ -31,14 +31,13 @@ escribirEnPantalla("¡Hola Laia! Soy Caucan Miri de la tribu Tatuyo   ", functio
       escribirEnPantalla("Vas a tener que apretar la tecla espacio cada vez que veas uno", function () {
         escribirEnPantalla("Si al acabar el juego los has contado correctamente ganarás.", function () {
           escribirEnPantalla("Y...¡Cuidado, encontrarás obstáculos en tu camino!", function () {
-            // Puedes seguir encadenando llamadas para más textos si es necesario
         });      });
       });
   });
 });
 function reproducirAudio(ruta, volumen) {
   var audio = new Audio(ruta);
-  audio.volume = volumen; // Establecer el volumen
+  audio.volume = volumen; 
   audio.play();
 }
 
@@ -47,28 +46,26 @@ function reproducirAudio(ruta, volumen) {
 //////
 var nivel = 1;
 var targetSquares;
-
+let counter = 0;
+let elapsedTime; 
+let timer; // Variable para el temporizador
+var squares = document.getElementsByClassName('square');
 document.getElementById('nivel').innerText = "Nivel: " + nivel;
 
-let counter = 0;
-let elapsedTime; // Declarar la variable elapsedTime aquí
 
 function resetCounter() {
   counter = 0;
   document.getElementById('counter').innerText = counter;
 }
 
-var squares = document.getElementsByClassName('square');
 
 document.getElementById('finjuego').style.display = 'none';
-let timer; // Variable para el temporizador
-
 document.getElementById('comenzarJuego').addEventListener('click', inicializa);
-document.getElementById('all').style.display = 'none'; // Oculta la ventana de inicio
+document.getElementById('all').style.display = 'none';
 
 function postintro() {
-  document.getElementById('intro').style.display = 'none'; // Oculta la ventana de inicio
-  document.getElementById('all').style.display = 'block'; // Oculta la ventana de inicio
+  document.getElementById('intro').style.display = 'none'; 
+  document.getElementById('all').style.display = 'block'; 
   reproducirAudio("audio/inicio.mp3", 1);
 
 }
@@ -78,15 +75,13 @@ function inicializa() {
   startTimer();
 
   let startTime = Date.now(); // Marca de tiempo inicial
-  counter = 0; // Variable para contar cuántas veces se presiona la tecla espacio
+  counter = 0; 
   
-
-  document.getElementById('inicioJuego').style.display = 'none'; // Oculta la ventana de inicio
-  document.getElementById('game').style.zIndex = 1; // Hace que el juego aparezca encima de la ventana de inicio
-  document.getElementById('finjuego').style.display = 'none'; // Oculta la ventana de inicio
+  document.getElementById('inicioJuego').style.display = 'none'; 
+  document.getElementById('game').style.zIndex = 1; 
+  document.getElementById('finjuego').style.display = 'none';
   resetCounter();
   generacionEntidades();
-  var gameStarted = false;
   
   document.body.onkeyup = function (e) {
     if (e.keyCode == 32) {
@@ -94,31 +89,26 @@ function inicializa() {
       document.getElementById('counter').innerText = counter;
 
       if (counter === targetSquares) {
-        // Calcular el tiempo transcurrido en segundos
         elapsedTime = (Date.now() - startTime) / 1000;
         document.cookie = "Tiempo(segundos)=" + elapsedTime.toFixed(2);
         document.cookie = "Nivel=" + nivel;
 
-        // Mostrar una alerta indicando el segundo exacto
       }
     }
   };
   reproducirAudio("audio/gameback.mp3", 0.2);
 
 }
+var puntostext = document.getElementsByClassName('puntostexto');
+
 function startTimer() {
-  // Selecciona el primer elemento h2
   var resultado = document.getElementById('ganarperder');
   var tiempotext = document.getElementById('tiempottexto');
-  var puntostext = document.getElementById('puntostexto');
   var tiempoinicio = document.getElementById('tiempoinicio');
-
   var puntos;
 
-  // Detiene el temporizador anterior (si existe)
   clearTimeout(timer);
 
-  // Inicia un nuevo temporizador
   timer = setTimeout(function () {
     if (counter == targetSquares) {
       reproducirAudio("audio/ganar.mp3", 0.5);
@@ -148,11 +138,16 @@ function startTimer() {
       }
 
     setCookie("puntos",puntos,1); 
+    
+    for (var i = 0; i < puntostext.length; i++) {
+      puntostext[i].innerText = 'Puntos: ' + puntos + ' puntos.';
+    }
       counter = 0;
       squares = []; // Reiniciar el arreglo de cuadrados completados
       nivel++;
       document.getElementById('nivel').innerText = "Nivel: " + nivel; // Actualiza el nivel en la pantalla
       document.getElementById('contador').innerText = "Contador: " + counter;
+
     } else {
       reproducirAudio("audio/perder.mp3", 1);
 
@@ -175,26 +170,19 @@ function setCookie(name,value,days) {
 }
 
 
- // 
-
-
  let intervalNiños;
-function pantallasiguiente() {
-  detenerGeneracion(); // Detiene la generación actual
+ let intervalmonos;
 
-  // Limpiar el contenido antes de empezar
+function pantallasiguiente() {
+  detenerGeneracion();
   let elemento = document.getElementById("laiadialogo");
   elemento.innerHTML = "";
-
   // Generar nuevas entidades
   generacionEntidades();
-
   // Detiene el temporizador al pasar a la pantalla siguiente
   clearTimeout(timer);
-
   document.getElementById('finjuego').style.display = 'none';
   document.getElementById('game').style.zIndex = 1;
-
   // Inicia un nuevo temporizador y resetea el contador
   startTimer();
   resetCounter();
@@ -203,34 +191,35 @@ function pantallasiguiente() {
 function detenerGeneracion() {
   // Detiene la generación de cuadrados
   clearInterval(intervalNiños);
-  document.getElementById('game').innerHTML = '';
+  clearInterval(intervalmonos);
 
-  // Detiene la generación de monos
+  document.getElementById('game').innerHTML = '';
 }
 
 function generacionEntidades() {
   targetSquares = nivel * getRandomNumber(4, 8);
+  var areadelJuegoDiv = document.querySelector('.areadelJuego');
+  var areadelJuegoHeight = areadelJuegoDiv.offsetHeight;// esto pilla la altura en pixeles del div
+  var squares = document.getElementsByClassName('square');
+  var square;
+  var img;
+  var imgm;
+  let monos = [];
+  let nuevoMono;
 
-  
   intervalNiños = setInterval(function niños() {
-    var squares = document.getElementsByClassName('square');
   
-
     if (squares.length >= targetSquares) {
       clearInterval(intervalNiños);
       return;
     }
   
-      var square = document.createElement('div');
+      square = document.createElement('div');
       square.className = 'square';
   
-      // Crear un nuevo elemento de imagen
-      var img = document.createElement('img');
+      img = document.createElement('img');
       img.src = 'imagenes/walking.gif';
       square.appendChild(img);
-  
-      var areadelJuegoDiv = document.querySelector('.areadelJuego');
-      var areadelJuegoHeight = areadelJuegoDiv.offsetHeight;
   
       // Altura aleatoria
       var randomTop = Math.floor(Math.random() * areadelJuegoHeight);
@@ -241,51 +230,64 @@ function generacionEntidades() {
       // Animación
       square.style.animation = 'move linear ' + (Math.random() * 4 + 4) + 's';
       document.getElementById('game').appendChild(square);
-  
-      // Incrementar el contador
-  
-      // Comprobar si counter es igual a squares.length
 
-    }, 1000 / Math.sqrt(nivel)); // Crea un nuevo cuadrado cada segundo/nivel
+    }, 1000 ); // Crea un nuevo cuadrado cada segundo/nivel
   
     function getRandomNumber(min, max) {
       return Math.floor(Math.random() * (max - min) + min);
-    }
+    } 
 
 
 
 //esto es el codigo de aparicion de los monos
-
-setInterval(function mono() {
- var mono = document.getElementsByClassName('mono');
-
- // Si ya hay 8 cuadrados en la pantalla, no se crea uno nuevo
- if (mono.length >= 8) {
+intervalmonos = setInterval(function generarMonos() {
+  if (monos.length >= 8) {
+    clearInterval(intervalmonos);
     return;
- }
+  }
 
- var mono = document.createElement('div');
- mono.className = 'mono';
+  nuevoMono = document.createElement('div');
+  nuevoMono.className = 'mono';
+  imgm = document.createElement('img');
+  imgm.className = 'imgm';
+  imgm.src = 'imagenes/mono2.gif';
+  nuevoMono.appendChild(imgm);
 
- // Crear un nuevo elemento de imagen
- var imgm = document.createElement('img');
- imgm.className = 'imgm';
- imgm.src = 'imagenes/mono2.gif';
- mono.appendChild(imgm);
-
- var areadelJuegoDiv = document.querySelector('.areadelJuego');
- var areadelJuegoHeight = areadelJuegoDiv.offsetHeight;
-
- // Altura aleatoria
- var randomTop = Math.floor(Math.random() * areadelJuegoHeight);
- //  el cuadrado  completamente dentro 
- if (randomTop > areadelJuegoHeight - 50) {
+  // Altura aleatoria
+  var randomTop = Math.floor(Math.random() * areadelJuegoHeight);
+  //  el cuadrado  completamente dentro 
+  if (randomTop > areadelJuegoHeight - 50) {
     randomTop -= 50;
- }
- mono.style.top = randomTop + 'px';
- // Animación
- mono.style.animation = 'move linear ' + (Math.random() * 5 + 5) + 's';
- document.getElementById('game').appendChild(mono);
+  }
+  nuevoMono.style.top = randomTop + 'px';
+  nuevoMono.style.animation = 'move linear ' + (Math.random() * 5 + 5) + 's';
+  monos.push(nuevoMono);
+  document.getElementById('game').appendChild(nuevoMono);
 }, 1000); // Crea un nuevo cuadrado cada segundo
-
 };
+
+var juegoPausado = false;
+
+function pausarJuego() {
+  juegoPausado = !juegoPausado;
+
+  var gameBoxPause = document.getElementsByClassName('gameBoxPause')[0];
+
+  if (juegoPausado) {
+    detenerGeneracion();
+    clearInterval(intervalNiños);
+    clearInterval(intervalmonos);
+    clearTimeout(timer);
+    document.getElementById('pausaBtn').innerText = '';
+    pausaBtn.style.backgroundImage = 'url(imagenes/pausa.png)';
+    gameBoxPause.style.display = 'block'; // Mostrar la capa gris
+  } else {
+    generacionEntidades();
+    startTimer();
+    document.getElementById('pausaBtn').innerText = '';
+    pausaBtn.style.backgroundImage = 'url(imagenes/resume.png)';
+    gameBoxPause.style.display = 'none'; // Ocultar la capa gris
+  }
+}
+
+
