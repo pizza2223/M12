@@ -1,3 +1,6 @@
+
+
+
 function escribirEnPantalla(texto, callback) {
   let arr = texto.split("");
   let i = 0;
@@ -41,7 +44,29 @@ function reproducirAudio(ruta, volumen) {
   audio.play();
 }
 
+window.onload = function () {
+  checkFirstVisit();
 
+  var nivelGuardado = getCookie("Nivel");
+  if (nivelGuardado !== "") {
+    nivel = parseInt(nivelGuardado);
+    document.getElementById('nivel').innerText = "Nivel: " + nivel;
+
+    document.getElementById('nivel-inicio').innerText = "Nivel: " + nivel;
+  }
+
+   var tiempoGuardado = getCookie("Tiempo(segundos)");
+  if (tiempoGuardado !== "") {
+    document.getElementById('tiempoinicio').innerText = "Tiempo: " + tiempoGuardado + " segundos";
+  }
+
+  var puntosGuardados = getCookie("puntos");
+  if (puntosGuardados !== "") {
+    document.getElementById('puntostexto').innerText = 'Puntos: ' + puntosGuardados ;
+    document.getElementById('puntostexto2').innerText = 'Puntos: ' + puntosGuardados ;
+
+  }
+};
 
 //////
 var nivel = 1;
@@ -92,6 +117,8 @@ function inicializa() {
         elapsedTime = (Date.now() - startTime) / 1000;
         document.cookie = "Tiempo(segundos)=" + elapsedTime.toFixed(2);
         document.cookie = "Nivel=" + nivel;
+        document.getElementById('nivel-inicio').innerText = "Nivel: " + nivel;
+        document.getElementById('tiempoinicio').innerText = "Tiempo: " + elapsedTime.toFixed(2) + " segundos";
 
       }
     }
@@ -99,8 +126,22 @@ function inicializa() {
   reproducirAudio("audio/gameback.mp3", 0.2);
 
 }
-var puntostext = document.getElementsByClassName('puntostexto');
 
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return "";
+}
+
+
+
+var puntostext = document.getElementsByClassName('puntostexto');
+var tiempojuego =16000;
 function startTimer() {
   var resultado = document.getElementById('ganarperder');
   var tiempotext = document.getElementById('tiempottexto');
@@ -130,21 +171,23 @@ function startTimer() {
         case elapsedTime > 8 && elapsedTime <= 12:
           puntos = 15;
           break;
-        case elapsedTime > 12 && elapsedTime <= 16:
+        case elapsedTime > 12 && elapsedTime <= 50:
           puntos = 10;
           break;
         default:
           puntos = 0;
       }
 
-    setCookie("puntos",puntos,1); 
-    
-    for (var i = 0; i < puntostext.length; i++) {
-      puntostext[i].innerText = 'Puntos: ' + puntos + ' puntos.';
-    }
+      setCookie("puntos", puntos, 1);
+
+      // Actualizar el elemento HTML que muestra los puntos en la página de inicio
+      document.getElementById('puntostexto').innerText = 'Puntos: ' + puntos + ' puntos.';
+      document.getElementById('puntostexto2').innerText = 'Puntos: ' + puntos + ' puntos.';
       counter = 0;
       squares = []; // Reiniciar el arreglo de cuadrados completados
       nivel++;
+      tiempojuego= tiempojuego+7559;
+
       document.getElementById('nivel').innerText = "Nivel: " + nivel; // Actualiza el nivel en la pantalla
       document.getElementById('contador').innerText = "Contador: " + counter;
 
@@ -157,7 +200,7 @@ function startTimer() {
       resultado.style.color = 'red';
       document.getElementById('finjuego').style.display = 'block';
     }
-  }, 16000);
+  }, tiempojuego);
 }
 function setCookie(name,value,days) {
   var expires = "";
@@ -229,6 +272,7 @@ function generacionEntidades() {
       square.style.top = randomTop + 'px';
       // Animación
       square.style.animation = 'move linear ' + (Math.random() * 4 + 4) + 's';
+      
       document.getElementById('game').appendChild(square);
 
     }, 1000 ); // Crea un nuevo cuadrado cada segundo/nivel
@@ -280,14 +324,30 @@ function pausarJuego() {
     clearTimeout(timer);
     document.getElementById('pausaBtn').innerText = '';
     pausaBtn.style.backgroundImage = 'url(imagenes/pausa.png)';
-    gameBoxPause.style.display = 'block'; // Mostrar la capa gris
+    gameBoxPause.style.display = 'block';
   } else {
     generacionEntidades();
     startTimer();
     document.getElementById('pausaBtn').innerText = '';
     pausaBtn.style.backgroundImage = 'url(imagenes/resume.png)';
-    gameBoxPause.style.display = 'none'; // Ocultar la capa gris
+    gameBoxPause.style.display = 'none';
   }
 }
 
+function checkFirstVisit() {
+  var introDiv = document.getElementById('intro');
+  var juegoDiv = document.getElementById('all');
 
+  var visited = getCookie('visited');
+
+  if (visited) {
+    introDiv.style.display = 'none';
+    juegoDiv.style.display = 'block';
+
+  } else {
+    introDiv.style.display = 'relative';
+    setCookie('visited', 'true', 365); // La cookie expirará en 365 días
+  }
+}
+
+// Llamar a la función al cargar la página

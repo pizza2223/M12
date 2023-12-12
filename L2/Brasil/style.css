@@ -51,16 +51,16 @@
    }
    
    #bienvenido{
+    margin-top: 100px;
     word-spacing: -5.2px;
-    letter-spacing: -0.7px;
+    letter-spacing: 5.0px;
 
     -webkit-text-stroke: 3px rgb(220, 220, 220);
     color: #FFFFFF;
 text-shadow: -5px 5px 0px #00e6326f, -10px 10px 0prgba(1, 204, 18, 0.321)12,rgba(0, 189, 41, 0.412)15px 0px #00bd2970;
 color: #ffffff;
     color: rgb(255, 255, 255);
-    font-family: 'Quantico', sans-serif;
-    font-size: 70px;
+    font-family: 'Bebas Neue', sans-serif;    font-size: 70px;
    }
 
    #ganarperder{
@@ -69,21 +69,21 @@ color: #ffffff;
     font-size: 50px;
    }
 
-   #tiempottexto{
+   .tiempottexto{
     color: rgb(240, 240, 20);
-    font-family: 'Quantico', sans-serif;
-    font-size: 20px;
+    font-family: 'Roboto', sans-serif;   
+     font-size: 20px;
    }
    
-   #puntostexto{
+   .puntostexto{
     color: rgb(65, 248, 15);
-    font-family: 'Quantico', sans-serif;
-    font-size: 20px;
+    font-family: 'Roboto', sans-serif;    font-size: 20px;
    }
 .estadisticas{
-  margin-top: 80px;
+  margin-top: 50px;
   font-family: 'Quantico', sans-serif;
   border: 6px groove #00E01F;
+  border-radius: 10px;
   padding: 20px;
 }
 
@@ -112,7 +112,7 @@ color: #ffffff;
     font-weight: bold;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
     font-family: 'Quantico', sans-serif;
     background: #147FFA;
@@ -125,36 +125,36 @@ color: #ffffff;
     font-weight: bold;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
     font-family: 'Quantico', sans-serif;
     background: #147FFA;
    }
    
    #comenzarJuego {
+    border-radius: 50px;
     margin-top: 15px;
-    font-size: 20px;
+    font-size: 25px;
     color: rgb(255, 255, 255);
     font-weight: bold;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    font-family: 'Quantico', sans-serif;
+    font-family: 'Oswald', sans-serif;
     background: #147FFA;
    
    }
    
    #comenzarJuego:hover {
-    font-size: 20px;
-    color: rgb(255, 255, 255);
+    font-size: 25px;
+        color: #147FFA;
     font-weight: bold;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
-    font-family: 'Quantico', sans-serif;
-    background: hsl(212, 56%, 53%);
+    font-family: 'Oswald', sans-serif;
+    background: hsl(0, 0%, 100%);
   }
    
    
@@ -205,7 +205,27 @@ color: #ffffff;
     color: #FFFFFF;
     background: #262626;
   }
-  
+
+  .nivelestadistica{
+    color: rgb(253, 144, 42);
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+  }
+  #estadisticatitulo{
+    font-size: 34px;
+    word-spacing: -5.2px;
+    letter-spacing: 5.0px;
+    -webkit-text-stroke: 2px rgb(220, 220, 220);
+    color: #FFFFFF;
+text-shadow: -5px 5px 0px #00e6326f, -10px 10px 0prgba(1, 204, 18, 0.321)12,rgba(0, 189, 41, 0.412)15px 0px #00bd2970;
+color: #ffffff;
+    color: rgb(255, 255, 255);
+    font-family: 'Bebas Neue', sans-serif; 
+   }
+  .separador{
+    border: 1px solid rgba(21, 255, 0, 0.535);
+
+  }
     .areadelJuego{
     height: 100%;
     margin: 0;
