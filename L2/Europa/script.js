@@ -293,7 +293,6 @@ function canMove(character, direction, speed) {
                 break;
         }
     }
-
     return true; // Movimiento permitido
 }
 puertas.forEach((puerta) => {
@@ -541,33 +540,35 @@ function manejarObjetos(){
         // Encuentra todas las casillas
         const casillas = document.querySelectorAll('.casilla-objeto');
     
-        // Itera sobre las casillas para encontrar la primera vacía
+        // Itera sobre las casillas para find the first empty box
         for (const casilla of casillas) {
             if (!casilla.hasChildNodes()) {
-                // Crea una imagen con la URL correspondiente al objeto
-                const imagenObjeto = document.createElement('img');
-                imagenObjeto.src = obtenerURLImagen(objetoId);
+                // Check if the object image is already in a box
+                const objectInBox = document.querySelector(`.casilla-objeto img[src*="${obtenerURLImagen(objetoId)}"]`);
+                if (!objectInBox) {
+                    // Create an image element with the URL corresponding to the object
+                    const imagenObjeto = document.createElement('img');
+                    imagenObjeto.src = obtenerURLImagen(objetoId);
     
-                // Agrega un evento de clic a la imagen recién creada
-                imagenObjeto.addEventListener('click', () => clicEnObjeto(imagenObjeto));
+                    // Add a click event to the newly created image
+                    imagenObjeto.addEventListener('click', () => clicEnObjeto(imagenObjeto));
     
-                // Agrega la imagen a la casilla
-                casilla.appendChild(imagenObjeto);
+                    // Add the image to the box
+                    casilla.appendChild(imagenObjeto);
     
-                // Establece el estilo de la casilla
-                casilla.style.img = `url(${obtenerURLImagen(objetoId)})`;
-                imagenObjeto.style.backgroundSize = 'cover';
-                imagenObjeto.style.backgroundPosition = 'center';
-                imagenObjeto.style.width = '124px';
-                imagenObjeto.style.height = '124px';
-                imagenObjeto.style.borderRadius = '40px';
-                imagenObjeto.style.marginLeft = '-7px';
-                imagenObjeto.style.marginTop = '-5px';
-                imagenObjeto.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.5)';
+                    // Set the style for the box
+                    casilla.style.img = `url(${obtenerURLImagen(objetoId)})`;
+                    imagenObjeto.style.backgroundSize = 'cover';
+                    imagenObjeto.style.backgroundPosition = 'center';
+                    imagenObjeto.style.width = '124px';
+                    imagenObjeto.style.height = '124px';
+                    imagenObjeto.style.borderRadius = '40px';
+                    imagenObjeto.style.marginLeft = '-7px';
+                    imagenObjeto.style.marginTop = '-5px';
+                    imagenObjeto.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.5)';
     
-                
-    
-                break; // Sale del bucle después de colocar la imagen en la casilla vacía
+                    break; // Exit the loop after placing the image in the empty box
+                }
             }
         }
     }
