@@ -8,7 +8,6 @@
   />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page del Juego</title>
@@ -59,6 +58,7 @@
                   <th scope="col">Usuari</th>
                   <th scope="col">Ranking</th>
                   <th scope="col">Objectes col·leccionats</th>
+                  <th scope="col">Acció</th>
                 </tr>
               </thead>
               <tbody>
@@ -87,14 +87,32 @@
                 
              
             }
-            echo "</td>"."</tr>";
+            echo "</td>".
+            "<td>
+            
+            <div class='btn-group' >
+            <button class='btn btn-secondary btn-sm dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+              · · ·
+            </button>
+            <ul class='dropdown-menu' style='z-index: 2;'>
+              <!-- Your dropdown menu items go here -->
+              
+            <li><a class='dropdown-item' href='edita.php?id=".$id."'>Edita</a></li>
+            <li><a class='dropdown-item' href='#'>Elimina</a></li>
+            </ul>
+          </div>
+          
+          
+            </td>";
+           
+
+            echo  "</tr>";
                $rowNum++;
           }  
 
               ?>
               </tbody>
             </table>
-
     </div>
 
     
@@ -117,21 +135,21 @@
             <p>Aquest és un formulari per afegir un nou usuari</p>
         </div>
 
-        <form>
+        <form action="../controllers_php/addUserController.php" method="POST">
             <div class="form-group">
                 <label for="nombre">Nom:</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Tu nombre">
+                <input type="text" class="form-control" id="nombre" name="nom" placeholder="Tu nombre">
             </div>
             <div class="form-group">
                 <label for="correo">Correu:</label>
-                <input type="email" class="form-control" id="correo" placeholder="tucorreo@example.com">
+                <input type="email" class="form-control" id="correo" name="correu" placeholder="tucorreo@example.com">
             </div>
             <div class="form-group">
                 <label for="correo">Contrasenya:</label>
-                <input type="password" class="form-control" id="correo" placeholder="tucorreo@example.com">
+                <input type="password" class="form-control" id="contra" name="contra" placeholder="tucorreo@example.com">
             </div>
         
-            <button type="submit" class="boton">Afegir nou usuari</button>
+            <button type="submit" name="submit" class="boton">Afegir nou usuari</button>
         </form>
     </div>
 
@@ -142,8 +160,7 @@
     </footer>
 
     <!-- Scripts de Bootstrap y ScrollSpy -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>
