@@ -37,7 +37,7 @@ const mensajesObjetos = {
 
 // Establecer posiciones iniciales en JavaScript
 character.style.position = 'absolute';
-character.style.left = '600px';
+character.style.left = '550px';
 character.style.top = '675px';
 
 // Función principal para inicializar el juego
