@@ -8,7 +8,7 @@
             "name": "Launch Chrome",
             "request": "launch",
             "type": "chrome",
-            "url": "http://localhost/M12/index.php",
+            "url": "http://localhost/M12/L2/Kenia/kenya.html",
             "webRoot": "${workspaceFolder}"
         },
         {
