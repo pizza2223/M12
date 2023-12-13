@@ -1,28 +1,47 @@
 * {
     margin: 0;
     padding: 0;
-   }
+    font-family: 'Roboto', sans-serif;
+    }
    
    #audio{
    display: none
    }
    
-   #nivel{
-    color: white;
+    .nivelcontenedor {
+      background-color: rgb(14, 127, 3);
+      width: 70px;
+      height: 22px;
+      z-index: 11111;
+      margin: 0 auto; /* Utiliza 'auto' para centrar horizontalmente */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+  }
+
+
+#nivel {
+    color: rgb(255, 255, 255);
     margin: 0;
-   }
-   
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
+
    .ventanaFin {
     display: none;
    }
    
    .ventanaFin {
     position: fixed;
-    height: 710px;
+    height: 705px;
     width: 1000px;
     background-color: rgba(0, 0, 0, 0.891);
-    border-radius: 10px;
-    color: white;
+    -webkit-border-radius: 0px 0px 10px 10px;
+    -moz-border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 10px 10px;
+        color: white;
     text-align: center;
     padding: 20px;
     display: flex;
@@ -32,22 +51,49 @@
     z-index: 3;
    }
    
-   
-   #volverJuego {
-    margin-top: 15px;
-    font-size: 20px;
+   .botones{
+    font-size: 18px;
     color: #ffffff;
     font-weight: bold;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
-    font-family: 'Quantico', sans-serif;
+    font-family: 'Oswald', sans-serif;
     background: #147FFA;
+    text-decoration: none;
+margin: 13px;
    }
    
+   .botonesdelfin{
+   }
+   
+.botones:hover{
+  font-size: 21px;
+  color: #147FFA;
+font-weight: bold;
+padding: 10px 20px;
+border: none;
+border-radius: 50px;
+cursor: pointer;
+font-family: 'Oswald', sans-serif;
+background: hsl(0, 0%, 100%);
+text-decoration: none;
+}
+
    .ventanaInicio {
     display: none;
+   }
+   #finjuegotitulo{
+    margin-top: 40px;
+    word-spacing: -5.2px;
+    letter-spacing: 5.0px;
+    -webkit-text-stroke: 3px rgb(220, 220, 220);
+    color: #FFFFFF;
+text-shadow: -5px 5px 0px #00e6326f, -10px 10px 0prgba(1, 204, 18, 0.321)12,rgba(0, 189, 41, 0.412)15px 0px #00bd2970;
+color: #ffffff;
+    color: rgb(255, 255, 255);
+    font-family: 'Bebas Neue', sans-serif;    font-size: 70px;
    }
    
    #bienvenido{
@@ -64,9 +110,8 @@ color: #ffffff;
    }
 
    #ganarperder{
-    color: rgb(255, 255, 255);
-    font-family: 'Quantico', sans-serif;
-    font-size: 50px;
+    font-family: 'Bebas Neue', sans-serif;    font-size: 70px;
+    font-size: 60px;
    }
 
    .tiempottexto{
@@ -81,17 +126,34 @@ color: #ffffff;
    }
 .estadisticas{
   margin-top: 50px;
-  font-family: 'Quantico', sans-serif;
-  border: 6px groove #00E01F;
+  font-family: 'Roboto', sans-serif;
+    border: 6px groove #00E01F;
   border-radius: 10px;
   padding: 20px;
 }
 
+.estadisticasfin {
+  margin-top: 0;
+  font-family: 'Roboto', sans-serif;
+    border: 6px groove #00E01F;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
    .ventanaInicio {
     position: fixed;
-    height: 760px;
+    height: 818px;
     width: 1000px;
-    background-color: rgba(0, 0, 0, 0.891);
+    background: #0000009f;
+    background: rgba(0, 0, 0, 0.6);
+    background: -moz-linear-gradient(top, rgb(0, 0, 0) 0%, rgba(9, 69, 6, 0.842) 50%, rgba(0, 0, 0, 0.913) 100%);
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.912) 0%, rgba(8, 62, 6, 0.786) 50%, rgba(0, 0, 0, 0.838) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.956) 0%, rgba(5, 47, 3, 0.829) 50%, rgba(0, 0, 0, 0.928) 100%);
+    
     border-radius: 10px;
     color: white;
     text-align: center;
@@ -105,31 +167,7 @@ color: #ffffff;
 
    }
    
-   #siguienteJuego{
-    margin-top: 15px;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-family: 'Quantico', sans-serif;
-    background: #147FFA;
-   }
-
-   #repetir{
-    margin-top: 15px;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-family: 'Quantico', sans-serif;
-    background: #147FFA;
-   }
+  
    
    #comenzarJuego {
     border-radius: 50px;
@@ -188,6 +226,7 @@ color: #ffffff;
     border-radius: 20px 20px 0px 0px;
     padding: 10px; /* Agrega un espacio interno al contenedor */
     text-align: center; /* Centra el texto dentro del contenedor */
+    align-items: center;
   }
   
   #counter {
@@ -200,11 +239,7 @@ color: #ffffff;
     text-shadow: 0 0 3px #FFF, 0 0 3px #FFF, 0 0 3px #FFF, 0 0 10px #49ff18, 0 0 10px #49FF18, 0 0 10px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
   }
   
-  #nivel {
-    margin: 0; /* Elimina los márgenes por defecto del párrafo */
-    color: #FFFFFF;
-    background: #262626;
-  }
+
 
   .nivelestadistica{
     color: rgb(253, 144, 42);
@@ -411,17 +446,16 @@ font-family: 'Quantico', sans-serif;
   right: 15px;
   background-color: transparent;
   background-repeat: no-repeat;
-  height: 60px; /* Tamaño deseado en altura */
-  width: 60px; /* Tamaño deseado en anchura */
+  height: 60px; 
+  width: 60px; 
   background-size: cover;
   border: none;
   cursor: pointer;
-  padding: 0; /* Elimina el relleno */
+  padding: 0; 
   background-image: url(imagenes/resume.png);
-  -webkit-border-radius: 25px; /* Mitad del tamaño deseado */
+  -webkit-border-radius: 25px; 
   -moz-border-radius: 25px;
   border-radius: 25px;
-  /* Otros estilos según sea necesario */
 }
 
 
@@ -430,8 +464,9 @@ font-family: 'Quantico', sans-serif;
   height: 710px;
   width: 1000px;
   background-color: rgba(0, 0, 0, 0.891);
-  border-radius: 10px;
-  color: white;
+  -webkit-border-radius: 0px 0px 10px 10px;
+  -moz-border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 10px 10px;  color: white;
   text-align: center;
   padding: 20px;
   display: flex;

@@ -148,14 +148,16 @@ function startTimer() {
   var tiempoinicio = document.getElementById('tiempoinicio');
   var puntos;
 
-  clearTimeout(timer);
-
+  if (timer !== null) {
+    clearTimeout(timer);
+    timer = null; // Restablece la variable timer
+  }
   timer = setTimeout(function () {
     if (counter == targetSquares) {
       reproducirAudio("audio/ganar.mp3", 0.5);
 
-      resultado.innerText = '¡Ganaste!';
-      resultado.style.color = 'green';
+      resultado.innerText = '¡ Ganaste !';
+      resultado.style.color = "#00E01F";
       document.getElementById('finjuego').style.display = 'block';
       tiempotext.innerText = 'Tiempo: ' + elapsedTime.toFixed(2) + ' segundos.';
       console.log(tiempotext.innerText);
@@ -194,6 +196,7 @@ function startTimer() {
     } else {
       reproducirAudio("audio/perder.mp3", 1);
 
+      document.getElementById('siguienteJuego').style.display = 'none';
 
       document.cookie = "puntos="+0;
       resultado.innerText = '¡Perdiste!';
@@ -224,11 +227,15 @@ function pantallasiguiente() {
   generacionEntidades();
   // Detiene el temporizador al pasar a la pantalla siguiente
   clearTimeout(timer);
+  timer = null;
   document.getElementById('finjuego').style.display = 'none';
   document.getElementById('game').style.zIndex = 1;
   // Inicia un nuevo temporizador y resetea el contador
-  startTimer();
-  resetCounter();
+
+  if (timer === null) {
+    startTimer();
+    resetCounter();
+  }
 }
 
 function detenerGeneracion() {

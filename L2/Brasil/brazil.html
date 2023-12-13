@@ -75,12 +75,14 @@
     <div class="contenedorcontador">
       <button id="pausaBtn" onclick="pausarJuego()"></button>
 
-      <p id="counter"></p>
-      <p id="nivel"></p>
+      <p id="counter">0</p>
+      <div class="nivelcontenedor">
+        <p id="nivel"></p>
+      </div>
 
     </div>
     <div class="gameBoxPause">
-      
+      <h2>Juego Pausado</h2>
     </div>
     <div class="gameBox">
       <div class="areadelJuego">
@@ -93,19 +95,24 @@
       </div>
     </div>
     <div id="finjuego" class="ventanaFin">
-      <h1 id="bienvenido">Little Runners Brazil</h1>
-      <hr>
+      <h1 id="finjuegotitulo">Little Runners Brazil</h1>
+      <hr class="separador">
       <br>
-      <h2 id="ganarperder"></h2>
-      <br>
+      <h2 class="animate__animated animate__tada" id="ganarperder"></h2>
+      <div class="estadisticasfin animate__animated animate__zoomInUp">
+
       <p id="tiempottexto" class="tiempottexto"></p>
       <p id="puntostexto2" class="puntostexto"></p>
-      <button id="repetir" onclick="location.reload();">REINICIAR</button>
-      <button id="siguienteJuego" onclick="pantallasiguiente();">SIGUIENTE NIVEL</button>
-
-
-      <a id="volverJuego" 
-href = "../../controllers_php/updatePuntosController.php";>VOLVER A INICIO</a>
+      </div>
+      <br>
+      <div class="botonesdelfin">
+        <button id="repetir" class="botones" onclick="location.reload();">REINICIAR</button><br>
+        <button id="siguienteJuego" class="botones" onclick="pantallasiguiente();">SIGUIENTE NIVEL</button><br>
+        <br>
+        <a class="botones" id="volverJuego" 
+  href = "../../controllers_php/updatePuntosController.php";>VOLVER A INICIO</a>
+  
+      </div>
 
     </div>
 </div>
