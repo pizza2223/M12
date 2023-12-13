@@ -49,6 +49,19 @@ function puntuacionFinal(){
   document.cookie = "puntos=" + sumaPuntos+ ";  path=/;";
   //expires=Thu, 01 Jan 1970 00:00:00 UTC;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+  
 // Agregar función para iniciar el temporizador
 function iniciarTemporizador() {
   document.getElementById('temporizador').innerHTML = "[ "+tiempoTranscurrido + " segundos  ] ";
@@ -422,3 +435,6 @@ function volverAlMapa() {
   window.location.href = "../../controllers_php/updatePuntosController.php";
 }
 
+function juego(){
+  window.location.href = 'juego.html';
+}

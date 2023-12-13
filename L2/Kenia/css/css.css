@@ -1,3 +1,4 @@
+
 body {
   display: flex;
   justify-content: center;
@@ -7,7 +8,32 @@ body {
   background-image: url('/L2/Kenia/images/paisaje3.png');
   background-size: cover;
 }
+#botonJugar{
+  position: absolute;
+  top:52%;
+  left: 20%;
+  font-size: 20px;
+  color:hsl(0, 0%, 100%);
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  background:  #FF8529;
+}
 
+#botonJugar:hover {
+  font-size: 20px;
+  color: #FF8529;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  background: hsl(0, 0%, 100%);
+}
 #game {
   height: 640px;
   width: 800px;
@@ -20,6 +46,26 @@ body {
 
 }
 
+#fondoPrincipal{
+  height: 640px;
+  width: 800px;
+  /*
+  background: transparent;
+  backdrop-filter: blur(10px);*/
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+#laia{
+  position: absolute;
+  top: 5%;
+  left:53%;
+}
+#laiaTexto{
+  position: absolute;
+  top:10%;
+  left:5%;
+}
 #malik{
   position: absolute;
   left: 73%;
@@ -87,46 +133,6 @@ h5{
 }
 
 
-/* Añadido estilo para cada tipo de punto */
-  
-
-
-
-
-/*OBJETOS
-.puntosObjetos{
-  position: absolute;
-  top:5%;
-  left: 35%;
-}
-#puntuacionObjetos{
-  position: absolute;
-  top: 11%;
-  left:35%;
-}
-/*VIDA
-.puntosVidas{
-  position: absolute;
-  top:5%;
-  left: 45%;
-}
-#puntuacionVidas{
-  position: absolute;
-  top: 11%;
-  left:45%;
-}
-/*TIEMPO
-.puntosTiempo{
-  position: absolute;
-  top:5%;
-  left: 55%;
-}
-#puntuacionTiempo{
-  position: absolute;
-  top: 11%;
-  left:55%;
-}
-
 
 /*TEMPORIZADOR*/
 #timer {
@@ -144,18 +150,6 @@ h5{
   padding: 1%;
 }
 
-/*
-.tiempo{
-  position: absolute;
-  top:20%;
-  left: 20%;
-}
-#temporizador{
-  position: absolute;
-  top: 26%;
-  left:19.5%;
-}
-*/
 .camino {
   height: 80px;
   width: 100px;
@@ -165,6 +159,14 @@ h5{
   position: absolute;
 }
 
+
+
+
+#banderaMeta{
+  position: absolute;
+  top:420px;
+  z-index: 4;
+}
 
 #personaje {
   width: 40px;
@@ -227,39 +229,3 @@ h5{
   text-align: center;
 }
 
-
-/*
-#banderaMeta{
-  position: absolute;
-  top: 420px;
- 
-  z-index: 2; 
-}
-#imagenPalo{
-
-  background-image: url('/images/paloPixelart.png');
-  background-size: cover;
-  z-index: 1;
-} 
-
-.placaSolar {
-  width: 50px;
-  height: 50px;
-  background-image: url('/images/placaSolar.png');
-  position: absolute;
-}
-
-.piedra {
-  width: 30px;
-  height: 30px;
-  background-image: url('/images/piedraPixelart.png');
-  position: absolute;
-}
-
-.palo {
-  width: 20px;
-  height: 80px;
-  background-image: url('/images/paloPixelart.png');
-  position: absolute;
-}
-*/
