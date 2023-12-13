@@ -60,19 +60,19 @@
         <form action="../controllers_php/updateUserController.php?id=<?php echo $id ?>" method="POST">
             <div class="form-group">
                 <label for="nombre">Nom:</label>
-                <input type="text" class="form-control" id="nombre" name="nom" placeholder="<?php echo $user['nombre']; ?>">
+                <input type="text" class="form-control" id="nombre" name="nom" value="<?php echo $user['nombre']; ?>">
             </div>
             <div class="form-group">
                 <label for="correo">Correu:</label>
-                <input type="email" class="form-control" id="correo" name="correu" placeholder="<?php echo $user['correo']; ?>">
+                <input type="email" class="form-control" id="correo" name="correu" value="<?php echo $user['correo']; ?>">
             </div>
             <div class="form-group">
                 <label for="correo">Contrasenya:</label>
-                <input type="password" class="form-control" id="contra" name="contra" placeholder="*********">
+                <input type="password" class="form-control" id="contra" name="contra" value="<?php echo $user['contra']; ?>">
             </div>
             <div class="form-group">
                 <label for="correo">Puntuacio:</label>
-                <input type="number" class="form-control" id="puntos" name="puntos" placeholder="<?php echo $user['puntos']; ?>">
+                <input type="number" class="form-control" id="puntos" name="puntos" value="<?php echo $user['puntos']; ?>">
             </div>
             <button type="submit" name="submit" class="boton">Desa</button>
             <a type="submit" href="landingAdmin.php" class="boton">Cancela</a>

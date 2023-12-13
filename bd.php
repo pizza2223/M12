@@ -101,10 +101,13 @@ function getPasswordByEmails($email){
   } 
   function updateUser($nombre, $correo, $contrasenya, $puntos, $id){
     $conexion = openBD();
-    $sentenciaTxt = "update usuario set puntos = :puntos WHERE user_id = :user";
+    $sentenciaTxt = "update usuario set puntos = :puntos, nombre = :nombre, correo = :correo, contra = :contrasenya WHERE user_id = :user";
     $sentencia = $conexion->prepare($sentenciaTxt);
-    $sentencia->bindParam(':user', $user);
+    $sentencia->bindParam(':nombre', $nombre);
+    $sentencia->bindParam(':correo', $correo);
+    $sentencia->bindParam(':contrasenya', $contrasenya);
     $sentencia->bindParam(':puntos', $puntos);
+    $sentencia->bindParam(':user', $id);
     $sentencia -> execute();
     $resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     $conexion = closeBD();
