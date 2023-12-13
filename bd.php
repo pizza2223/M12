@@ -124,7 +124,13 @@ function getPasswordByEmails($email){
     $sentencia -> execute();
     $conexion = closeBD();
   }
-
+  function deleteUserById($id){
+    $conexion = openBD();
+    $sentenciaTxt = "delete from juego.usuario where user_id =".$id;
+    $sentencia = $conexion->prepare($sentenciaTxt);
+    $sentencia -> execute();
+    $conexion = closeBD();
+  }
 
   
 

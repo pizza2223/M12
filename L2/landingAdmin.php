@@ -98,7 +98,7 @@
               <!-- Your dropdown menu items go here -->
               
             <li><a class='dropdown-item' href='edita.php?id=".$id."'>Edita</a></li>
-            <li><a class='dropdown-item' href='#'>Elimina</a></li>
+            <li><a class='dropdown-item' href='elimina.php?id=".$id."'>Elimina</a></li>
             </ul>
           </div>
           
