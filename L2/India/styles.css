@@ -80,7 +80,6 @@ height: 861px;
  .eye{
 width: 60px;
 height: 60px;
-left: 10px;
 
 position: absolute;
 background:
@@ -102,13 +101,47 @@ margin-top: -7.5px;
 
  .eye:nth-child(1){
   left: 226px;
-  top: 195px;
+  top: 260px;
   }
 
   .eye:nth-child(2){
   left: 290px;
-  top: 199px;
+  top: 265px;
   }
   #alisha{
-    z-index: 10;
+    position: absolute;
+   
+  }
+  #gameBoard{
+    position: relative;
+    height: 1024px;
+    width: 1024px;
+  }
+  #startGameButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border-radius: 50px;
+    margin-top: 15px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Quantico', sans-serif;
+    background: #147FFA;
+   
+   }
+   
+   #startGameButton:hover {
+    font-size: 20px;
+    color: #147FFA;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Quantico', sans-serif;
+    background: hsl(0, 0%, 100%);
   }

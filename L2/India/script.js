@@ -1,4 +1,8 @@
- // Get the element to be dragged
+document.getElementById('startGameButton').addEventListener('click', startGame);
+
+function startGame() {
+    // Code to start your game
+     // Get the element to be dragged
  let dragItem = document.getElementById("dragItem");
  let bin = document.getElementById("bin");
  let imgBackground = document.getElementById("background");
@@ -132,8 +136,7 @@ function checkPositionInterval(){
         
         if(seconds < 12){
             hints--;
-        changeLightBulb(hints);
-        
+        changeLightBulb(hints); 
     }
     }
  },1000);
@@ -191,4 +194,6 @@ function setCookie(name,value,days) {
 }
 
 window.addEventListener ('mousemove', handleMouseMove);
+
+}
 

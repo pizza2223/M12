@@ -92,8 +92,8 @@
           ?>
           </tbody>
         </table>
-    <?php echo " <a href='../controllers_php/deleteUserController.php?id=".$id."' class='boton'>Eliminar</button>;" ?>
-        <a href="" class="boton">Cancelar</a>
+    <?php echo " <a href='../controllers_php/deleteUserController.php?id=".$id."' class='boton'>Eliminar</button>" ?>
+        <a href="landingAdmin.php" class="boton">Cancelar</a>
         
         </div>
 
