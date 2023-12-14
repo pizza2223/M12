@@ -224,12 +224,12 @@ function comprobarColisionObjeto() {
       ) {
         // Colisión con el objeto
         console.log('Colisión con objeto');
-        // Puedes realizar acciones adicionales aquí, como decrementar vidas, etc.
+       
         puntosObjetos +=2;
         document.getElementById('puntuacionObjetos').innerHTML =  puntosObjetos;        //console.log(puntosObjetos);
-        // Eliminar el objeto del mapa
+        
         objeto.remove();
-        // Establecer la propiedad haColisionado del objeto a true
+        
         objeto.haColisionado = true;
       }
     }
@@ -254,10 +254,7 @@ function verificarColisionObjetos(objetoLeft, objetoTop, imagenObjeto) {
       ) {
         // Hay colisión con otro objeto
 
-        // Eliminar el objeto del mapa
         objeto.remove();
-        
-        // Establecer la propiedad haColisionado del objeto a true
         objeto.haColisionado = true;
 
         return true;
@@ -411,15 +408,10 @@ function comprobarPersonajeDentroCamino() {
 
   }
 
-  // printea posición del personaje EN LA ARRAY
-  // document.getElementById('cuadrante').innerHTML =
-  //   "cuadrante 1= ["   + topLeftColumn + ", " + topLeftRow + "]    cuadrante 2= [" + topRightColumn + ", " + topRightRow + "]    cuadrante 3= [" + bottomLeftColumn + ", " + bottomLeftRow + "]    cuadrante 4= [" + bottomRightColumn + ", " + bottomRightRow + "]";
-
-   
+  
 }
 
 function volverAlMapa() {
-  // Coloca la dirección deseada en el atributo href
   window.location.href = "../../controllers_php/updatePuntosController.php";
 }
 
