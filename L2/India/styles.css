@@ -4,6 +4,9 @@ body, html {
   #imgBin{
     max-width: 100%;
     height: auto;
+    position: absolute;
+    left: 450px;
+    z-index: 2;
   }
 
   #bin {
@@ -15,10 +18,29 @@ body, html {
 #imgDragable{
   max-width: 100%;
   height: auto;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 #background{
   position: absolute;
-  z-index:-2
+  z-index:-2;
+  left: 0;
+  top: 0;
+}
+#cardObj{
+  width: 190px;
+  height: 254px;
+  top: 600px;
+  left: 1500px;
+  position: absolute;
+}
+#cardProgress{
+  width: 350px;
+  height: 200px;
+  top: 10px;
+  left: 15px;
+  position: absolute;
 }
 #clock{
   position: absolute;
@@ -35,11 +57,6 @@ body, html {
     cursor: grab;
 }
 .card {
-  width: 190px;
-  height: 254px;
-  top: 600px;
-  left: 1500px;
-  position: absolute;
   border-radius: 50px;
   background: #e0e0e0;
   box-shadow: 20px 20px 30px #bebebe,
@@ -48,21 +65,6 @@ body, html {
     justify-content: center;
     align-items: center
  }
- .cardbulbs {
-  width: 190px;
-  height: 254px;
-  top: 600px;
-  left: 1500px;
-  position: absolute;
-  border-radius: 50px;
-  background: #e0e0e0;
-  box-shadow: 20px 20px 30px #bebebe,
-                -20px -20px 60px #ffffff;
-                display: flex;
-    justify-content: center;
-    align-items: center
- }
-
  .help {
     width: 30px;
     height: 30px;
@@ -73,10 +75,7 @@ body, html {
       0 0 20px 5px rgb(255, 136, 0), /* middle magenta */
       0 0 30px 18px rgb(255, 208, 0); /* outer cyan */
  }
- .girl{
-width: 596px;
-height: 861px;
- }
+
  .eye{
 width: 60px;
 height: 60px;
@@ -100,27 +99,43 @@ margin-top: -7.5px;
  }
 
  .eye:nth-child(1){
-  left: 226px;
-  top: 260px;
+  left: 84px;
+  top: 105px;
   }
 
   .eye:nth-child(2){
-  left: 290px;
-  top: 265px;
+  left: 146px;
+  top: 113px;
   }
-  #alisha{
-    position: absolute;
-   
+  #girl{
+  height: max-content;
+  width: max-content;
+  position: absolute;
+  top: 240px;
+  left: 10px;
   }
   #gameBoard{
     position: relative;
     height: 1024px;
     width: 1024px;
+    top: 0px;
+    left: 400px;
+  }
+  #win
+  {
+position: absolute;
+top: 50%;
+left: 50%;
+color: rgb(255, 255, 255);
+font-size: 50px;
+font-weight: bold;
+height: 260px;
+width: 450px;
   }
   #startGameButton {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 50%;
+    left: 45%;
     border-radius: 50px;
     margin-top: 15px;
     font-size: 20px;

@@ -1,11 +1,11 @@
-document.getElementById('startGameButton').addEventListener('click', startGame);
-
+let buttonStart = document.getElementById('startGameButton')
+buttonStart.addEventListener('click', startGame);
 function startGame() {
     // Code to start your game
      // Get the element to be dragged
- let dragItem = document.getElementById("dragItem");
+     buttonStart.remove();
  let bin = document.getElementById("bin");
- let imgBackground = document.getElementById("background");
+ let imgBackground = document.getElementById("gameBoard");
  let imgDragable = document.getElementById("imgDragable");
  let clock = document.getElementById("clock");
  let progressBar= document.getElementById("load");    
@@ -26,12 +26,12 @@ checkPositionInterval();
  let offset = { x: 0, y: 0 };
 showItemUserIsSearching()
  // Attach event listeners for mouse down, move, and up events
- dragItem.addEventListener("mousedown", function (e) {
+ imgDragable.addEventListener("mousedown", function (e) {
      isDragging = true;
 
      // Calculate the offset of the mouse click from the top-left corner of the div
-     offset.x = e.clientX - dragItem.getBoundingClientRect().left;
-     offset.y = e.clientY - dragItem.getBoundingClientRect().top;
+     offset.x = e.clientX - imgDragable.offsetLeft;
+     offset.y = e.clientY - imgDragable.offsetTop;
  });
 
  document.addEventListener("mousemove", function (e) {
@@ -41,8 +41,8 @@ showItemUserIsSearching()
          let y = e.clientY - offset.y;
 
          // Apply the new position to the div
-         dragItem.style.left = x + "px";
-         dragItem.style.top = y + "px";
+         imgDragable.style.left = x + "px";
+         imgDragable.style.top = y + "px";
      }
  });
 
@@ -79,14 +79,14 @@ for (const bulb of lightBulbs) {
  function arePositionsEqual() {
     const width = bin.offsetWidth;
     const height = bin.offsetHeight;
-if ((dragItem.offsetLeft >= bin.offsetLeft && dragItem.offsetLeft <= bin.offsetLeft + width) &&
-    (dragItem.offsetTop >= bin.offsetTop && dragItem.offsetTop <= bin.offsetTop + height)) 
+if ((imgDragable.offsetLeft >= bin.offsetLeft && imgDragable.offsetLeft <= bin.offsetLeft + width) &&
+    (imgDragable.offsetTop >= bin.offsetTop && imgDragable.offsetTop <= bin.offsetTop + height)) 
 {
     changeDragItemIMGSrc();
     showItemUserIsSearching();
+    isDragging = false;
     changeItemPosition();
     seconds = 0;
-    isDragging = false;
     imgDragable.classList.remove('help'); 
     progress+= 10;
     progressBar.value = progress;
@@ -99,7 +99,12 @@ if ((dragItem.offsetLeft >= bin.offsetLeft && dragItem.offsetLeft <= bin.offsetL
 function checkUserWin(){
     if(progress == 100){
         setCookie("puntos", 25, 1);
-        alert("has guanyat!");
+        let winDiv = document.createElement("div");
+        winDiv.setAttribute("id", "win"); 
+        winDiv.setAttribute("class", "card"); 
+        let winMessage = document.createTextNode("Has guanyat!");
+        winDiv.appendChild(winMessage);
+        imgBackground.appendChild(winDiv);
         window.location = "../../controllers_php/updatePuntosController.php"
 
     }
@@ -113,16 +118,16 @@ function updateClock(){
 
 function changeItemPosition(){
 
-    let minWidth = imgBackground.offsetLeft;
-    let minHeight = imgBackground.offsetTop -20;
-    let maxWidth = minWidth + imgBackground.offsetWidth;
-    let maxHeight = minHeight + imgBackground.offsetHeight;
+    let minWidth = 15;
+    let minHeight = 15;
+    let maxWidth = 1000;
+    let maxHeight = 1000;
 
     let randLeft = Math.round(Math.random() * (maxWidth - minWidth) + minWidth);
     let randTop =  Math.round(Math.random() * (maxHeight - minHeight) + minHeight);
-    dragItem.style.left = randLeft + "px";
-    dragItem.style.top = randTop +"px";
-    dragItem.style.zIndex = 10;
+    imgDragable.style.left = randLeft + "px";
+    imgDragable.style.top = randTop +"px";
+    imgDragable.style.zIndex = 10;
 }
 
 
