@@ -8,10 +8,8 @@ body {
   background-image: url('/L2/Kenia/images/paisaje3.png');
   background-size: cover;
 }
-#botonJugar{
-  position: absolute;
-  top:52%;
-  left: 20%;
+button{
+  
   font-size: 20px;
   color:hsl(0, 0%, 100%);
   font-weight: bold;
@@ -22,8 +20,14 @@ body {
   font-family: 'Oswald', sans-serif;
   background:  #FF8529;
 }
+#botonJugar{
+  position: absolute;
+  top:52%;
+  left: 20%;
+ 
+}
 
-#botonJugar:hover {
+button:hover {
   font-size: 20px;
   color: #FF8529;
   font-weight: bold;
@@ -78,10 +82,12 @@ body {
   
 }
  h1{
+  font-family: 'Roboto', sans-serif;
   font-size:medium;
-  font-style: bold;
+ 
  }
 h5{
+  font-family: 'Bebas Neue', sans-serif;
   font-size: large;
   margin: 0%;
 } 
