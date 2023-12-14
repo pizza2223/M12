@@ -1,6 +1,5 @@
-
-
-
+//////////////////////////////////////////////////////////////////
+//Pantalla de primer visita
 function escribirEnPantalla(texto, callback) {
   let arr = texto.split("");
   let i = 0;
@@ -38,10 +37,16 @@ escribirEnPantalla("¡Hola Laia! Soy Caucan Miri de la tribu Tatuyo   ", functio
       });
   });
 });
+//////////////////////////////////////////////////////////////
+
 function reproducirAudio(ruta, volumen) {
-  var audio = new Audio(ruta);
-  audio.volume = volumen; 
-  audio.play();
+  try {
+    const audio = new Audio(ruta);
+    audio.volume = volumen;
+    audio.play();
+  } catch (error) {
+    console.error("Error al reproducir audio:", error);
+  }
 }
 
 window.onload = function () {
@@ -57,13 +62,13 @@ window.onload = function () {
 
    var tiempoGuardado = getCookie("Tiempo(segundos)");
   if (tiempoGuardado !== "") {
-    document.getElementById('tiempoinicio').innerText = "Tiempo: " + tiempoGuardado + " segundos";
+    document.getElementById('tiempoinicio').innerText = "Tiempo(seg): " + tiempoGuardado;
   }
 
   var puntosGuardados = getCookie("puntos");
   if (puntosGuardados !== "") {
-    document.getElementById('puntostexto').innerText = 'Puntos: ' + puntosGuardados ;
-    document.getElementById('puntostexto2').innerText = 'Puntos: ' + puntosGuardados ;
+    document.getElementById('puntostexto').innerText = 'Puntos: ' + puntosGuardados+' /25' ;
+    document.getElementById('puntostexto2').innerText = 'Puntos: ' + puntosGuardados+' /25' ;
 
   }
 };
@@ -92,14 +97,14 @@ function postintro() {
   document.getElementById('intro').style.display = 'none'; 
   document.getElementById('all').style.display = 'block'; 
   reproducirAudio("audio/inicio.mp3", 1);
-
 }
 
-function inicializa() {
+var startTime = 0;
 
+function inicializa() {
+  setCookie("Tiempo(segundos)",0,1);
   startTimer();
 
-  let startTime = Date.now(); // Marca de tiempo inicial
   counter = 0; 
   
   document.getElementById('inicioJuego').style.display = 'none'; 
@@ -107,7 +112,8 @@ function inicializa() {
   document.getElementById('finjuego').style.display = 'none';
   resetCounter();
   generacionEntidades();
-  
+  startTime = Date.now(); // Marca de tiempo inicial
+
   document.body.onkeyup = function (e) {
     if (e.keyCode == 32) {
       counter++;
@@ -115,8 +121,8 @@ function inicializa() {
 
       if (counter === targetSquares) {
         elapsedTime = (Date.now() - startTime) / 1000;
-        document.cookie = "Tiempo(segundos)=" + elapsedTime.toFixed(2);
-        document.cookie = "Nivel=" + nivel;
+        setCookie("Tiempo(segundos)",elapsedTime.toFixed(2),1);
+        setCookie("Nivel", nivel, 1);
         document.getElementById('nivel-inicio').innerText = "Nivel: " + nivel;
         document.getElementById('tiempoinicio').innerText = "Tiempo: " + elapsedTime.toFixed(2) + " segundos";
 
@@ -125,6 +131,15 @@ function inicializa() {
   };
   reproducirAudio("audio/gameback.mp3", 0.2);
 
+}
+
+function reiniciarnivel(){
+  setCookie("Nivel", (nivel-1), 1);
+}
+
+function reiniciarYRecargar() {
+  reiniciarnivel();
+  location.reload();
 }
 
 function getCookie(name) {
@@ -159,21 +174,27 @@ function startTimer() {
       resultado.innerText = '¡ Ganaste !';
       resultado.style.color = "#00E01F";
       document.getElementById('finjuego').style.display = 'block';
-      tiempotext.innerText = 'Tiempo: ' + elapsedTime.toFixed(2) + ' segundos.';
+      tiempotext.innerText = 'Tiempo: ' + elapsedTime.toFixed(2) + ' (seg).';
+      var totalenchufes= targetSquares/5;
+      document.getElementById('niñostotalfin').innerText = 'Necesitaremos: ' + Math.ceil(totalenchufes)+' enchufes.';
+
       console.log(tiempotext.innerText);
 
       tiempoinicio.innerText = tiempotext.innerText; 
       switch (true) {
-        case elapsedTime < 5:
+        case nivel >= 3 && elapsedTime < 15:
           puntos = 25;
           break;
-        case elapsedTime >= 5 && elapsedTime <= 8:
+        case nivel < 3 && elapsedTime < 5:
+          puntos = 25;
+          break;
+        case nivel < 3 && elapsedTime >= 5 && elapsedTime <= 8:
           puntos = 20;
           break;
-        case elapsedTime > 8 && elapsedTime <= 12:
+        case nivel < 3 && elapsedTime > 8 && elapsedTime <= 12:
           puntos = 15;
           break;
-        case elapsedTime > 12 && elapsedTime <= 50:
+        case nivel < 3 && elapsedTime > 12 && elapsedTime <= 50:
           puntos = 10;
           break;
         default:
@@ -183,25 +204,34 @@ function startTimer() {
       setCookie("puntos", puntos, 1);
 
       // Actualizar el elemento HTML que muestra los puntos en la página de inicio
-      document.getElementById('puntostexto').innerText = 'Puntos: ' + puntos + ' puntos.';
-      document.getElementById('puntostexto2').innerText = 'Puntos: ' + puntos + ' puntos.';
+      document.getElementById('puntostexto').innerText = 'Puntos: ' + puntos;
+      document.getElementById('puntostexto2').innerText = 'Puntos: ' + puntos ;
       counter = 0;
       squares = []; // Reiniciar el arreglo de cuadrados completados
       nivel++;
       tiempojuego= tiempojuego+7559;
 
-      document.getElementById('nivel').innerText = "Nivel: " + nivel; // Actualiza el nivel en la pantalla
+      setCookie("Nivel", nivel, 1);
+      document.getElementById('nivel').innerText = "Nivel: " + nivel; 
+
       document.getElementById('contador').innerText = "Contador: " + counter;
 
     } else {
       reproducirAudio("audio/perder.mp3", 1);
+      nivel++;
 
       document.getElementById('siguienteJuego').style.display = 'none';
 
-      document.cookie = "puntos="+0;
+      setCookie("puntos", "0", 1);
       resultado.innerText = '¡Perdiste!';
       resultado.style.color = 'red';
       document.getElementById('finjuego').style.display = 'block';
+      document.getElementById('puntostexto').innerText = 'Puntos: ' + "0";
+      document.getElementById('puntostexto2').innerText = 'Puntos: ' + "0" ;
+      document.getElementById('niñostotalfin').innerText = 'Número total de niños: ' + targetSquares;
+      setCookie("Tiempo(segundos)","No alcanzado",1);
+      
+      tiempotext.innerText = 'Tiempo: No alcanzado.';
     }
   }, tiempojuego);
 }
@@ -220,9 +250,22 @@ function setCookie(name,value,days) {
  let intervalmonos;
 
 function pantallasiguiente() {
+  setCookie("Tiempo(segundos)",0,1);
+  startTime = Date.now(); // Marca de tiempo inicial
+
   detenerGeneracion();
   let elemento = document.getElementById("laiadialogo");
   elemento.innerHTML = "";
+counter = 0;
+
+if (counter === targetSquares) {
+  elapsedTime = (Date.now() - startTime) / 1000;
+  setCookie("Tiempo(segundos)", elapsedTime.toFixed(2), 1);
+  setCookie("Nivel", nivel, 1);
+  document.getElementById('nivel-inicio').innerText = "Nivel: " + nivel;
+  document.getElementById('tiempoinicio').innerText = "Tiempo: " + elapsedTime.toFixed(2) + " segundos";
+}
+
   // Generar nuevas entidades
   generacionEntidades();
   // Detiene el temporizador al pasar a la pantalla siguiente

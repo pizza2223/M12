@@ -82,7 +82,8 @@
 
     </div>
     <div class="gameBoxPause">
-      <h2>Juego Pausado</h2>
+      <h2 class="pausadotext animate__animated animate__zoomInDown">¡ Juego Pausado !</h2>
+      <img class="imgpausa" src="imagenes/cafe.gif" alt="">
     </div>
     <div class="gameBox">
       <div class="areadelJuego">
@@ -90,23 +91,22 @@
         <div class="paredizquierda"><img class="paredizquierda" src="imagenes/paredizq.png" alt=""></div>
         <div class="juego" style="z-index: 1;">
           <div id="game" style="z-index: 1;"></div>
-   
+          
         </div>
       </div>
     </div>
     <div id="finjuego" class="ventanaFin">
       <h1 id="finjuegotitulo">Little Runners Brazil</h1>
       <hr class="separador">
-      <br>
       <h2 class="animate__animated animate__tada" id="ganarperder"></h2>
       <div class="estadisticasfin animate__animated animate__zoomInUp">
-
       <p id="tiempottexto" class="tiempottexto"></p>
       <p id="puntostexto2" class="puntostexto"></p>
+      <p id="niñostotalfin" class="niñostotalfin"></p>
+
       </div>
-      <br>
       <div class="botonesdelfin">
-        <button id="repetir" class="botones" onclick="location.reload();">REINICIAR</button><br>
+        <button id="repetir" class="botones" onclick="reiniciarYRecargar()">REPETIR NIVEL</button><br>
         <button id="siguienteJuego" class="botones" onclick="pantallasiguiente();">SIGUIENTE NIVEL</button><br>
         <br>
         <a class="botones" id="volverJuego" 

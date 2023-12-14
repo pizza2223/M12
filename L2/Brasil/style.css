@@ -50,6 +50,9 @@
     align-items: center;
     z-index: 3;
    }
+   .botonesdelfin{
+    margin-top: 10px;
+   }
    
    .botones{
     font-size: 18px;
@@ -60,24 +63,25 @@
     border-radius: 50px;
     cursor: pointer;
     font-family: 'Oswald', sans-serif;
-    background: #147FFA;
+    border: 2px solid #fff; /* Contorno blanco */
+    background: linear-gradient(to bottom, #FF8529, #FF8529 80%, #954510 100%);    
     text-decoration: none;
 margin: 13px;
    }
    
-   .botonesdelfin{
-   }
-   
 .botones:hover{
-  font-size: 21px;
-  color: #147FFA;
+  font-size: 20px;
+  color: #ffffff;
 font-weight: bold;
 padding: 10px 20px;
 border: none;
 border-radius: 50px;
 cursor: pointer;
 font-family: 'Oswald', sans-serif;
-background: hsl(0, 0%, 100%);
+border: 2px solid #fff; /* Contorno blanco */
+
+background: linear-gradient(to bottom, #f69c58, #f28f44 80%, #954510 100%);
+
 text-decoration: none;
 }
 
@@ -85,7 +89,7 @@ text-decoration: none;
     display: none;
    }
    #finjuegotitulo{
-    margin-top: 40px;
+    margin-top: 15px;
     word-spacing: -5.2px;
     letter-spacing: 5.0px;
     -webkit-text-stroke: 3px rgb(220, 220, 220);
@@ -120,6 +124,11 @@ color: #ffffff;
      font-size: 20px;
    }
    
+   .niñostotalfin{
+    color: rgb(210, 109, 236);
+    font-family: 'Roboto', sans-serif;   
+    font-size: 20px;
+   }
    .puntostexto{
     color: rgb(65, 248, 15);
     font-family: 'Roboto', sans-serif;    font-size: 20px;
@@ -176,23 +185,26 @@ color: #ffffff;
     color: rgb(255, 255, 255);
     font-weight: bold;
     padding: 10px 20px;
-    border: none;
     cursor: pointer;
     font-family: 'Oswald', sans-serif;
-    background: #147FFA;
-   
-   }
+    border: 2px solid #fff; /* Contorno blanco */
+    background: linear-gradient(to bottom, #FF8529, #FF8529 80%, #954510 100%);
+}
+
+
+
    
    #comenzarJuego:hover {
+    border-radius: 50px;
+    margin-top: 15px;
     font-size: 25px;
-        color: #147FFA;
+    color: rgb(255, 255, 255);
     font-weight: bold;
     padding: 10px 20px;
-    border: none;
-    border-radius: 50px;
+    border: 2px solid #fff; /* Contorno blanco */
     cursor: pointer;
     font-family: 'Oswald', sans-serif;
-    background: hsl(0, 0%, 100%);
+    background: linear-gradient(to bottom, #f69c58, #f28f44 80%, #954510 100%);
   }
    
    
@@ -358,7 +370,6 @@ color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Quantico', sans-serif;
     background: #147FFA;
 }
 
@@ -369,7 +380,6 @@ font-weight: bold;
 border: none;
 border-radius: 5px;
 cursor: pointer;
-font-family: 'Quantico', sans-serif;
 background: hsl(212, 56%, 53%);
 }
 
@@ -379,7 +389,6 @@ background: hsl(212, 56%, 53%);
     margin-right: 31%;
     margin-left: 6%;
     padding-left: 10px;
-    font-family: 'Quantico', sans-serif;
     animation: escribir 5s steps(50) infinite alternate;
     max-width: 178px;
     font-size: 14px;
@@ -416,7 +425,6 @@ background: hsl(212, 56%, 53%);
     padding: 10px;
     margin: 10px;
 
-font-family: 'Quantico', sans-serif;
 }
 
   .imgelement{
@@ -458,6 +466,23 @@ font-family: 'Quantico', sans-serif;
   border-radius: 25px;
 }
 
+.pausadotext{
+  margin-top: 100px;
+  font-family: 'Bebas Neue', sans-serif; 
+  word-spacing: -5.2px;
+  letter-spacing: 5.0px;
+  -webkit-text-stroke: 3px rgb(220, 220, 220);
+  color: #FFFFFF;
+text-shadow: -5px 5px 0px #00e6326f, -10px 10px 0prgba(1, 204, 18, 0.321)12,rgba(0, 189, 41, 0.412)15px 0px #00bd2970;
+color: #ffffff;
+  color: rgb(255, 255, 255);
+  font-family: 'Bebas Neue', sans-serif;    font-size: 70px;
+}
+
+.imgpausa{
+  width: 80px;
+  height: 80px;
+}
 
 .gameBoxPause{
   position: fixed;
