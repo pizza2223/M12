@@ -30,13 +30,10 @@ body {
     background-color: white;
     background-size: cover;
     background-position: center; /* Opcional: centra la imagen */
-    background-image: url(imagenes/pantallaInicial\ -\ copia.png);
-    width: 50%;
-    height: 100%;
+    background-image: url(imagenes/pantallaInicial.png);
     border-radius: 80px  ;
     border: 20px solid #393e46;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
-    height: 70vh;
     width: 1000px;
     height: 2000px;
 }
@@ -55,11 +52,6 @@ body {
     font-size: 1.2em;
     margin-left: 5px;
 }
-#personaje img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
-}
 
 #dialogo {
     position: absolute;
@@ -72,22 +64,56 @@ body {
     max-width: 300px;
     text-align: center;
 }
+#bocadilloInGame{
+    margin-top: -70px;
+    width: 900px;
+    height: 500px;
+    background-image: url('imagenes/bocadillo2.png');
+    top:0px;
+    left: 500px;
+    position: absolute;
+    background-size: cover;
+    
+}
+#texto{
+    padding: 10px;
+    border-radius: 10px;
+    top: 160px;
+    left: 150px;
+    max-width: 900px;
+    text-align: left;
+    font-family: 'Quantico', sans-serif;
+    font-size: 30px;
+    position: absolute;
+}
 #siguienteBtn, #comenzarBtn {
     position: absolute;
-    top: 752px; /* Posición desde el fondo de la pantalla */
+    top: 749px; /* Posición desde el fondo de la pantalla */
     left: 1378px; /* Posición desde el lado izquierdo de la pantalla */
     transform: translateX(-50%); /* Centra el botón */
     cursor: pointer;
     padding: 10px 20px; /* Ajusta el padding como sea necesario */
     font-size: 38px; /* Ajusta el tamaño de fuente como sea necesario */
+    font-family: 'Quantico', sans-serif;
+    font-weight: bold;
     background-color: transparent;
     border: none;
     border-radius: 50px;
     color: white; /* Color de texto blanco */
-    width: 330px;
-    height: 100px;
+    width: 340px;
+    height: 103px;
     
 }
+#siguienteBtn:hover, #comenzarBtn:hover {
+    font-size: 38px;
+    color: hsl(0, 0%, 100%);
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Quantico', sans-serif;
+    background:  #FF8529;
+  }
 
 .mensaje {
     font-size: 38px; /* o el tamaño que prefieras */
@@ -101,13 +127,13 @@ body {
     width: 100%;
 }
 #laia{
-    height: 800px;
+    height: 700px;
     width: 550px;
     left: 100px;
-    top: 200px;
+    top: 35.2%;
     position: absolute;
     background-image: url('imagenes/laia3.png');
-    background-position: center;
+    background-position: bottom;
     background-size: cover;
 }
 #game-container {
@@ -116,7 +142,7 @@ body {
     width: 1150px;
     height: 805px;
     position: relative;
-    top: 200px;
+    top: 30%;
     left: 600px;
     background-color :rgb(255, 254, 253);
     border-radius: 80px  ;

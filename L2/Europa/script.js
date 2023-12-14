@@ -159,7 +159,10 @@ function comenzarJuego() {
     
     const inicio = document.getElementById('pantalla-inicial');
     inicio.style.display = 'none';
-    
+
+    const laia = document.getElementById('laia');
+    laia.style.display = 'block';
+
     const juego = document.getElementById('game-container');
     juego.style.display = 'block';
       console.log('Comenzando el juego'); 
@@ -315,9 +318,9 @@ objetosInspeccionables.forEach((objeto) => {
     objeto.addEventListener('click', () => {
         const objetoId = objeto.id;
         if (mensajesObjetos[objetoId]) {
-            alert(mensajesObjetos[objetoId]);
+            mostrarBocadillo(mensajesObjetos[objetoId]);   
         } else {
-            alert('Mensaje predeterminado para este objeto.');
+            mostrarBocadillo('Mensaje predeterminado para este objeto.');
         }
     });
 });
@@ -332,9 +335,9 @@ objetosConseguibles.forEach((objeto) => {
     objeto.addEventListener('click', () => {
         const objetoId = objeto.id;
         if (mensajesObjetos[objetoId]) {
-            alert(mensajesObjetos[objetoId]);
+            mostrarBocadillo(mensajesObjetos[objetoId]);
         } else {
-            alert('Mensaje predeterminado para este objeto.');
+            mostrarBocadillo('Mensaje predeterminado para este objeto.');
         }
     });
 });
@@ -392,7 +395,7 @@ function verificarVictoria() {
     const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
 
     if (guiaConseguida && aeroConseguido) {
-        alert('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
+        mostrarBocadillo('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
         // Puedes realizar acciones adicionales aquí, como reiniciar el juego o redirigir a otra página
         switch(tiempoTranscurrido){
             case tiempoTranscurrido <= 30 && tiempoTranscurrido:
@@ -448,7 +451,7 @@ function handleDoorClick(event) {
 
         changeRoom(nextRoom);
     } else {
-        alert('No tienes la llave para acceder a esta habitación.');
+        mostrarBocadillo('No tienes la llave para acceder a esta habitación.');
     }
 }
 function puedePasar(nextRoom) {
@@ -605,7 +608,7 @@ function verificarVictoria(indiceMensajeActual) {
     const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
 
     if (guiaConseguida && aeroConseguido) {
-        alert('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
+        mostrarBocadillo('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
         // Puedes realizar acciones adicionales aquí, como reiniciar el juego o redirigir a otra página
         switch(tiempoTranscurrido){
             case tiempoTranscurrido <= 30 && tiempoTranscurrido:
@@ -685,6 +688,18 @@ function changeRoom(nextRoom) {
 
     // Resto de la lógica para cambiar de habitación (puedes personalizar según tus necesidades)
     // Cargar recursos específicos de la habitación, ajustar la lógica de colisiones, etc.
+}
+function mostrarBocadillo(mensaje) {
+    const bocadilloInGame = document.getElementById('bocadilloInGame');
+    const texto = document.getElementById('texto');
+    
+    texto.innerText = mensaje;
+    bocadilloInGame.style.display = 'block';
+    
+    // Agrega un evento para ocultar el bocadillo después de cierto tiempo (por ejemplo, 3 segundos)
+    setTimeout(() => {
+        bocadilloInGame.style.display = 'none';
+    }, 3000); // Cambia este valor según la duración que desees para mostrar el bocadillo
 }
 // Llama a checkForDoor en cada fotograma
 function update() {
