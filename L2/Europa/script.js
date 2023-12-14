@@ -49,7 +49,6 @@ function iniciarJuego() {
 
     comenzarJuego();
     asignarEventListeners();
-    checkForDoor();
     manejarObjetos();
     // Puedes agregar más inicializaciones aquí
 }
@@ -300,11 +299,11 @@ function canMove(character, direction, speed) {
 }
 puertas.forEach((puerta) => {
     puerta.addEventListener('mouseenter', () => {
-        puerta.classList.add('puertaResaltada');
+        puerta.classList.add('objetoResaltado');
     });
 
     puerta.addEventListener('mouseleave', () => {
-        puerta.classList.remove('puertaResaltada');
+        puerta.classList.remove('objetoResaltado');
     });
 });
 objetosInspeccionables.forEach((objeto) => {
@@ -341,55 +340,7 @@ objetosConseguibles.forEach((objeto) => {
         }
     });
 });
-function reiniciarJuego() {
-    // Restablece las variables y elementos a sus valores iniciales
-    currentRoom = 1;
-    nextRoom = 1;
 
-    tiempoTranscurrido = 0;
-    objetosConseguidos.length = 0; // Vacía el array de objetos conseguidos
-    character.style.left = '700px';
-    character.style.top = '675px';
-
-    // Oculta todas las habitaciones excepto la primera
-    for (let i = 1; i <= 9; i++) {
-        const habitacion = document.getElementById(`habitacion${i}`);
-        habitacion.style.display = i === 1 ? 'block' : 'none';
-    }
-
-    const pantallaInicial = document.getElementById('pantalla-inicial');
-    pantallaInicial.style.display = 'flex'; // Cambia a flex para centrar vertical y horizontalmente
-    pantallaInicial.style.alignItems = 'center'; // Centra verticalmente
-    pantallaInicial.style.justifyContent = 'center'; // Centra horizontalmente
-
-    const juegoContainer = document.getElementById('game-container');
-    juegoContainer.style.display = 'none';
-    
-    const tiempo = document.getElementById('tiempo-container');
-    tiempo.style.display = 'none';
-
-    const casillasObjetos = document.getElementById('casillas-objetos-conseguidos');
-    casillasObjetos.style.display = 'none';
-    const imagenesCasillas = casillasObjetos.querySelectorAll('.casilla-objeto img');
-
-    for (const imagenCasilla of imagenesCasillas) {
-        imagenCasilla.remove();
-    }
-
-    const botonComenzar = document.getElementById('comenzarBtn');
-        botonComenzar.style.display = 'none';
-
-    // Muestra el botón "Siguiente"
-    const botonSiguiente = document.getElementById('siguienteBtn');
-        botonSiguiente.style.display = 'block';
-
-        let tiempoFinal = tiempoTranscurrido;
-
-    // Restablece el índice del mensaje actual
-    indiceMensajeActual = 0;
-    mostrarSiguienteMensaje();
-    
-}
 function verificarVictoria() {
     const guiaConseguida = objetosConseguidos.some(objeto => objeto.id === 'guia');
     const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
@@ -493,7 +444,9 @@ function checkForDoor(){
             ) {
                 // Cambia de habitación aquí
                 console.log(`Cambiando de habitación: de ${currentRoom} a ${nextRoom}`);
-                character.style.top = `${parseInt(character.style.top, 10) - 30}px`;
+                character.style.top = `450px`;
+                character.style.left = `550px`;
+
                 changeRoom(nextRoom);
                 
             }
