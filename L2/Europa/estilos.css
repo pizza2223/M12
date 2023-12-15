@@ -78,8 +78,8 @@ body {
 #texto{
     padding: 10px;
     border-radius: 10px;
-    top: 175px;
-    left: 165px;
+    top: 180px;
+    left: 170px;
     max-width: 850px;
     text-align: left;
     font-family: 'Quantico', sans-serif;
@@ -198,14 +198,14 @@ body {
 
 }
 #habitacion1{
+    background-color: burlywood;
+    background-image: url("imagenes/plano2.png");
+    background-size: cover;
+    background-position: center; /* Opcional: centra la imagen */
     width: 100%;
     height: 100%;
-    background-color: blanchedalmond;
-    background-image: url('imagenes/plano2.png');
-    background-size: cover;
-    background-position: center;
-    /*border-radius: 80px ;*/
-    border: none;
+    border-radius: 80px  ;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 #character {
@@ -225,11 +225,91 @@ body {
 }
 #bordeIz {
     width: 3px;
-    height: 55%;
+    height: 61%;
     position: absolute;
     background-color: #0c0c0c;
     left:7.5%;
     top:0%;
+}
+#izA{
+    width: 19.7px;
+    height: 30%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:8.93%;
+    top:0%;
+}
+#izB{
+    width: 19.7px;
+    height: 15%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:8.93%;
+    top:44.5%;
+}
+#izC{
+    width: 14.5%;
+    height: 19.7px;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:8.93%;
+    top:57%;
+}
+#izD{
+    width: 19.7px;
+    height: 10%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:23%;
+    top:57%;
+}
+#cenA{
+    width: 19.7px;
+    height: 20%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:35.3%;
+    top:14%;
+}
+#cenB{
+    width: 19.7px;
+    height: 17%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:35.3%;
+    top:48%;
+}
+#techoA{
+    width: 99px;
+    height: 15%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left: 48%;
+    top:67%;
+}
+#abajoA{
+    width: 19.7px;
+    height: 20%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:64.3%;
+    top:80%;
+}
+#derA{
+    width: 19.7px;
+    height: 13%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:86.3%;
+    top:67%;
+}
+#derB{
+    width: 19.7px;
+    height: 7%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:86.3%;
+    top:93%;
 }
 #bordeArrb {
     width: 80%;
@@ -240,12 +320,12 @@ body {
     top:0%;
 }
 #bordeAbj{
-    width: 100%;
+    width: 74%;
     height: 3px;
     position: absolute;
     background-color: #0c0c0c;
-    left:0%;
-    top:100%;
+    left:15.3%;
+    top:99.7%;
 }
 #puerta12{
     width: 7.5%;
@@ -404,7 +484,7 @@ body {
 
 #habitacion6{
     background-color: chocolate;
-    background-image:url("imagenes/habitacionConPuertaCerrada.png");
+    background-image:url("imagenes/puertaCerrada.png");
     background-position: center; /* Opcional: centra la imagen */
     background-size: cover;
     width: 100%;

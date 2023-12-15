@@ -432,28 +432,27 @@ function handleArrowClick(event) {
 
 }
 
-function checkForDoor(){
-        const characterRect = character.getBoundingClientRect();
-    
-        for (const puerta of puertas1) {
-            const nextRoom = puerta.getAttribute('data-next-room');
-            const puertaRect = puerta.getBoundingClientRect();
-    
-            if (
-                characterRect.left < puertaRect.right &&
-                characterRect.right > puertaRect.left &&
-                characterRect.top < puertaRect.bottom &&
-                characterRect.bottom > puertaRect.top
-            ) {
-                // Cambia de habitación aquí
-                console.log(`Cambiando de habitación: de ${currentRoom} a ${nextRoom}`);
-                character.style.top = `400px`;
-                character.style.left = `680px`;
+function checkForDoor() {
+    const characterRect = character.getBoundingClientRect();
 
-                changeRoom(nextRoom);
-                
-            }
+    for (const puerta of puertas1) {
+        const nextRoom = puerta.getAttribute('data-next-room');
+        const puertaRect = puerta.getBoundingClientRect();
+
+        if (
+            characterRect.left < puertaRect.right &&
+            characterRect.right > puertaRect.left &&
+            characterRect.top < puertaRect.bottom &&
+            characterRect.bottom > puertaRect.top
+        ) {
+            // Determinar la puerta de salida y ajustar la posición del personaje
+            ajustarPosicionPersonajeAlSalir(puerta.id);
+
+            // Cambia de habitación aquí
+            console.log(`Cambiando de habitación: de ${currentRoom} a ${nextRoom}`);
+            changeRoom(nextRoom);
         }
+    }
 }
 
 function changePreviousRoom(previousRoom) {
@@ -469,11 +468,32 @@ function changePreviousRoom(previousRoom) {
     // Actualiza el estado del juego
     currentRoom = previousRoom;
 
+    ajustarPosicionPersonaje(previousRoom);
     // Ajusta la posición inicial del personaje en la nueva habitación
 
 
     // Resto de la lógica para cambiar de habitación (puedes personalizar según tus necesidades)
     // Cargar recursos específicos de la habitación, ajustar la lógica de colisiones, etc.
+}
+function ajustarPosicionPersonajeAlSalir(puertaId) {
+    switch(puertaId) {
+        case 'puerta12':
+        case 'puerta13':
+        case 'puerta15':
+            character.style.top = `${parseInt(character.style.top, 10) + 25}px`;
+            break;
+        case 'puerta14':
+            character.style.left = `${parseInt(character.style.left, 10) + 25}px`;
+            break;
+        case 'puerta16':
+            character.style.left = `${parseInt(character.style.left, 10) - 25}px`;
+            break;
+        default:
+            // Posición predeterminada si no es una de las puertas específicas
+            character.style.top = `400px`;
+            character.style.left = `680px`;
+            break;
+    }
 }
 function manejarObjetos(){
     objetosConseguibles.forEach((objeto) => {
@@ -614,21 +634,14 @@ puertaConContrasena.addEventListener('click', () => {
     dialog.style.display = 'block';
 });
 function verificarContrasena() {
-    const contrasenaIngresada = passwordInput.value;
-
-    // Verificar la contraseña (puedes compararla con una contraseña específica)
-    if (contrasenaIngresada === '123') {
-        // Contraseña correcta, realiza las acciones necesarias (cambia de habitación, etc.)
+    const contrasenaIngresada = document.getElementById('passwordInput').value;
+    if (contrasenaIngresada === '123') { // Suponiendo que '123' es la contraseña correcta
         console.log('Contraseña correcta. Cambiando de habitación...');
-        // Llama a la función para cambiar de habitación
         changeRoom(11);
-        // Ocultar el cuadro de diálogo después de verificar la contraseña
-        dialog.style.display = 'none';
+        ocultarDialog();
     } else {
-        // Contraseña incorrecta, puedes mostrar un mensaje de error o realizar otras acciones
-        console.log('Contraseña incorrecta. Inténtalo de nuevo.');
-        // Puedes también limpiar el campo de contraseña
-        passwordInput.value = '';
+        mostrarBocadillo('Contraseña incorrecta. Inténtalo de nuevo.');
+        document.getElementById('passwordInput').value = ''; // Limpiar el campo de contraseña
     }
 }
 
@@ -662,6 +675,9 @@ function mostrarBocadillo(mensaje) {
     setTimeout(() => {
         bocadilloInGame.style.display = 'none';
     }, 7000); // Cambia este valor según la duración que desees para mostrar el bocadillo
+}
+function ocultarDialog() {
+    document.getElementById('dialog').style.display = 'none';
 }
 // Llama a checkForDoor en cada fotograma
 function update() {
