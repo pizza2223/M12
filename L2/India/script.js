@@ -18,7 +18,20 @@ progress = 0;
 
 placeAmountOfHints();
 showItemUserIsSearching();
-checkPositionInterval();
+
+let interval = setInterval(function () {
+    arePositionsEqual();
+    updateClock(); 
+    if(seconds > 10){
+        imgDragable.classList.add('help'); 
+        
+        if(seconds < 12){
+            hints--;
+        changeLightBulb(hints); 
+    }
+    }
+ },1000);
+
 
  objecInBinAchieved = false;
  
@@ -98,18 +111,22 @@ if ((imgDragable.offsetLeft >= bin.offsetLeft && imgDragable.offsetLeft <= bin.o
 }
 function checkUserWin(){
     if(progress == 100){
+        interval.clearinterval();
         setCookie("puntos", 25, 1);
         let winDiv = document.createElement("div");
         let homeButton = document.createElement("button");
         homeButton.setAttribute("class", "button");
-        homeButton.setAttribute("value", "surt")
+        homeButton.innerText = "surt";
+        homeButton.addEventListener("click", function() {
+            window.location = "../../controllers_php/updatePuntosController.php"
+          });
         winDiv.setAttribute("id", "win"); 
         winDiv.setAttribute("class", "card"); 
         let winMessage = document.createTextNode("Has guanyat!");
         winDiv.appendChild(winMessage);
         winDiv.appendChild(homeButton);
         imgBackground.appendChild(winDiv);
-        window.location = "../../controllers_php/updatePuntosController.php"
+        //window.location = "../../controllers_php/updatePuntosController.php"
 
     }
 }
@@ -136,20 +153,7 @@ function changeItemPosition(){
 
 
 function checkPositionInterval(){
-    let positionsEqual;
-    setInterval(function () {
-    arePositionsEqual();
-    updateClock(); 
-    if(seconds > 10){
-        imgDragable.classList.add('help'); 
-        
-        if(seconds < 12){
-            hints--;
-        changeLightBulb(hints); 
-    }
-    }
- },1000);
-
+ 
 }
 
 function showItemUserIsSearching()
