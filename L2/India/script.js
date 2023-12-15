@@ -100,10 +100,14 @@ function checkUserWin(){
     if(progress == 100){
         setCookie("puntos", 25, 1);
         let winDiv = document.createElement("div");
+        let homeButton = document.createElement("button");
+        homeButton.setAttribute("class", "button");
+        homeButton.setAttribute("value", "surt")
         winDiv.setAttribute("id", "win"); 
         winDiv.setAttribute("class", "card"); 
         let winMessage = document.createTextNode("Has guanyat!");
         winDiv.appendChild(winMessage);
+        winDiv.appendChild(homeButton);
         imgBackground.appendChild(winDiv);
         window.location = "../../controllers_php/updatePuntosController.php"
 

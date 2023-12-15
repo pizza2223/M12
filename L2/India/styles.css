@@ -107,71 +107,6 @@ margin-top: -7.5px;
   left: 146px;
   top: 113px;
   }
-  .redoButton {
-    box-sizing: border-box;
-    position: relative;
-    display: block;
-    transform: scale(var(--ggs,1));
-    width: 14px;
-    height: 14px;
-    border: 2px solid;
-    border-right-color: transparent;
-    border-radius: 100px
-}
-.redoButton::before {
-    content: "";
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-top: 2px solid;
-    border-right: 2px solid;
-    top: -3px;
-    right: -1px;
-    transform: rotate(68deg)
-}
-.homeButton {
-  box-sizing: border-box;
-  position: relative;
-  display: block;
-  transform: scale(var(--ggs,1));
-  width: 18px;
-  height: 14px;
-  border: 2px solid;
-  border-top: 0;
-  border-radius: 2px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  margin-bottom: -2px
-}
-.homeButton::after,
-.homeButton::before {
-  content: "";
-  display: block;
-  box-sizing: border-box;
-  position: absolute
-}
-.homeButton::before {
-  border-top: 2px solid;
-  border-left: 2px solid;
-  border-top-left-radius: 4px;
-  transform: rotate(45deg);
-  top: -5px;
-  border-radius: 3px;
-  width: 14px;
-  height: 14px;
-  left: 0
-}
-.homeButton::after {
-  width: 6px;
-  height: 10px;
-  background: currentColor;
-  border-top-left-radius: 100px;
-  border-top-right-radius: 100px;
-  left: 4px;
-  bottom: -2px
-}
   #girl{
   height: max-content;
   width: max-content;
@@ -189,15 +124,14 @@ margin-top: -7.5px;
   #win
   {
 position: absolute;
-top: 50%;
-left: 50%;
-color: rgb(255, 255, 255);
+top: 35%;
+left: 30%;
 font-size: 50px;
 font-weight: bold;
 height: 260px;
 width: 450px;
   }
-  #startGameButton {
+  .button {
     position: absolute;
     top: 50%;
     left: 45%;
