@@ -23,7 +23,7 @@ const mensajes = [
     "Explora y descubre los secretos que aguardan.",
     "Explora y descubre los secretos que aguardan."
 
-    // Añade más mensajes según sea necesario
+   
 ];
 const mensajesObjetos = {
     guia: '¡Has conseguido la guía!',
@@ -34,7 +34,7 @@ const mensajesObjetos = {
     veleta: '¡Es una veleta! Este instrumento se utiliza para conocer la dirección del viento',
     botanica: 'Es una estantería con libros de botánica. Aquí pone que para plantar tomates se necesitan ocho horas de luz directa al día como mínimo. Creo que no nos será de ayuda.',
     penDrive: 'Hay un pen drive en el ordenador. Aquí está toda la información necesaria para montar y mantener un molino de viento'
-    // Agrega más objetos y mensajes según sea necesario
+    
 };
 
 
@@ -43,7 +43,7 @@ character.style.position = 'absolute';
 character.style.left = '120px';
 character.style.top = '300px';
 
-// Función principal para inicializar el juego
+// Función para inicializar el juego
 function iniciarJuego() {
     
     mostrarMensaje(mensajes[indiceMensajeActual]);
@@ -53,7 +53,6 @@ function iniciarJuego() {
     comenzarJuego();
     asignarEventListeners();
     manejarObjetos();
-    // Puedes agregar más inicializaciones aquí
 }
 
 // Función para asignar event listeners
@@ -138,8 +137,7 @@ function mostrarSiguienteMensaje() {
     function mostrarMensaje(mensaje) {
         const bocadillo = document.getElementById('bocadillo');
         bocadillo.innerText = mensaje;// Cambia textContent por innerText
-        // Asegúrate de que el estilo del bocadillo sea visible en la página.
-        bocadillo.classList.add('mensaje'); // Añade la clase para aplicar los estilos de la fuente
+        bocadillo.classList.add('mensaje'); 
     }
     
     function ocultarBotonSiguiente() {
@@ -191,12 +189,9 @@ function iniciarContadorTiempo() {
             tiempoElement.textContent = tiempoTranscurrido;
         }
 
-        // Puedes realizar acciones adicionales aquí según tu lógica
-
         console.log(`Tiempo transcurrido: ${tiempoTranscurrido} segundos`);
 
-        // Aquí puedes agregar lógica para detener el contador cuando sea necesario
-    }, 1000); // El contador se actualiza cada segundo (1000 ms)
+    }, 1000);
 }
 function asignarEventListeners() {
     const puertaConContrasena = document.getElementById('puerta11');
@@ -350,7 +345,6 @@ function verificarVictoria() {
 
     if (guiaConseguida && aeroConseguido) {
         mostrarBocadillo('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
-        // Puedes realizar acciones adicionales aquí, como reiniciar el juego o redirigir a otra página
         switch(tiempoTranscurrido){
             case tiempoTranscurrido <= 30 && tiempoTranscurrido:
                 puntos = 25;
@@ -392,7 +386,6 @@ objetosConseguibles.forEach((objeto) => {
         verificarVictoria();
         agregarObjetoConseguido(objetoId);
 
-        // Puedes realizar acciones adicionales aquí, como mostrar un mensaje o actualizar la interfaz gráfica
     });
 });
 function handleDoorClick(event) {
@@ -471,9 +464,6 @@ function changePreviousRoom(previousRoom) {
     ajustarPosicionPersonaje(previousRoom);
     // Ajusta la posición inicial del personaje en la nueva habitación
 
-
-    // Resto de la lógica para cambiar de habitación (puedes personalizar según tus necesidades)
-    // Cargar recursos específicos de la habitación, ajustar la lógica de colisiones, etc.
 }
 function ajustarPosicionPersonajeAlSalir(puertaId) {
     switch(puertaId) {
@@ -512,7 +502,6 @@ function manejarObjetos(){
             verificarVictoria();
             agregarObjetoConseguido(objetoId);
     
-            // Puedes realizar acciones adicionales aquí, como mostrar un mensaje o actualizar la interfaz gráfica
         });
     });
     function agregarObjetoConseguido(objetoId) {
@@ -525,17 +514,13 @@ function manejarObjetos(){
                 // Check if the object image is already in a box
                 const objectInBox = document.querySelector(`.casilla-objeto img[src*="${obtenerURLImagen(objetoId)}"]`);
                 if (!objectInBox) {
-                    // Create an image element with the URL corresponding to the object
                     const imagenObjeto = document.createElement('img');
                     imagenObjeto.src = obtenerURLImagen(objetoId);
     
-                    // Add a click event to the newly created image
                     imagenObjeto.addEventListener('click', () => clicEnObjeto(imagenObjeto));
     
-                    // Add the image to the box
                     casilla.appendChild(imagenObjeto);
     
-                    // Set the style for the box
                     casilla.style.img = `url(${obtenerURLImagen(objetoId)})`;
                     imagenObjeto.style.backgroundSize = 'cover';
                     imagenObjeto.style.backgroundPosition = 'center';
@@ -546,7 +531,7 @@ function manejarObjetos(){
                     imagenObjeto.style.marginTop = '-5px';
                     imagenObjeto.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.5)';
     
-                    break; // Exit the loop after placing the image in the empty box
+                    break; 
                 }
             }
         }
@@ -559,7 +544,7 @@ function manejarObjetos(){
             aerogenerador: 'imagenes/aerogenerador2.png',
             veleta: 'imagenes/veleta.png',
             penDrive:'imagenes/penDrive.jpeg'
-            // ... Agrega más objetos según sea necesario
+
         };
     
         return urlImagenes[objetoId] || 'ruta/imagen-predeterminada.png';
@@ -567,10 +552,7 @@ function manejarObjetos(){
     
     // Función para encontrar un objeto por su identificador único
     function encontrarObjetoPorId(id) {
-        // Implementa la lógica para buscar el objeto en tu estructura de datos (por ejemplo, un array de objetos)
-        // Devuelve el objeto correspondiente o null si no se encuentra
-        // Aquí puedes usar un array, una base de datos o cualquier otra estructura de datos que almacene tus objetos
-        // Por ejemplo:
+        
         const objetosDisponibles = [
             { id: 'guia', nombre: 'guia', imagen: 'imagen1.jpg', descripcion: 'Este es el objeto 1' },
             { id: 'llave', nombre: 'llave', imagen: 'llave.jfif', descripcion: 'Este es el objeto 2' },
@@ -579,7 +561,6 @@ function manejarObjetos(){
             { id: 'veleta', nombre: 'veleta', imagen: 'veleta.png', descripcion: '¡Es una veleta! Este instrumento se utiliza para conocer la dirección del viento'},
             { id: 'penDrive', nombre: 'penDrive', imagen: 'penDrive.jpeg', descripcion: 'penDrive'},
 
-            // Agrega más objetos según sea necesario
         ];
     
         return objetosDisponibles.find(objeto => objeto.id === id);
@@ -591,7 +572,6 @@ function verificarVictoria(indiceMensajeActual) {
 
     if (guiaConseguida && aeroConseguido) {
         mostrarBocadillo('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
-        // Puedes realizar acciones adicionales aquí, como reiniciar el juego o redirigir a otra página
         switch(tiempoTranscurrido){
             case tiempoTranscurrido <= 30 && tiempoTranscurrido:
                 puntos = 25;
@@ -613,7 +593,7 @@ function verificarVictoria(indiceMensajeActual) {
                 break;
                 default: puntos = 1;
         }
-        setCookie('Puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
+        setCookie('Puntos', puntos, 30); 
         window.location.href = '../../controllers_php/updatePuntosController.php';
         
     }
@@ -658,11 +638,6 @@ function changeRoom(nextRoom) {
     // Actualiza el estado del juego
     currentRoom = nextRoom;
 
-    // Ajusta la posición inicial del personaje en la nueva habitación
-
-
-    // Resto de la lógica para cambiar de habitación (puedes personalizar según tus necesidades)
-    // Cargar recursos específicos de la habitación, ajustar la lógica de colisiones, etc.
 }
 function mostrarBocadillo(mensaje) {
     const bocadilloInGame = document.getElementById('bocadilloInGame');
@@ -674,7 +649,7 @@ function mostrarBocadillo(mensaje) {
     // Agrega un evento para ocultar el bocadillo después de cierto tiempo (por ejemplo, 3 segundos)
     setTimeout(() => {
         bocadilloInGame.style.display = 'none';
-    }, 7000); // Cambia este valor según la duración que desees para mostrar el bocadillo
+    }, 7000); 
 }
 function ocultarDialog() {
     document.getElementById('dialog').style.display = 'none';

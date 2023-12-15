@@ -116,8 +116,8 @@ body {
   }
 
 .mensaje {
-    font-size: 38px; /* o el tamaño que prefieras */
-    /* Añade aquí cualquier otro estilo que necesites */
+    font-size: 38px; 
+
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 #juego{
@@ -148,7 +148,7 @@ body {
     border-radius: 80px  ;
 }
 #casillas-objetos-conseguidos {
-    width: 147px; /* Ajusta según sea necesario */
+    width: 147px;
     height: 700px;
     padding: 10px;
     top: 70px;
@@ -370,12 +370,12 @@ body {
 /*Estilos de puertas al pasar el ratón por encima*/
 .puertaResaltada{
     background-color: #464036; /* Color de fondo (en este caso, naranja) */
-    opacity: 0.5; /* Opacidad (puedes ajustarla según tu preferencia) */
+    opacity: 0.5; /* Opacidad  */
     position: absolute;
 }
 .objetoResaltado {
     background-color: #464036; /* Color de fondo (en este caso, naranja) */
-    opacity: 0.5; /* Opacidad (puedes ajustarla según tu preferencia) */
+    opacity: 0.5; /* Opacidad  */
     border:white 2px solid ;
     border-radius: 5%;
     position: absolute;
