@@ -156,7 +156,7 @@ function getCookie(name) {
 
 
 var puntostext = document.getElementsByClassName('puntostexto');
-var tiempojuego =16000;
+tiempojuego= 16000;
 function startTimer() {
   var resultado = document.getElementById('ganarperder');
   var tiempotext = document.getElementById('tiempottexto');
@@ -202,6 +202,7 @@ function startTimer() {
       }
 
       setCookie("puntos", puntos, 1);
+      tiempojuego= tiempojuego+(targetSquares*600);
 
       // Actualizar el elemento HTML que muestra los puntos en la página de inicio
       document.getElementById('puntostexto').innerText = 'Puntos: ' + puntos;
@@ -209,7 +210,6 @@ function startTimer() {
       counter = 0;
       squares = []; // Reiniciar el arreglo de cuadrados completados
       nivel++;
-      tiempojuego= tiempojuego+7559;
 
       setCookie("Nivel", nivel, 1);
       document.getElementById('nivel').innerText = "Nivel: " + nivel; 
@@ -229,6 +229,8 @@ function startTimer() {
       document.getElementById('puntostexto').innerText = 'Puntos: ' + "0";
       document.getElementById('puntostexto2').innerText = 'Puntos: ' + "0" ;
       document.getElementById('niñostotalfin').innerText = 'Número total de niños: ' + targetSquares;
+      tiempojuego= tiempojuego+(targetSquares*600);
+
       setCookie("Tiempo(segundos)","No alcanzado",1);
       
       tiempotext.innerText = 'Tiempo: No alcanzado.';
@@ -321,7 +323,7 @@ function generacionEntidades() {
       }
       square.style.top = randomTop + 'px';
       // Animación
-      square.style.animation = 'move linear ' + (Math.random() * 4 + 4) + 's';
+      square.style.animation = 'move linear ' + (Math.random() * (4 + nivel * -1.3) + 4) + 's';
       
       document.getElementById('game').appendChild(square);
 
