@@ -25,7 +25,7 @@
             
         </button>
         <h1 class="titulopagina animate__animated animate__zoomInLeft"; >El món de la Laia</h1>
-        <div class="collapse navbar-collapse text-light justify-content-end" id="navbarNav">
+        <div class="collapse navbar-collapse  justify-content-end" id="navbarNav">
             <ul class="navbar-nav animate__animated animate__zoomInRight">
                 <li class="nav-item">
                     <a class="nav-link" href="#inicio">Inicio</a>
