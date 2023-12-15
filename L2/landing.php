@@ -103,22 +103,22 @@
               <p class="despopout">Little runners Brazil</p>
               <div class="overlay"></div>
           </div>
-          <div class="col-md-3" onclick="showPopup('Kènia', 'img/', 'Descripción del Minijuego 1.')">
+          <div class="col-md-3" onclick="showPopup('Kènia', 'img/', 'Recupera los materiales de la Laia para tener electricidad en Langu.')">
             <h4>Kènia</h4>
               <img class="minijuegos" src="minijuego2.jpg" alt="Minijuego 2">
-              <p>Descripción del Minijuego 2.</p>
+              <p class="despopout">Recupera los materiales</p>
               <div class="overlay"></div>
           </div>
-          <div class="col-md-3" onclick="showPopup('India', 'img/', 'Descripción del Minijuego 1.')">
+          <div class="col-md-3" onclick="showPopup('India', 'img/portfolio/juegoIndia.png', 'Encuentra los objetos escondidos que son reciclables. No pierdas todas las bombillas, cuanto más bombillas mejor puntuación.')">
             <h4>India</h4>
-              <img class="minijuegos" src="minijuego3.jpg" alt="Minijuego 3">
-              <p>Descripción del Minijuego 3.</p>
+              <img class="minijuegos" src="img/portfolio/juegoIndia.png" alt="Minijuego 3">
+              <p class="despopout">Vertedero</p>
               <div class="overlay"></div>
           </div>
-          <div class="col-md-3" onclick="showPopup('Europa', 'img/portfolio/1.jpg', 'Descripción del Minijuego 1.')">
+          <div class="col-md-3" onclick="showPopup('Europa', 'img/portfolio/juegoEuropa.png', 'Investiga el lugar y consigue los objetos ocultos.')">
             <h4>Europa</h4>
-              <img class="minijuegos" src="minijuego4.jpg" alt="Minijuego 4">
-              <p>Descripción del Minijuego 4.</p>
+              <img class="minijuegos" src="img/portfolio/juegoEuropa.png" alt="Minijuego 4">
+              <p class="despopout">Granja eólica</p>
               <div class="overlay"></div>
 
           </div>
