@@ -9,18 +9,33 @@ body {
 #pantalla{
     background-size: cover;
     background-position: center;
-    background-image: url('imagenes/ciudad4.png');
+    background-image: url(imagenes/fondo.png);
     width: 100%;
     height: 100%;
     position: relative;
-    background-color : #000;
+    background-color : white;
 }
 #pantalla-inicial {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    width: 1100px;
+    height: 1000px;
+    margin-left: 600px;
+    margin-top: 70px;
+
+}
+#containerInicial{
+    background-color: white;
+    background-size: cover;
+    background-position: center; /* Opcional: centra la imagen */
+    background-image: url(imagenes/pantallaInicial.png);
+    border-radius: 80px  ;
+    border: 20px solid #393e46;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+    width: 1000px;
+    height: 2000px;
 }
 #tiempo-container {
     position: fixed;
@@ -37,56 +52,107 @@ body {
     font-size: 1.2em;
     margin-left: 5px;
 }
-#personaje img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
-}
 
 #dialogo {
-    display: flex;
-    align-items: center;
+    position: absolute;
+    left: 1225px; /* Posición desde el lado izquierdo de la pantalla */
+    top: 330px;
 }
-
 #bocadillo {
-    background-color: #fff;
-    border: 2px solid #000;
     padding: 10px;
     border-radius: 10px;
     max-width: 300px;
     text-align: center;
-    margin-left: 800px; /* Ajusta el margen izquierdo según sea necesario */
-    margin-top: -1000px;
 }
-
-#pantalla-inicial button {
-    margin-top: -400px;
-    margin-left: 800px;
-    cursor: pointer;
-}
-
-#mensaje {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-#game-container {
-    width: 1000px;
-    height: 700px;
-    position: relative;
-    top: 200px;
+#bocadilloInGame{
+    margin-top: -120px;
+    width: 1100px;
+    height: 550px;
+    background-image: url('imagenes/bocadillo2.png');
+    top:0px;
     left: 500px;
+    position: absolute;
+    background-size: cover;
+    
+}
+#texto{
+    padding: 10px;
+    border-radius: 10px;
+    top: 180px;
+    left: 170px;
+    max-width: 850px;
+    text-align: left;
+    font-family: 'Quantico', sans-serif;
+    font-size: 30px;
+    position: absolute;
+}
+#siguienteBtn, #comenzarBtn {
+    position: absolute;
+    top: 749px; /* Posición desde el fondo de la pantalla */
+    left: 1378px; /* Posición desde el lado izquierdo de la pantalla */
+    transform: translateX(-50%); /* Centra el botón */
+    cursor: pointer;
+    padding: 10px 20px; /* Ajusta el padding como sea necesario */
+    font-size: 38px; /* Ajusta el tamaño de fuente como sea necesario */
+    font-family: 'Quantico', sans-serif;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    border-radius: 50px;
+    color: white; /* Color de texto blanco */
+    width: 340px;
+    height: 103px;
+    
+}
+#siguienteBtn:hover, #comenzarBtn:hover {
+    font-size: 38px;
+    color: hsl(0, 0%, 100%);
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Quantico', sans-serif;
+    background:  #FF8529;
+  }
+
+.mensaje {
+    font-size: 38px; 
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#juego{
+    top: 200px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+#laia{
+    height: 700px;
+    width: 550px;
+    left: 100px;
+    top: 35.2%;
+    position: absolute;
+    background-image: url('imagenes/laia3.png');
+    background-position: bottom;
+    background-size: cover;
+}
+#game-container {
+    margin-top: -70px;
+    top: 20px;
+    width: 1150px;
+    height: 805px;
+    position: relative;
+    top: 30%;
+    left: 600px;
     background-color :rgb(255, 254, 253);
     border-radius: 80px  ;
 }
 #casillas-objetos-conseguidos {
-    background-color: black;
-    width: 147px; /* Ajusta según sea necesario */
+    width: 147px;
     height: 700px;
-    border: 2px solid  wheat;
     padding: 10px;
-    top: 200px;
-    left: 1550px;
+    top: 70px;
+    left: 1250px;
     box-sizing: border-box;
     position: absolute;
     border-radius: 40px  ;
@@ -104,13 +170,42 @@ body {
 }
 
 /* estilos del plano de la casa*/
+#techo1{
+    width: 42%;
+    height: 14%;
+    position: absolute;
+    left: 23.8%;
+    top: 0%;
+    background-color:black;
+
+}
+#techo2{
+    width: 23%;
+    height: 66%;
+    position: absolute;
+    left: 65%;
+    top: 0%;
+    background-color:black;
+
+}
+#techo3{
+    width: 31.7%;
+    height: 33%;
+    position: absolute;
+    left: 17%;
+    top: 67%;
+    background-color:black;
+
+}
 #habitacion1{
+    background-color: burlywood;
+    background-image: url("imagenes/plano2.png");
+    background-size: cover;
+    background-position: center; /* Opcional: centra la imagen */
     width: 100%;
     height: 100%;
-    background-color: blanchedalmond;
-    background-image: url('imagenes/parquet.jfif');
-    /*border-radius: 80px ;*/
-    border: none;
+    border-radius: 80px  ;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 #character {
@@ -125,174 +220,182 @@ body {
     height: 100%;
     position: absolute;
     background-color: #0c0c0c;
-    left:100%;
+    left:89%;
     top:0%;
 }
 #bordeIz {
     width: 3px;
-    height: 100%;
+    height: 61%;
     position: absolute;
     background-color: #0c0c0c;
-    left:0%;
+    left:7.5%;
     top:0%;
 }
+#izA{
+    width: 19.7px;
+    height: 30%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:8.93%;
+    top:0%;
+}
+#izB{
+    width: 19.7px;
+    height: 15%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:8.93%;
+    top:44.5%;
+}
+#izC{
+    width: 14.5%;
+    height: 19.7px;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:8.93%;
+    top:57%;
+}
+#izD{
+    width: 19.7px;
+    height: 10%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:23%;
+    top:57%;
+}
+#cenA{
+    width: 19.7px;
+    height: 20%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:35.3%;
+    top:14%;
+}
+#cenB{
+    width: 19.7px;
+    height: 17%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:35.3%;
+    top:48%;
+}
+#techoA{
+    width: 99px;
+    height: 15%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left: 48%;
+    top:67%;
+}
+#abajoA{
+    width: 19.7px;
+    height: 20%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:64.3%;
+    top:80%;
+}
+#derA{
+    width: 19.7px;
+    height: 13%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:86.3%;
+    top:67%;
+}
+#derB{
+    width: 19.7px;
+    height: 7%;
+    position: absolute;
+    background-color: #0c0c0c;
+    left:86.3%;
+    top:93%;
+}
 #bordeArrb {
-    width: 100%;
+    width: 80%;
     height: 3px;
     position: absolute;
     background-color: #0c0c0c;
-    left:0%;
+    left:8%;
     top:0%;
 }
 #bordeAbj{
-    width: 100%;
+    width: 74%;
     height: 3px;
     position: absolute;
     background-color: #0c0c0c;
-    left:0%;
-    top:100%;
-}
-#pasillo1left{
-    width: 3px;
-    height: 35%;
-    background-color: #0c0c0c;
-    position: absolute;
-    left: 45%;
-    top: 65%;
-}
-#pasillo1right{
-    width: 3px;
-    height: 20%;
-    background-color: #0c0c0c;
-    position: absolute;
-    left: 55%;
-    top: 80%;
-}
-#top1left{
-    width: 45%;
-    height: 3px;
-    background-color: #0c0c0c;
-    position: absolute;
-    left: 0%;
-    top: 65%;
-}
-#top1right{
-    width: 45%;
-    height: 3px;
-    background-color: #0c0c0c;
-    position: absolute;
-    left: 55%;
-    top: 80%;
-}
-#pasillo2bottom{
-    width: 45%;
-    height: 3px;
-    background-color: #0c0c0c;
-    position: absolute;
-    left: 0%;
-    top: 50%;
-}
-#pasillo2right{
-    width: 3px;
-    height: 50.4%;
-    background-color: #0c0c0c;
-    position: absolute;
-    left: 45%;
-    top: 0%;
-}
-#pasillo3bottom{
-    width: 35%;
-    height: 3px;
-    background-color: #0c0c0c;
-    position: absolute;
-    left: 65%;
-    top: 30%;
-}
-#pasillo3left{
-    width: 3px;
-    height: 20%;
-    background-color: #0c0c0c;
-    position: absolute;
-    left: 65%;
-    top: 10%;
-}
-#pasillo3top{
-    width: 35%;
-    height: 3px;
-    background-color: #0c0c0c;
-    position: absolute;
-    left: 65%;
-    top: 10%;
+    left:15.3%;
+    top:99.7%;
 }
 #puerta12{
-    width: 4%;
+    width: 7.5%;
     height: 1.5%;
-    background-color: #0c0c0c;
+    background-color: transparent;
     position: absolute;
-    left: 12%;
-    top: 63.5%;
+    left: 39.5%;
+    top: 14%;
 }
 #puerta13{
-    width: 4%;
-    height: 1.8%;
-    background-color: #0c0c0c;
+    width: 7.5%;
+    height: 1.5%;
+    background-color: transparent;
     position: absolute;
-    left: 65%;
-    top: 78.4%;
+    left: 54.7%;
+    top: 14%;
 }
 #puerta14{
     width: 1.5%;
-    height: 5%;
-    background-color: #0c0c0c;
+    height: 9.1%;
+    background-color: transparent;
     position: absolute;
-    left: 45%;
-    top: 28%;
+    left: 48.2%;
+    top: 88.3%;
 }
 #puerta15{
-    width: 1.5%;
-    height: 5%;
-    background-color: #0c0c0c;
+    width: 6.8%;
+    height: 1.5%;
+    background-color: transparent;
     position: absolute;
-    left: 63.5%;
-    top: 18%;
+    left: 66.2%;
+    top: 66%;
 }
 #puerta16{
     width: 1.5%;
-    height: 10%;
-    background-color: #0c0c0c;
+    height: 12%;
+    background-color: transparent;
     position: absolute;
-    left: 65%;
-    top: 0%;
+    left: 88%;
+    top: 80%;
 }
 /*Estilos de puertas al pasar el ratón por encima*/
 .puertaResaltada{
     background-color: #464036; /* Color de fondo (en este caso, naranja) */
-    opacity: 0.5; /* Opacidad (puedes ajustarla según tu preferencia) */
+    opacity: 0.5; /* Opacidad  */
     position: absolute;
 }
 .objetoResaltado {
     background-color: #464036; /* Color de fondo (en este caso, naranja) */
-    opacity: 0.5; /* Opacidad (puedes ajustarla según tu preferencia) */
+    opacity: 0.5; /* Opacidad  */
     border:white 2px solid ;
     border-radius: 5%;
     position: absolute;
 }
 .flecha{
     background-color: burlywood;
-    background-image: url("imagenes/flecha.jpg");
+    background-image: url("imagenes/flecha.png");
     background-size: cover;
     background-position: center;
-    position: absolute;
+    position: absolute;border-radius: 10px;
     height: 14%;
     width: 10%;
     top: 85%;
     left: 45%;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 /*Estilos de la habitación 2*/
 #habitacion2{
     background-color: burlywood;
-    background-image: url("imagenes/BocetoOficina.PNG");
+    background-image: url("imagenes/habitacion2.png");
     background-size: cover;
     background-position: center; /* Opcional: centra la imagen */
     width: 100%;
@@ -302,10 +405,17 @@ body {
 }
 #llave{
     position: absolute;
-    width: 5.5%;
-    height: 6.5%;
-    top:38%;
-    left: 60%;
+    width: 3.5%;
+    height: 4.5%;
+    top:24%;
+    left: 75.5%;
+}
+#veleta{
+    position: absolute;
+    width: 3.3%;
+    height: 2.5%;
+    top:55.4%;
+    left: 48%;
 }
 #puerta3{
     width: 12%;
@@ -327,7 +437,7 @@ body {
 /*Estilos de la habitación 3*/
 #habitacion4{
     background-color: chocolate;
-    background-image:url("imagenes/habitacionConPuertaAlFinal.jpg");
+    background-image:url("imagenes/habitacion4.png");
     background-position: center; /* Opcional: centra la imagen */
     background-size: cover;
     width: 100%;
@@ -374,7 +484,7 @@ body {
 
 #habitacion6{
     background-color: chocolate;
-    background-image:url("imagenes/habitacionConPuertaCerrada.png");
+    background-image:url("imagenes/puertaCerrada.png");
     background-position: center; /* Opcional: centra la imagen */
     background-size: cover;
     width: 100%;
@@ -393,7 +503,7 @@ body {
 
 #habitacion7{
     background-color: chocolate;
-    background-image:url("imagenes/habitacion2.png");
+    background-image:url("imagenes/habitacion7.png");
     background-position: center; /* Opcional: centra la imagen */
     background-size: cover;
     width: 100%;
@@ -412,7 +522,7 @@ body {
 /*Estilos de la habitación 51*/
 #habitacion8{
     background-color: chocolate;
-    background-image:url("imagenes/oficina2.jfif");
+    background-image:url("imagenes/oficina.png");
     background-position: center; /* Opcional: centra la imagen */
     background-size: cover;
     width: 100%;
@@ -444,4 +554,61 @@ body {
     position: absolute;
     top: 30%;
     left: 38%;
+}
+
+/*habitacion 10 (puerta contraseña)*/
+#habitacion10{
+    background-color: white;
+    background-image:url("imagenes/habPuertaContrasenya.png");
+    background-position: center; /* Opcional: centra la imagen */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 80px;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+#botanica{
+    width: 10%;
+    height: 8%;
+    position: absolute;
+    top: 32%;
+    left: 25%;
+}
+#puerta11{
+    width: 12%;
+    height: 35%;
+    position: absolute;
+    top: 26%;
+    left: 49%;
+}
+.dialog {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+/*habitacion 11 (escaleras)*/
+#habitacion11{
+    background-color: white;
+    background-image:url("imagenes/habitacionPenDrive.png");
+    background-color:browns;
+    background-position: center; /* Opcional: centra la imagen */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 80px  ;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+#penDrive{
+    width: 8.3%;
+    height: 7.4%;
+    position: absolute;
+    top: 49%;
+    left: 43.3%;
 }

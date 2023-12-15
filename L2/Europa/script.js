@@ -1,4 +1,5 @@
 // Definición de constantes y variables globales
+
 const character = document.getElementById('character');
 const paredes = document.querySelectorAll('.pared');
 const puertas = document.querySelectorAll('.puerta');
@@ -15,39 +16,43 @@ let contadorInterval; // Variable para almacenar el intervalo del contador
 let puntos;
 
 
-
 const mensajes = [
     "¡Hola! Soy Laia",
     "Estoy emocionada de que estés aquí.",
+    "Estoy emocionada de que estés aquí.",
     "Explora y descubre los secretos que aguardan.",
-    // Añade más mensajes según sea necesario
+    "Explora y descubre los secretos que aguardan."
+
+   
 ];
 const mensajesObjetos = {
     guia: '¡Has conseguido la guía!',
     libro1H5: 'Es un álbum de fotos.',
     llave: 'Has encontrado una llave.',
     aerogenerador: '¡Buscaste en el armario y encontraste el aerogenerador!',
-    bombilla: "Has encontrado una bombilla y la has guardado."
-    // Agrega más objetos y mensajes según sea necesario
+    bombilla: "Has encontrado una bombilla y la has guardado.",
+    veleta: '¡Es una veleta! Este instrumento se utiliza para conocer la dirección del viento',
+    botanica: 'Es una estantería con libros de botánica. Aquí pone que para plantar tomates se necesitan ocho horas de luz directa al día como mínimo. Creo que no nos será de ayuda.',
+    penDrive: 'Hay un pen drive en el ordenador. Aquí está toda la información necesaria para montar y mantener un molino de viento'
+    
 };
 
 
 // Establecer posiciones iniciales en JavaScript
 character.style.position = 'absolute';
-character.style.left = '500px';
-character.style.top = '675px';
+character.style.left = '120px';
+character.style.top = '300px';
 
-// Función principal para inicializar el juego
+// Función para inicializar el juego
 function iniciarJuego() {
-
+    
+    mostrarMensaje(mensajes[indiceMensajeActual]);
     mostrarPantallaInicio(indiceMensajeActual);
     document.getElementById('siguienteBtn').addEventListener('click', mostrarSiguienteMensaje);    
 
     comenzarJuego();
     asignarEventListeners();
-    checkForDoor();
     manejarObjetos();
-    // Puedes agregar más inicializaciones aquí
 }
 
 // Función para asignar event listeners
@@ -117,25 +122,22 @@ function mostrarPantallaInicio() {
 
 }
 function mostrarSiguienteMensaje() {
-
-        
-
-      if (indiceMensajeActual < mensajes.length - 1) {
+    if (indiceMensajeActual < mensajes.length - 1) {
         // Muestra el siguiente mensaje
         indiceMensajeActual++;
         mostrarMensaje(mensajes[indiceMensajeActual]);
-      } else {
+    } else {
         // Muestra el mensaje de inicio y oculta el botón de siguiente
         mostrarMensaje("¡Empecemos!");
         ocultarBotonSiguiente();
         mostrarBotonComenzar();
-      }
     }
+}
     
     function mostrarMensaje(mensaje) {
-      // Lógica para mostrar el mensaje en el bocadillo
-      // Puedes adaptar esto según tu implementación
-      document.getElementById('bocadillo').textContent = mensaje;
+        const bocadillo = document.getElementById('bocadillo');
+        bocadillo.innerText = mensaje;// Cambia textContent por innerText
+        bocadillo.classList.add('mensaje'); 
     }
     
     function ocultarBotonSiguiente() {
@@ -157,7 +159,10 @@ function comenzarJuego() {
     
     const inicio = document.getElementById('pantalla-inicial');
     inicio.style.display = 'none';
-    
+
+    const laia = document.getElementById('laia');
+    laia.style.display = 'block';
+
     const juego = document.getElementById('game-container');
     juego.style.display = 'block';
       console.log('Comenzando el juego'); 
@@ -184,20 +189,33 @@ function iniciarContadorTiempo() {
             tiempoElement.textContent = tiempoTranscurrido;
         }
 
-        // Puedes realizar acciones adicionales aquí según tu lógica
-
         console.log(`Tiempo transcurrido: ${tiempoTranscurrido} segundos`);
 
-        // Aquí puedes agregar lógica para detener el contador cuando sea necesario
-    }, 1000); // El contador se actualiza cada segundo (1000 ms)
+    }, 1000);
 }
 function asignarEventListeners() {
+    const puertaConContrasena = document.getElementById('puerta11');
+const dialog = document.getElementById('dialog');
+const passwordInput = document.getElementById('passwordInput');
+
+puertaConContrasena.addEventListener('click', () => {
+    // Mostrar el cuadro de diálogo
+    dialog.style.display = 'block';
+});
     document.addEventListener('keydown', manejarTeclaPresionada);
-    const botonComenzar = document.getElementById('comenzarBtn');
-    botonComenzar.addEventListener('click', comenzarJuego);
+
     document.getElementById('siguienteBtn').addEventListener('click', mostrarSiguienteMensaje);
     for (const puerta of puertas) {
-        puerta.addEventListener('click', handleDoorClick);
+        // Excluye la puerta con el ID 'puerta11'
+        if (puerta.id !== 'puerta11') {
+            puerta.addEventListener('click', handleDoorClick);
+        }else if (puerta.id === 'puerta11'){
+            puerta.addEventListener('click', () => {
+    // Mostrar el cuadro de diálogo
+    dialog.style.display = 'block';
+});
+
+        }
     }
     for (const flecha of flechas) {
         flecha.addEventListener('click', handleArrowClick);
@@ -275,16 +293,15 @@ function canMove(character, direction, speed) {
                 break;
         }
     }
-
     return true; // Movimiento permitido
 }
 puertas.forEach((puerta) => {
     puerta.addEventListener('mouseenter', () => {
-        puerta.classList.add('puertaResaltada');
+        puerta.classList.add('objetoResaltado');
     });
 
     puerta.addEventListener('mouseleave', () => {
-        puerta.classList.remove('puertaResaltada');
+        puerta.classList.remove('objetoResaltado');
     });
 });
 objetosInspeccionables.forEach((objeto) => {
@@ -298,9 +315,9 @@ objetosInspeccionables.forEach((objeto) => {
     objeto.addEventListener('click', () => {
         const objetoId = objeto.id;
         if (mensajesObjetos[objetoId]) {
-            alert(mensajesObjetos[objetoId]);
+            mostrarBocadillo(mensajesObjetos[objetoId]);   
         } else {
-            alert('Mensaje predeterminado para este objeto.');
+            mostrarBocadillo('Mensaje predeterminado para este objeto.');
         }
     });
 });
@@ -315,60 +332,43 @@ objetosConseguibles.forEach((objeto) => {
     objeto.addEventListener('click', () => {
         const objetoId = objeto.id;
         if (mensajesObjetos[objetoId]) {
-            alert(mensajesObjetos[objetoId]);
+            mostrarBocadillo(mensajesObjetos[objetoId]);
         } else {
-            alert('Mensaje predeterminado para este objeto.');
+            mostrarBocadillo('Mensaje predeterminado para este objeto.');
         }
     });
 });
-function reiniciarJuego() {
-    // Restablece las variables y elementos a sus valores iniciales
-    currentRoom = 1;
-    nextRoom = 1;
 
-    tiempoTranscurrido = 0;
-    objetosConseguidos.length = 0; // Vacía el array de objetos conseguidos
-    character.style.left = '500px';
-    character.style.top = '675px';
+function verificarVictoria() {
+    const guiaConseguida = objetosConseguidos.some(objeto => objeto.id === 'guia');
+    const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
 
-    // Oculta todas las habitaciones excepto la primera
-    for (let i = 1; i <= 9; i++) {
-        const habitacion = document.getElementById(`habitacion${i}`);
-        habitacion.style.display = i === 1 ? 'block' : 'none';
+    if (guiaConseguida && aeroConseguido) {
+        mostrarBocadillo('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
+        switch(tiempoTranscurrido){
+            case tiempoTranscurrido <= 30 && tiempoTranscurrido:
+                puntos = 25;
+                break;
+            case tiempoTranscurrido <= 45 && tiempoTranscurrido > 30:
+                puntos = 20;
+                break;
+            case tiempoTranscurrido <= 65 && tiempoTranscurrido > 45:
+                puntos = 15;
+                break;
+            case tiempoTranscurrido <= 80 && tiempoTranscurrido > 65:
+                puntos = 10;
+                break;
+            case tiempoTranscurrido <= 95 && tiempoTranscurrido > 80:
+                puntos = 5;
+                break;
+            case tiempoTranscurrido > 95:
+                puntos = 0;
+                break;
+                default: puntos = 1;
+        }
+        setCookie('puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
+        window.location.href = '../../controllers_php/updatePuntosController.php';
     }
-
-    const pantallaInicial = document.getElementById('pantalla-inicial');
-    pantallaInicial.style.display = 'flex'; // Cambia a flex para centrar vertical y horizontalmente
-    pantallaInicial.style.alignItems = 'center'; // Centra verticalmente
-    pantallaInicial.style.justifyContent = 'center'; // Centra horizontalmente
-
-    const juegoContainer = document.getElementById('game-container');
-    juegoContainer.style.display = 'none';
-    
-    const tiempo = document.getElementById('tiempo-container');
-    tiempo.style.display = 'none';
-
-    const casillasObjetos = document.getElementById('casillas-objetos-conseguidos');
-    casillasObjetos.style.display = 'none';
-    const imagenesCasillas = casillasObjetos.querySelectorAll('.casilla-objeto img');
-
-    for (const imagenCasilla of imagenesCasillas) {
-        imagenCasilla.remove();
-    }
-
-    const botonComenzar = document.getElementById('comenzarBtn');
-        botonComenzar.style.display = 'none';
-
-    // Muestra el botón "Siguiente"
-    const botonSiguiente = document.getElementById('siguienteBtn');
-        botonSiguiente.style.display = 'block';
-
-        let tiempoFinal = tiempoTranscurrido;
-
-    // Restablece el índice del mensaje actual
-    indiceMensajeActual = 0;
-    mostrarSiguienteMensaje();
-    
 }
 objetosConseguibles.forEach((objeto) => {
     objeto.addEventListener('click', () => {
@@ -386,7 +386,6 @@ objetosConseguibles.forEach((objeto) => {
         verificarVictoria();
         agregarObjetoConseguido(objetoId);
 
-        // Puedes realizar acciones adicionales aquí, como mostrar un mensaje o actualizar la interfaz gráfica
     });
 });
 function handleDoorClick(event) {
@@ -399,7 +398,7 @@ function handleDoorClick(event) {
 
         changeRoom(nextRoom);
     } else {
-        alert('No tienes la llave para acceder a esta habitación.');
+        mostrarBocadillo('No tienes la llave para acceder a esta habitación.');
     }
 }
 function puedePasar(nextRoom) {
@@ -426,46 +425,29 @@ function handleArrowClick(event) {
 
 }
 
-function checkForDoor(){
-        const characterRect = character.getBoundingClientRect();
-    
-        for (const puerta of puertas1) {
-            const nextRoom = puerta.getAttribute('data-next-room');
-            const puertaRect = puerta.getBoundingClientRect();
-    
-            if (
-                characterRect.left < puertaRect.right &&
-                characterRect.right > puertaRect.left &&
-                characterRect.top < puertaRect.bottom &&
-                characterRect.bottom > puertaRect.top
-            ) {
-                // Cambia de habitación aquí
-                console.log(`Cambiando de habitación: de ${currentRoom} a ${nextRoom}`);
-                character.style.top = `${parseInt(character.style.top, 10) - 30}px`;
-                changeRoom(nextRoom);
-                
-            }
+function checkForDoor() {
+    const characterRect = character.getBoundingClientRect();
+
+    for (const puerta of puertas1) {
+        const nextRoom = puerta.getAttribute('data-next-room');
+        const puertaRect = puerta.getBoundingClientRect();
+
+        if (
+            characterRect.left < puertaRect.right &&
+            characterRect.right > puertaRect.left &&
+            characterRect.top < puertaRect.bottom &&
+            characterRect.bottom > puertaRect.top
+        ) {
+            // Determinar la puerta de salida y ajustar la posición del personaje
+            ajustarPosicionPersonajeAlSalir(puerta.id);
+
+            // Cambia de habitación aquí
+            console.log(`Cambiando de habitación: de ${currentRoom} a ${nextRoom}`);
+            changeRoom(nextRoom);
         }
+    }
 }
-function changeRoom(nextRoom) {
-    // Oculta los elementos de la habitación actual
-    const habitacionActual = document.getElementById(`habitacion${currentRoom}`);
-    habitacionActual.style.display = 'none';
 
-    // Muestra los elementos de la nueva habitación
-    const nuevaHabitacion = document.getElementById(`habitacion${nextRoom}`);
-    console.log(`mostrando habitacion ${nextRoom}`);
-    nuevaHabitacion.style.display = 'block';
-
-    // Actualiza el estado del juego
-    currentRoom = nextRoom;
-
-    // Ajusta la posición inicial del personaje en la nueva habitación
-
-
-    // Resto de la lógica para cambiar de habitación (puedes personalizar según tus necesidades)
-    // Cargar recursos específicos de la habitación, ajustar la lógica de colisiones, etc.
-}
 function changePreviousRoom(previousRoom) {
     // Oculta los elementos de la habitación actual
     const habitacionActual = document.getElementById(`habitacion${currentRoom}`);
@@ -479,11 +461,29 @@ function changePreviousRoom(previousRoom) {
     // Actualiza el estado del juego
     currentRoom = previousRoom;
 
+    ajustarPosicionPersonaje(previousRoom);
     // Ajusta la posición inicial del personaje en la nueva habitación
 
-
-    // Resto de la lógica para cambiar de habitación (puedes personalizar según tus necesidades)
-    // Cargar recursos específicos de la habitación, ajustar la lógica de colisiones, etc.
+}
+function ajustarPosicionPersonajeAlSalir(puertaId) {
+    switch(puertaId) {
+        case 'puerta12':
+        case 'puerta13':
+        case 'puerta15':
+            character.style.top = `${parseInt(character.style.top, 10) + 25}px`;
+            break;
+        case 'puerta14':
+            character.style.left = `${parseInt(character.style.left, 10) + 25}px`;
+            break;
+        case 'puerta16':
+            character.style.left = `${parseInt(character.style.left, 10) - 25}px`;
+            break;
+        default:
+            // Posición predeterminada si no es una de las puertas específicas
+            character.style.top = `400px`;
+            character.style.left = `680px`;
+            break;
+    }
 }
 function manejarObjetos(){
     objetosConseguibles.forEach((objeto) => {
@@ -502,40 +502,37 @@ function manejarObjetos(){
             verificarVictoria();
             agregarObjetoConseguido(objetoId);
     
-            // Puedes realizar acciones adicionales aquí, como mostrar un mensaje o actualizar la interfaz gráfica
         });
     });
     function agregarObjetoConseguido(objetoId) {
         // Encuentra todas las casillas
         const casillas = document.querySelectorAll('.casilla-objeto');
     
-        // Itera sobre las casillas para encontrar la primera vacía
+        // Itera sobre las casillas para find the first empty box
         for (const casilla of casillas) {
             if (!casilla.hasChildNodes()) {
-                // Crea una imagen con la URL correspondiente al objeto
-                const imagenObjeto = document.createElement('img');
-                imagenObjeto.src = obtenerURLImagen(objetoId);
+                // Check if the object image is already in a box
+                const objectInBox = document.querySelector(`.casilla-objeto img[src*="${obtenerURLImagen(objetoId)}"]`);
+                if (!objectInBox) {
+                    const imagenObjeto = document.createElement('img');
+                    imagenObjeto.src = obtenerURLImagen(objetoId);
     
-                // Agrega un evento de clic a la imagen recién creada
-                imagenObjeto.addEventListener('click', () => clicEnObjeto(imagenObjeto));
+                    imagenObjeto.addEventListener('click', () => clicEnObjeto(imagenObjeto));
     
-                // Agrega la imagen a la casilla
-                casilla.appendChild(imagenObjeto);
+                    casilla.appendChild(imagenObjeto);
     
-                // Establece el estilo de la casilla
-                casilla.style.img = `url(${obtenerURLImagen(objetoId)})`;
-                imagenObjeto.style.backgroundSize = 'cover';
-                imagenObjeto.style.backgroundPosition = 'center';
-                imagenObjeto.style.width = '124px';
-                imagenObjeto.style.height = '124px';
-                imagenObjeto.style.borderRadius = '40px';
-                imagenObjeto.style.marginLeft = '-7px';
-                imagenObjeto.style.marginTop = '-5px';
-                imagenObjeto.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.5)';
+                    casilla.style.img = `url(${obtenerURLImagen(objetoId)})`;
+                    imagenObjeto.style.backgroundSize = 'cover';
+                    imagenObjeto.style.backgroundPosition = 'center';
+                    imagenObjeto.style.width = '124px';
+                    imagenObjeto.style.height = '124px';
+                    imagenObjeto.style.borderRadius = '40px';
+                    imagenObjeto.style.marginLeft = '-7px';
+                    imagenObjeto.style.marginTop = '-5px';
+                    imagenObjeto.style.boxShadow = 'inset 0 0 30px rgba(0, 0, 0, 0.5)';
     
-                
-    
-                break; // Sale del bucle después de colocar la imagen en la casilla vacía
+                    break; 
+                }
             }
         }
     }
@@ -543,8 +540,11 @@ function manejarObjetos(){
         const urlImagenes = {
             llave: 'imagenes/llave.jfif',
             guia: 'imagenes/guia.jfif',
-            bombilla: 'imagenes/bombilla.png'
-            // ... Agrega más objetos según sea necesario
+            bombilla: 'imagenes/bombilla.png',
+            aerogenerador: 'imagenes/aerogenerador2.png',
+            veleta: 'imagenes/veleta.png',
+            penDrive:'imagenes/penDrive.jpeg'
+
         };
     
         return urlImagenes[objetoId] || 'ruta/imagen-predeterminada.png';
@@ -552,16 +552,15 @@ function manejarObjetos(){
     
     // Función para encontrar un objeto por su identificador único
     function encontrarObjetoPorId(id) {
-        // Implementa la lógica para buscar el objeto en tu estructura de datos (por ejemplo, un array de objetos)
-        // Devuelve el objeto correspondiente o null si no se encuentra
-        // Aquí puedes usar un array, una base de datos o cualquier otra estructura de datos que almacene tus objetos
-        // Por ejemplo:
+        
         const objetosDisponibles = [
             { id: 'guia', nombre: 'guia', imagen: 'imagen1.jpg', descripcion: 'Este es el objeto 1' },
             { id: 'llave', nombre: 'llave', imagen: 'llave.jfif', descripcion: 'Este es el objeto 2' },
             { id: 'bombilla', nombre: 'bombilla', imagen: 'bombilla.jfif', descripcion: 'Este es el objeto 3' },
-            { id: 'aerogenerador', nombre: 'aerogenerador', imagen: 'aerogenerador.jpg', descripcion: 'Este es el objeto 4' },
-            // Agrega más objetos según sea necesario
+            { id: 'aerogenerador', nombre: 'aerogenerador', imagen: 'aerogenerador.png', descripcion: 'Este es el objeto 4' },
+            { id: 'veleta', nombre: 'veleta', imagen: 'veleta.png', descripcion: '¡Es una veleta! Este instrumento se utiliza para conocer la dirección del viento'},
+            { id: 'penDrive', nombre: 'penDrive', imagen: 'penDrive.jpeg', descripcion: 'penDrive'},
+
         ];
     
         return objetosDisponibles.find(objeto => objeto.id === id);
@@ -572,8 +571,7 @@ function verificarVictoria(indiceMensajeActual) {
     const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
 
     if (guiaConseguida && aeroConseguido) {
-        alert('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
-        // Puedes realizar acciones adicionales aquí, como reiniciar el juego o redirigir a otra página
+        mostrarBocadillo('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
         switch(tiempoTranscurrido){
             case tiempoTranscurrido <= 30 && tiempoTranscurrido:
                 puntos = 25;
@@ -595,10 +593,8 @@ function verificarVictoria(indiceMensajeActual) {
                 break;
                 default: puntos = 1;
         }
-        setCookie('puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
-
+        setCookie('Puntos', puntos, 30); 
         window.location.href = '../../controllers_php/updatePuntosController.php';
-
         
     }
     return indiceMensajeActual
@@ -609,11 +605,62 @@ function setCookie(nombre, valor, diasExpiracion) {
     const expiracion = "expires=" + fechaExpiracion.toUTCString();
     document.cookie = nombre + "=" + valor + ";" + expiracion + ";path=/";
 }
+const puertaConContrasena = document.getElementById('puerta11');
+const dialog = document.getElementById('dialog');
+const passwordInput = document.getElementById('passwordInput');
+
+puertaConContrasena.addEventListener('click', () => {
+    // Mostrar el cuadro de diálogo
+    dialog.style.display = 'block';
+});
+function verificarContrasena() {
+    const contrasenaIngresada = document.getElementById('passwordInput').value;
+    if (contrasenaIngresada === '123') { // Suponiendo que '123' es la contraseña correcta
+        console.log('Contraseña correcta. Cambiando de habitación...');
+        changeRoom(11);
+        ocultarDialog();
+    } else {
+        mostrarBocadillo('Contraseña incorrecta. Inténtalo de nuevo.');
+        document.getElementById('passwordInput').value = ''; // Limpiar el campo de contraseña
+    }
+}
+
+function changeRoom(nextRoom) {
+    // Oculta los elementos de la habitación actual
+    const habitacionActual = document.getElementById(`habitacion${currentRoom}`);
+    habitacionActual.style.display = 'none';
+
+    // Muestra los elementos de la nueva habitación
+    const nuevaHabitacion = document.getElementById(`habitacion${nextRoom}`);
+    console.log(`mostrando habitacion ${nextRoom}`);
+    nuevaHabitacion.style.display = 'block';
+
+    // Actualiza el estado del juego
+    currentRoom = nextRoom;
+
+}
+function mostrarBocadillo(mensaje) {
+    const bocadilloInGame = document.getElementById('bocadilloInGame');
+    const texto = document.getElementById('texto');
+    
+    texto.innerText = mensaje;
+    bocadilloInGame.style.display = 'block';
+    
+    // Agrega un evento para ocultar el bocadillo después de cierto tiempo (por ejemplo, 3 segundos)
+    setTimeout(() => {
+        bocadilloInGame.style.display = 'none';
+    }, 7000); 
+}
+function ocultarDialog() {
+    document.getElementById('dialog').style.display = 'none';
+}
 // Llama a checkForDoor en cada fotograma
 function update() {
     checkForDoor();
     requestAnimationFrame(update);
 }
+
+
 
 // Iniciar el juego
 iniciarJuego();

@@ -12,110 +12,140 @@
             <p>Tiempo: <span id="tiempo">0</span> segundos</p>
         </div>
         <div id="pantalla-inicial">
-            <div id="personaje">
-                <img src="imagenes/laia.png" alt="Laia">
+            <div id="containerInicial">
+                <div id="dialogo">
+                    <div id="bocadillo">
+                    </div>
+                </div>
+                <button id="siguienteBtn" onclick="mostrarSiguienteMensaje()">Siguiente</button>
+                <button id="comenzarBtn" style="display: none;">Comenzar</button>
+        </div>
+    </div>
+
+        <div id="tutorial" >
+            <div id="laia" style="display: none;">
+                
             </div>
-            <div id="dialogo">
-                <div id="bocadillo">
-                    <p id="mensaje">¡Hola! Soy Laia.</p>
+            <div id="bocadilloInGame" style="display: none;">
+                <div id="texto">
+                    
                 </div>
             </div>
-            <button id="siguienteBtn" onclick="mostrarSiguienteMensaje()">Siguiente</button>
-            <button id="comenzarBtn" style="display: none;">Comenzar</button>
         </div>
+        <div id="game-container" >
 
-    <div id="game-container" style="display: none;">
+            <div id="habitacion1" class="habitacion">
+                <div id="character"></div>
+                <div class="pared" id="bordeDer"></div>
+                <div class="pared" id="bordeIz"></div>
+                <div class="pared" id="izA"></div>
+                <div class="pared" id="izB"></div>
+                <div class="pared" id="izC"></div>
+                <div class="pared" id="izD"></div>
 
+                <div class="pared" id="cenA"></div>
+                <div class="pared" id="cenB"></div>
 
-        <div id="habitacion1" >
-            <div id="character"></div>
-            <div class="pared" id="bordeDer"></div>
-            <div class="pared" id="bordeIz"></div>
-            <div class="pared" id="bordeArrb"></div>
-            <div class="pared" id="bordeAbj"></div>
+                <div class="pared" id="techoA"></div>
 
-            <div id="techo1"></div>
-            <div id="techo2"></div>
-            <div id="techo3"></div>
-            <div id="techo4"></div>
+                <div class="pared" id="abajoA"></div>
 
-            <div class="pared" id="pasillo1left"></div>
-            <div class="pared" id="pasillo1right"></div>
-            <div class="pared" id="top1left"></div>
-            <div class="pared" id="top1right"></div>
-
-            <div class="pared" id="pasillo2bottom"></div>
-            <div class="pared" id="pasillo2right"></div>
-
-            <div class="pared" id="pasillo3left"></div>
-            <div class="pared" id="pasillo3top"></div>
-            <div class= "pared" id="pasillo3bottom"></div>
-
-            <div class="puerta1" id="puerta12" data-next-room="2"></div>
-            <div class="puerta1" id="puerta13" data-next-room="4"></div>
-            <div class="puerta1" id="puerta14" data-next-room="6"></div>
-            <div class="puerta1" id="puerta15" data-next-room="8"></div>
-            <div class="puerta1" id="puerta16" data-next-room="10"></div>
+                <div class="pared" id="derA"></div>
+                <div class="pared" id="derB"></div>
 
 
-        </div>
-
-            <!-- Elementos específicos de la habitación 2 (oficina)-->
-        <div id="habitacion2" style="display: none;">
-            <div class="flecha" data-previous-room="1"></div>
-            <div id="puerta3" class="puerta" data-next-room="3"></div>
-            <div id="llave" class="conseguible"></div>
-        </div>
-                    <!-- Elementos específicos de la habitación 3 (cocina) -->
-                <div id="habitacion3" style="display: none;">
-                    <div class="flecha" data-previous-room="2"></div>
-                </div>
-
-            <!-- Elementos específicos de la habitación 4 (habitacion vacía) -->
-        <div id="habitacion4"style="display: none;">
-            <div class="flecha" data-previous-room="1"></div>
-            <div id="puerta5" class="puerta"data-next-room="5"></div>
-        </div>
-                    <!-- Elementos específicos de la habitación 5 (habitación madera) -->
-                <div id="habitacion5" style="display: none;">
-                    <div  class="flecha" data-previous-room="4"></div>
-                    <div id="guia" class="conseguible"></div>
-                    <div id="libro1H5" class="inspeccionable"></div>
-                </div>
-
-            <!-- Elementos específicos de la habitación 6 (hab puerta cerrada)-->
-        <div id="habitacion6" style="display: none;">
-            <div class="flecha" data-previous-room="1"></div>
-            <div id="puerta7" class="puerta"data-next-room="7"></div>
-        </div>
-                    <!-- Elementos específicos de la habitación 6 (cuarto aerogenerador)-->
-                <div id="habitacion7" style="display: none;">
-                    <div class="flecha" data-previous-room="6"></div>
-                    <div id="aerogenerador" class="conseguible"></div>
-                </div>
-            <!-- Elementos específicos de la habitación 8 (oficina2) -->
-        <div id="habitacion8" style="display: none;">
-            <div class="flecha" data-previous-room="1"></div>
-            <!-- Esto no es la puerta, es el cajón, pero tiene la misma función -->
-            <div id="puerta9" class="puerta"data-next-room="9"></div>
-        </div>
-                    <!-- Interior del cajón -->
-                <div id="habitacion9" style="display: none;">
-                    <div class="flecha" data-previous-room="8"></div>
-                    <div id="bombilla" class="conseguible"></div>
-                </div>
-
+                <div class="pared" id="bordeArrb"></div>
+                <div class="pared" id="bordeAbj"></div>
                 
 
-    </div>
-    <div id="casillas-objetos-conseguidos" style="display: none;">
-        <div class="casilla-objeto" id="casilla1"></div>
-        <div class="casilla-objeto" id="casilla2"></div>
-        <div class="casilla-objeto" id="casilla3"></div>
-        <div class="casilla-objeto" id="casilla4"></div>
-        <div class="casilla-objeto" id="casilla5"></div>
-    </div>
-    </div>
+                <div class="puerta1" id="puerta12" data-next-room="2"></div>
+                <div class="puerta1" id="puerta13" data-next-room="4"></div>
+                <div class="puerta1" id="puerta14" data-next-room="6"></div>
+                <div class="puerta1" id="puerta15" data-next-room="8"></div>
+                <div class="puerta1" id="puerta16" data-next-room="10"></div>
+
+                <div id="techo1" class="pared"></div>
+                <div id="techo2" class="pared"></div>
+                <div id="techo3" class="pared"></div>
+                <div id="techo4" class="pared"></div>
+                <div id="techo4.1" class="pared"></div>
+
+
+            </div>
+
+                <!-- Elementos específicos de la habitación 2 (oficina)-->
+            <div id="habitacion2" class="habitacion" style="display: none;">
+                <div class="flecha" data-previous-room="1"></div>
+                <div id="puerta3" class="puerta" data-next-room="3"></div>
+                <div id="llave" class="conseguible"></div>
+                <div id="veleta" class="conseguible"></div>
+            </div>
+                        <!-- Elementos específicos de la habitación 3 (cocina) -->
+                    <div id="habitacion3" class="habitacion" style="display: none;">
+                        <div class="flecha" data-previous-room="2"></div>
+                    </div>
+
+                <!-- Elementos específicos de la habitación 4 (habitacion vacía) -->
+            <div id="habitacion4" class="habitacion" style="display: none;">
+                <div class="flecha" data-previous-room="1"></div>
+                <div id="puerta5" class="puerta"data-next-room="5"></div>
+            </div>
+                        <!-- Elementos específicos de la habitación 5 (habitación madera) -->
+                    <div id="habitacion5" class="habitacion" style="display: none;">
+                        <div  class="flecha" data-previous-room="4"></div>
+                        <div id="guia" class="conseguible"></div>
+                        <div id="libro1H5" class="inspeccionable"></div>
+                    </div>
+
+                <!-- Elementos específicos de la habitación 6 (hab puerta cerrada)-->
+            <div id="habitacion6" class="habitacion" style="display: none;">
+                <div class="flecha" data-previous-room="1"></div>
+                <div id="puerta7" class="puerta"data-next-room="7"></div>
+            </div>
+                        <!-- Elementos específicos de la habitación 6 (cuarto aerogenerador)-->
+                    <div id="habitacion7" class="habitacion" style="display: none;">
+                        <div class="flecha" data-previous-room="6"></div>
+                        <div id="aerogenerador" class="conseguible"></div>
+                    </div>
+                <!-- Elementos específicos de la habitación 8 (oficina2) -->
+            <div id="habitacion8" class="habitacion" style="display: none;">
+                <div class="flecha" data-previous-room="1"></div>
+                <!-- Esto no es la puerta, es el cajón, pero tiene la misma función -->
+                <div id="puerta9" class="puerta"data-next-room="9"></div>
+            </div>
+                        <!-- Interior del cajón -->
+                    <div id="habitacion9" class="habitacion" style="display: none;">
+                        <div class="flecha" data-previous-room="8"></div>
+                        <div id="bombilla" class="conseguible"></div>
+                    </div>
+            <!--puerta con contraseña-->
+            <div id="habitacion10" class="habitacion" style="display: none;">
+                <div id="puerta11" class="puerta" data-next-room="11"></div>
+                <div id="botanica" class="inspeccionable"></div>
+                <div class="flecha" data-previous-room="1"></div>
+            </div>
+
+            <div id="dialog" class="dialog">
+                <p>Ingrese la contraseña:</p>
+                <input type="text" id="passwordInput">
+                <button onclick="verificarContrasena()">Aceptar</button>
+                <button onclick="ocultarDialog()">Cancelar</button> <!-- Botón Cancelar -->
+            </div>
+                <div id="habitacion11" class="habitacion" style="display: none;">
+                    <div class="flecha" data-previous-room="10"></div>
+                    <div id="penDrive" class="conseguible"></div>
+                </div>
+        <!---->
+    
+            <div id="casillas-objetos-conseguidos" style="display: none;">
+                <div class="casilla-objeto" id="casilla1"></div>
+                <div class="casilla-objeto" id="casilla2"></div>
+                <div class="casilla-objeto" id="casilla3"></div>
+                <div class="casilla-objeto" id="casilla4"></div>
+                <div class="casilla-objeto" id="casilla5"></div>
+            </div>
+        </div>
+
     <script src="script.js"></script>
 </body>
 </html>
