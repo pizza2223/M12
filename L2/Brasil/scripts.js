@@ -27,7 +27,6 @@ function escribirEnPantalla(texto, callback) {
   }, 130);
 }
 
-// Primer llamado con una función de retorno de llamada
 escribirEnPantalla("¡Hola Laia! Soy Caucan Miri de la tribu Tatuyo   ", function () {
   escribirEnPantalla("Te hemos contratado para contar la cantidad total de niños que hay en la escuela", function () {
       escribirEnPantalla("Vas a tener que apretar la tecla espacio cada vez que veas uno", function () {
@@ -37,7 +36,10 @@ escribirEnPantalla("¡Hola Laia! Soy Caucan Miri de la tribu Tatuyo   ", functio
       });
   });
 });
+
+
 //////////////////////////////////////////////////////////////
+//Funciones generales
 
 function reproducirAudio(ruta, volumen) {
   try {
@@ -49,7 +51,19 @@ function reproducirAudio(ruta, volumen) {
   }
 }
 
-window.onload = function () {
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return "";
+}
+
+window.onload = function () {//Al cargar
+
   checkFirstVisit();
 
   var nivelGuardado = getCookie("Nivel");
@@ -73,12 +87,40 @@ window.onload = function () {
   }
 };
 
-//////
+
+function setCookie(name,value,days) {
+  var expires = "";
+  if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+
+function checkFirstVisit() {
+  var introDiv = document.getElementById('intro');
+  var juegoDiv = document.getElementById('all');
+
+  var visited = getCookie('visited');
+
+  if (visited) {
+    introDiv.style.display = 'none';
+    juegoDiv.style.display = 'block';
+
+  } else {
+    introDiv.style.display = 'relative';
+    setCookie('visited', 'true', 365); 
+  }
+}
+
+///////////////////////////////////////////////////////////
 var nivel = 1;
 var targetSquares;
 let counter = 0;
 let elapsedTime; 
-let timer; // Variable para el temporizador
+let timer; // Variable d el temporizador
 var squares = document.getElementsByClassName('square');
 document.getElementById('nivel').innerText = "Nivel: " + nivel;
 
@@ -102,36 +144,72 @@ function postintro() {
 var startTime = 0;
 
 function inicializa() {
-  setCookie("Tiempo(segundos)",0,1);
-  startTimer();
-
-  counter = 0; 
-  
-  document.getElementById('inicioJuego').style.display = 'none'; 
-  document.getElementById('game').style.zIndex = 1; 
-  document.getElementById('finjuego').style.display = 'none';
-  resetCounter();
+  inicializarCookies();
+  iniciarTimer();
+  ocultarElementos();
+  resetearContador();
   generacionEntidades();
-  startTime = Date.now(); // Marca de tiempo inicial
+  marcarTiempoInicial();
+  configurarEventos();
+  reproducirSonidoDeFondo();
+}
 
+function inicializarCookies() {
+  setCookie("Tiempo(segundos)", 0, 1);
+}
+
+function iniciarTimer() {
+  startTimer();
+}
+
+function ocultarElementos() {
+  document.getElementById('inicioJuego').style.display = 'none';
+  document.getElementById('game').style.zIndex = 1;
+  document.getElementById('finjuego').style.display = 'none';
+}
+
+function resetearContador() {
+  counter = 0;
+  document.getElementById('counter').innerText = counter;
+}
+
+function marcarTiempoInicial() {
+  startTime = Date.now();
+}
+
+function configurarEventos() {
   document.body.onkeyup = function (e) {
     if (e.keyCode == 32) {
-      counter++;
-      document.getElementById('counter').innerText = counter;
-
-      if (counter === targetSquares) {
-        elapsedTime = (Date.now() - startTime) / 1000;
-        setCookie("Tiempo(segundos)",elapsedTime.toFixed(2),1);
-        setCookie("Nivel", nivel, 1);
-        document.getElementById('nivel-inicio').innerText = "Nivel: " + nivel;
-        document.getElementById('tiempoinicio').innerText = "Tiempo: " + elapsedTime.toFixed(2) + " segundos";
-
-      }
+      aumentarContador();
     }
   };
-  reproducirAudio("audio/gameback.mp3", 0.2);
-
 }
+
+function aumentarContador() {
+  counter++;
+  document.getElementById('counter').innerText = counter;
+
+  if (counter === targetSquares) {
+    finalizarJuego();
+  }
+}
+
+function finalizarJuego() {
+  elapsedTime = (Date.now() - startTime) / 1000;
+  setCookie("Tiempo(segundos)", elapsedTime.toFixed(2), 1);
+  setCookie("Nivel", nivel, 1);
+  actualizarElementosFinJuego();
+}
+
+function actualizarElementosFinJuego() {
+  document.getElementById('nivel-inicio').innerText = "Nivel: " + nivel;
+  document.getElementById('tiempoinicio').innerText = "Tiempo: " + elapsedTime.toFixed(2) + " segundos";
+}
+
+function reproducirSonidoDeFondo() {
+  reproducirAudio("audio/gameback.mp3", 0.2);
+}
+
 
 function reiniciarnivel(){
   setCookie("Nivel", (nivel-1), 1);
@@ -142,111 +220,87 @@ function reiniciarYRecargar() {
   location.reload();
 }
 
-function getCookie(name) {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-  }
-  return "";
-}
-
-
-
 var puntostext = document.getElementsByClassName('puntostexto');
-tiempojuego= 16000;
+var tiempojuego =16000;
 function startTimer() {
   var resultado = document.getElementById('ganarperder');
   var tiempotext = document.getElementById('tiempottexto');
   var tiempoinicio = document.getElementById('tiempoinicio');
   var puntos;
 
-  if (timer !== null) {
-    clearTimeout(timer);
-    timer = null; // Restablece la variable timer
+  function resetTimer() {
+    if (timer !== null) {
+      clearTimeout(timer);
+      timer = null; // Restablece la variable timer
+    }
   }
+
+  function Ganar() {
+    reproducirAudio("audio/ganar.mp3", 0.5);
+    resultado.innerText = '¡ Ganaste !';
+    resultado.style.color = "#00E01F";
+    document.getElementById('finjuego').style.display = 'block';
+    tiempotext.innerText = 'Tiempo: ' + elapsedTime.toFixed(2) + ' (seg).';
+    var totalenchufes= targetSquares/5;
+    document.getElementById('niñostotalfin').innerText = 'Necesitaremos: ' + Math.ceil(totalenchufes)+' enchufes.';
+    updateScore();
+  }
+
+  function Perder() {
+    reproducirAudio("audio/perder.mp3", 1);
+    nivel++;
+    document.getElementById('siguienteJuego').style.display = 'none';
+    setCookie("puntos", "0", 1);
+    resultado.innerText = '¡Perdiste!';
+    resultado.style.color = 'red';
+    document.getElementById('finjuego').style.display = 'block';
+    document.getElementById('puntostexto').innerText = 'Puntos: ' + "0";
+    document.getElementById('puntostexto2').innerText = 'Puntos: ' + "0";
+    document.getElementById('niñostotalfin').innerText = 'Número total de niños: ' + targetSquares;
+    setCookie("Tiempo(segundos)", "No alcanzado", 1);
+    tiempotext.innerText = 'Tiempo: No alcanzado.';
+  }
+
+  function updateScore() {
+    puntos = calculatePoints();
+    setCookie("puntos", puntos, 1);
+    document.getElementById('puntostexto').innerText = 'Puntos: ' + puntos;
+    document.getElementById('puntostexto2').innerText = 'Puntos: ' + puntos;
+    counter = 0;
+    squares = [];
+    nivel++;
+    tiempojuego = tiempojuego + 7559;
+    setCookie("Nivel", nivel, 1);
+    document.getElementById('nivel').innerText = "Nivel: " + nivel;
+    document.getElementById('contador').innerText = "Contador: " + counter;
+  }
+
+  function calculatePoints() {
+    switch (true) {
+      case nivel >= 3 && elapsedTime < 15:
+        return 25;
+      case nivel < 3 && elapsedTime < 5:
+        return 25;
+      case nivel < 3 && elapsedTime >= 5 && elapsedTime <= 8:
+        return 20;
+      case nivel < 3 && elapsedTime > 8 && elapsedTime <= 12:
+        return 15;
+      case nivel < 3 && elapsedTime > 12 && elapsedTime <= 50:
+        return 10;
+      default:
+        return 0;
+    }
+  }
+
+  resetTimer();
   timer = setTimeout(function () {
     if (counter == targetSquares) {
-      reproducirAudio("audio/ganar.mp3", 0.5);
-
-      resultado.innerText = '¡ Ganaste !';
-      resultado.style.color = "#00E01F";
-      document.getElementById('finjuego').style.display = 'block';
-      tiempotext.innerText = 'Tiempo: ' + elapsedTime.toFixed(2) + ' (seg).';
-      var totalenchufes= targetSquares/5;
-      document.getElementById('niñostotalfin').innerText = 'Necesitaremos: ' + Math.ceil(totalenchufes)+' enchufes.';
-
-      console.log(tiempotext.innerText);
-
-      tiempoinicio.innerText = tiempotext.innerText; 
-      switch (true) {
-        case nivel >= 3 && elapsedTime < 15:
-          puntos = 25;
-          break;
-        case nivel < 3 && elapsedTime < 5:
-          puntos = 25;
-          break;
-        case nivel < 3 && elapsedTime >= 5 && elapsedTime <= 8:
-          puntos = 20;
-          break;
-        case nivel < 3 && elapsedTime > 8 && elapsedTime <= 12:
-          puntos = 15;
-          break;
-        case nivel < 3 && elapsedTime > 12 && elapsedTime <= 50:
-          puntos = 10;
-          break;
-        default:
-          puntos = 0;
-      }
-
-      setCookie("puntos", puntos, 1);
-      tiempojuego= tiempojuego+(targetSquares*600);
-
-      // Actualizar el elemento HTML que muestra los puntos en la página de inicio
-      document.getElementById('puntostexto').innerText = 'Puntos: ' + puntos;
-      document.getElementById('puntostexto2').innerText = 'Puntos: ' + puntos ;
-      counter = 0;
-      squares = []; // Reiniciar el arreglo de cuadrados completados
-      nivel++;
-
-      setCookie("Nivel", nivel, 1);
-      document.getElementById('nivel').innerText = "Nivel: " + nivel; 
-
-      document.getElementById('contador').innerText = "Contador: " + counter;
-
+      Ganar();
     } else {
-      reproducirAudio("audio/perder.mp3", 1);
-      nivel++;
-
-      document.getElementById('siguienteJuego').style.display = 'none';
-
-      setCookie("puntos", "0", 1);
-      resultado.innerText = '¡Perdiste!';
-      resultado.style.color = 'red';
-      document.getElementById('finjuego').style.display = 'block';
-      document.getElementById('puntostexto').innerText = 'Puntos: ' + "0";
-      document.getElementById('puntostexto2').innerText = 'Puntos: ' + "0" ;
-      document.getElementById('niñostotalfin').innerText = 'Número total de niños: ' + targetSquares;
-      tiempojuego= tiempojuego+(targetSquares*600);
-
-      setCookie("Tiempo(segundos)","No alcanzado",1);
-      
-      tiempotext.innerText = 'Tiempo: No alcanzado.';
+      Perder();
     }
   }, tiempojuego);
 }
-function setCookie(name,value,days) {
-  var expires = "";
-  if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + (days*24*60*60*1000));
-      expires = "; expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
-
 
  let intervalNiños;
  let intervalmonos;
@@ -268,7 +322,6 @@ if (counter === targetSquares) {
   document.getElementById('tiempoinicio').innerText = "Tiempo: " + elapsedTime.toFixed(2) + " segundos";
 }
 
-  // Generar nuevas entidades
   generacionEntidades();
   // Detiene el temporizador al pasar a la pantalla siguiente
   clearTimeout(timer);
@@ -323,7 +376,7 @@ function generacionEntidades() {
       }
       square.style.top = randomTop + 'px';
       // Animación
-      square.style.animation = 'move linear ' + (Math.random() * (4 + nivel * -1.3) + 4) + 's';
+      square.style.animation = 'move linear ' + (Math.random() * 4 + 4) + 's';
       
       document.getElementById('game').appendChild(square);
 
@@ -386,20 +439,4 @@ function pausarJuego() {
   }
 }
 
-function checkFirstVisit() {
-  var introDiv = document.getElementById('intro');
-  var juegoDiv = document.getElementById('all');
 
-  var visited = getCookie('visited');
-
-  if (visited) {
-    introDiv.style.display = 'none';
-    juegoDiv.style.display = 'block';
-
-  } else {
-    introDiv.style.display = 'relative';
-    setCookie('visited', 'true', 365); // La cookie expirará en 365 días
-  }
-}
-
-// Llamar a la función al cargar la página

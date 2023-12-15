@@ -63,7 +63,7 @@
     border-radius: 50px;
     cursor: pointer;
     font-family: 'Oswald', sans-serif;
-    border: 2px solid #fff; /* Contorno blanco */
+    border: 2px solid #fff; 
     background: linear-gradient(to bottom, #FF8529, #FF8529 80%, #954510 100%);    
     text-decoration: none;
 margin: 13px;
@@ -236,13 +236,13 @@ color: #ffffff;
     position: relative;
     z-index: 2;
     border-radius: 20px 20px 0px 0px;
-    padding: 10px; /* Agrega un espacio interno al contenedor */
-    text-align: center; /* Centra el texto dentro del contenedor */
+    padding: 10px; 
+    text-align: center; 
     align-items: center;
   }
   
   #counter {
-    margin: 0; /* Elimina los márgenes por defecto del párrafo */
+    margin: 0; 
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 50px;
     font-weight: bold;
@@ -397,9 +397,9 @@ background: hsl(212, 56%, 53%);
     position: absolute;
     width: 100%;
     display: flex; 
-    justify-content: center; /* Centra horizontalmente el contenido */
-    align-items: center; /* Centra verticalmente el contenido */
-    text-align: center; /* Alinea el texto al centro */
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
     padding-top: 40px;
 }
 
@@ -412,8 +412,8 @@ background: hsl(212, 56%, 53%);
 .contenedorExplicacionElementos {
     left: 10%;
     display: flex;
-    align-items: flex-start; /* Alinea los elementos en la parte superior */
-    justify-content: flex-start; /* Alinea los elementos en la parte izquierda */
+    align-items: flex-start; 
+    justify-content: flex-start; 
     position: relative;
     top: 0;
     margin-bottom: 500px;
@@ -436,15 +436,12 @@ background: hsl(212, 56%, 53%);
     background-color: #007e1c;
   }
 
-
-
-
   .cartelito {
     position: relative;
   background-color: #007e1c;
-  border-radius: 5px; /* Bordes redondeados del cartelito */
-  box-shadow: 0 2px 8px  rgb(0, 255, 55); /* Sombra del cartelito */
-  z-index: 1; /* Asegura que el cartelito esté encima de la imagen */
+  border-radius: 5px; 
+  box-shadow: 0 2px 8px  rgb(0, 255, 55); 
+  z-index: 1; 
 
 }
 #pausaBtn {
