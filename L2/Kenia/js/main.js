@@ -8,12 +8,11 @@ let vidas = 3;
 let juegoEnCurso = true;
 const imagenPersonaje = document.getElementById('imagenPersonaje');
 
-
 // VARIABLES DE PUNTUACIÓN
 let puntosVidas = 6; // resta 2 puntos por vida perdida
 let puntosObjetos = 0; //suma  2 puntos por objeto recogido
 let puntosTiempo; //resta 0.5 por s que pasa
-let puntosTiempoMax=13;
+let puntosTiempoMax = 13;
 let puntosXsegundo = 0.5;
 
 let gameTimer; // Variable para almacenar el temporizador
@@ -22,65 +21,61 @@ let colisionConObjeto = false;
 console.log(tiempoTranscurrido);
 
 //PUNTUACIONES INICIALES
-document.getElementById("puntuacionVidas").innerHTML =  puntosVidas;
-document.getElementById('puntuacionObjetos').innerHTML =  puntosObjetos;
-document.getElementById("puntuacionTiempo").innerHTML =  13;
-//document.getElementById("puntuacionVidas").innerHTML = puntosVidas ;
+document.getElementById("puntuacionVidas").innerHTML = puntosVidas;
+document.getElementById('puntuacionObjetos').innerHTML = puntosObjetos;
+document.getElementById("puntuacionTiempo").innerHTML = 13;
 
-iniciarTemporizador( );
+iniciarTemporizador();
 crearMapa();
-
 actualizarPosicionPersonaje();
 actualizarVidas();
 
-spawnObjeto("/L2/Kenia/images/objetos/piedra.png");
-spawnObjeto("/L2/Kenia/images/objetos/paloBuenoB.png");
-spawnObjeto("/L2/Kenia/images/objetos/placasolarBuenaB.png");
+spawnObjeto("/M12/L2/Kenia/images/objetos/piedra.png");
+spawnObjeto("/M12/L2/Kenia/images/objetos/paloBuenoB.png");
+spawnObjeto("/M12/L2/Kenia/images/objetos/placasolarBuenaB.png");
 
 
 inicioMovimientoAutomatico(); // que se mueva desde el principio
 movimientoPersonaje();
 
-function puntuacionFinal(){
-  // sumar puntos de objetos con puntosVidas y PuntosObjetos
+function puntuacionFinal() {
+
   let sumaPuntos;
   sumaPuntos = puntosObjetos + puntosTiempo + puntosVidas;
   document.getElementById('sumaPuntos').innerHTML = sumaPuntos;
-  document.cookie = "puntos=" + sumaPuntos+ ";  path=/;";
-  //expires=Thu, 01 Jan 1970 00:00:00 UTC;
+  document.cookie = "puntos=" + sumaPuntos + ";  path=/;";
+
 }
 
 // Agregar función para iniciar el temporizador
 function iniciarTemporizador() {
-  document.getElementById('temporizador').innerHTML = "[ "+tiempoTranscurrido + " segundos  ] ";
+  document.getElementById('temporizador').innerHTML = "[ " + tiempoTranscurrido + " segundos  ] ";
   gameTimer = setInterval(() => {
     tiempoTranscurrido++;
-    //document.getElementById('tiempo').innerHTML = "Tiempo";
 
-        // Calcular puntos por tiempo (resta puntosPorSegundo por cada segundo)
     puntosTiempo = Math.max(puntosTiempoMax - Math.floor(puntosXsegundo * tiempoTranscurrido), 0);
-    document.getElementById("puntuacionTiempo").innerHTML =  puntosTiempo;
+    document.getElementById("puntuacionTiempo").innerHTML = puntosTiempo;
 
-    document.getElementById('temporizador').innerHTML = "[ "+tiempoTranscurrido + " segundos  ]";
-  }, 1000); // Actualizar cada segundo (1000 milisegundos)
+    document.getElementById('temporizador').innerHTML = "[ " + tiempoTranscurrido + " segundos  ]";
+  }, 1000);
 }
 
-// Agregar función para detener el temporizador
+
 function detenerTemporizador() {
   clearInterval(gameTimer);
 }
 
 
 function actualizarVidas() {
-  imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDetras.gif";
+  imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeDetras.gif";
   for (let i = 1; i <= 3; i++) {
     const heart = document.getElementById(`heart${i}`);
     if (i <= vidas) {
       // Mostrar corazón lleno
-      heart.src = "/L2/Kenia/images/corazones/corazonPixel-entero.png";
+      heart.src = "/M12/L2/Kenia/images/corazones/corazonPixel-entero.png";
     } else {
       // Ocultar corazón vacío
-      heart.src = "/L2/Kenia/images/corazones/corazonPixel-vacio.png";
+      heart.src = "/M12/L2/Kenia/images/corazones/corazonPixel-vacio.png";
     }
   }
   perder();
@@ -90,7 +85,7 @@ function ganar() {
   if (leftPos === 0) {
     detenerTemporizador();
     puntuacionFinal();
-    
+
     popupFuncion('ganar');
   }
 }
@@ -118,19 +113,19 @@ function crearMapa() {
   for (let i = 0; i < arrayCamino.length; i++) {
     for (let j = 0; j < arrayCamino[i].length; j++) {
       if (arrayCamino[i][j] === 1) {
-        // Crea un nuevo elemento div para representar una parte del camino.
+
         let caminoDiv = document.createElement('div');
         caminoDiv.className = 'camino';
         //ajusta las posiciones 
         caminoDiv.style.top = i * 80 + 'px';
         caminoDiv.style.left = j * 100 + 'px';
-        game.appendChild(caminoDiv); // Agrega el div al juego.
+        game.appendChild(caminoDiv);
       }
     }
   }
 }
 function actualizarPosicionPersonaje() {
-  
+
   ganar();
   comprobarColisionObjeto();
   //posición personaje
@@ -140,19 +135,15 @@ function actualizarPosicionPersonaje() {
   //comprobar que no se sale
   comprobarPersonajeDentroCamino();
 
-  // printea posición del personaje
- // document.getElementById('posicion').innerHTML = "posición = [" + leftPos + ", " + topPos + "]";
 }
 
 function inicioMovimientoAutomatico() {
- 
+
   if (juegoEnCurso && vidas > 0) {
     intervalId = movimiento('up', 10);
   }
 }
 
-
-//FUNCION A CAMBIAR, YA NO HAY LIMITE DE MAPA
 function movimiento(direction, step) {
   return setInterval(() => {
     if (direction === 'left' && leftPos > 0) {
@@ -165,9 +156,47 @@ function movimiento(direction, step) {
       topPos += step;
     }
     actualizarPosicionPersonaje();
+
+
   }, 60); //VELOCIDAD  PONER A 80 LUEGO
 }
 
+
+
+function movimientoPersonaje() {
+  document.addEventListener('keydown', (event) => {
+    if (juegoEnCurso) {
+
+      // Detener el intervalo anterior antes de comenzar uno nuevo
+      clearInterval(intervalId);
+
+      switch (event.key) {
+        case 'ArrowLeft':
+          intervalId = movimiento('left', 10);
+          imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeIzquierda.gif";
+          break;
+        case 'ArrowRight':
+          intervalId = movimiento('right', 10);
+          imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeDerecha.gif";
+          break;
+        case 'ArrowUp':
+          intervalId = movimiento('up', 10);
+          imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeDetras.gif";
+          break;
+        case 'ArrowDown':
+          intervalId = movimiento('down', 10);
+          imagenPersonaje.src = " /M12/L2/Kenia/images/personaje/personajeDelante.gif";
+          break;
+        default:
+
+          break;
+      }
+
+
+    }
+
+  });
+}
 
 
 function spawnObjeto(imagenSrc) {
@@ -189,12 +218,12 @@ function spawnObjeto(imagenSrc) {
       contenedorImagen.style.left = objetoLeft + 'px';
       contenedorImagen.style.top = objetoTop + 'px';
       contenedorImagen.appendChild(imagenObjeto);
-      contenedorImagen.classList.add('objeto'); // Agregar clase que identifica a los objetos
+      contenedorImagen.classList.add('objeto');
       game.appendChild(contenedorImagen);
     }
   }
 
-  // Agregar la propiedad haColisionado al objeto
+
   imagenObjeto.haColisionado = false;
 }
 
@@ -203,11 +232,11 @@ function comprobarColisionObjeto() {
   const personajeWidth = personaje.offsetWidth;
   const personajeHeight = personaje.offsetHeight;
   const leftTop = leftPos;
-  const leftBottom = topPos; 
+  const leftBottom = topPos;
   const rightTop = leftPos + personajeWidth;
   const rightBottom = topPos + personajeHeight;
 
-  const objetos = document.querySelectorAll('.objeto'); // Clase que identifica a los objetos
+  const objetos = document.querySelectorAll('.objeto');
 
   objetos.forEach((objeto) => {
     if (!objeto.haColisionado) {
@@ -223,13 +252,11 @@ function comprobarColisionObjeto() {
         rightBottom > objetoTop
       ) {
         // Colisión con el objeto
-        console.log('Colisión con objeto');
-       
-        puntosObjetos +=2;
-        document.getElementById('puntuacionObjetos').innerHTML =  puntosObjetos;        //console.log(puntosObjetos);
-        
+
+        puntosObjetos += 2;
+        document.getElementById('puntuacionObjetos').innerHTML = puntosObjetos;
         objeto.remove();
-        
+
         objeto.haColisionado = true;
       }
     }
@@ -253,7 +280,6 @@ function verificarColisionObjetos(objetoLeft, objetoTop, imagenObjeto) {
         objetoTop + imagenObjeto.offsetHeight > existingObjetoTop
       ) {
         // Hay colisión con otro objeto
-
         objeto.remove();
         objeto.haColisionado = true;
 
@@ -264,7 +290,6 @@ function verificarColisionObjetos(objetoLeft, objetoTop, imagenObjeto) {
 
   return false;
 }
-
 
 function generarPosicionAleatoria() {
   const randomX = Math.floor(Math.random() * 8);
@@ -296,67 +321,29 @@ function verificarEsquinasEnCamino(objetoLeft, objetoTop, imagenObjeto) {
   return esquinasBloqueadas;
 }
 
-
-
- 
-function movimientoPersonaje() {
-  document.addEventListener('keydown', (event) => {
-    if (juegoEnCurso) {
-
-      // Detener el intervalo anterior antes de comenzar uno nuevo
-      clearInterval(intervalId);
-
-      switch (event.key) {
-        case 'ArrowLeft':
-          intervalId = movimiento('left', 10);
-          imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeIzquierda.gif";
-          break;
-        case 'ArrowRight':
-          intervalId = movimiento('right', 10);
-          imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDerecha.gif";
-          break;
-        case 'ArrowUp':
-          intervalId = movimiento('up', 10);
-          imagenPersonaje.src = "/L2/Kenia/images/personaje/personajeDetras.gif";
-          break;
-        case 'ArrowDown':
-          intervalId = movimiento('down', 10);
-          imagenPersonaje.src = " /L2/Kenia/images/personaje/personajeDelante.gif";
-          break;
-      }
-      
-    }
-  
-  });
-}
-
 function popupFuncion(resultado) {
   juegoEnCurso = false;
-  // Mostrar el pop-up
+
   const popup = document.getElementById('popup');
   popup.style.display = 'block';
 
-  // Obtener el elemento de contenido del pop-up
   const popupContent = document.getElementById('popupContent');
 
   if (resultado === 'ganar') {
-    // Mostrar el mensaje y el botón para el caso de "Ganaste"
+
     popupContent.innerHTML = document.getElementById('ganar').innerHTML;
   } else if (resultado === 'perder') {
-    // Mostrar el mensaje y el botón para el caso de "Perdiste"
+
     popupContent.innerHTML = document.getElementById('perder').innerHTML;
   }
 
-  // Agregar un evento al botón dentro del pop-up
   const botones = popupContent.querySelectorAll('button');
   botones.forEach((boton) => {
     boton.addEventListener('click', (event) => {
       const accion = event.target.getAttribute('data-action');
       if (accion === 'volver') {
-        // Reiniciar el juego (recargar la página)
         location.reload();
       } else if (accion === 'reiniciar') {
-        // Realizar otra acción para reiniciar si es necesario
         location.reload();
       }
     });
@@ -390,14 +377,12 @@ function comprobarPersonajeDentroCamino() {
   const bottomLeftIsBlocked = arrayCamino[bottomLeftRow][bottomLeftColumn] === 0;
   const bottomRightIsBlocked = arrayCamino[bottomRightRow][bottomRightColumn] === 0;
 
-
-
   if (topLeftIsBlocked || topRightIsBlocked || bottomLeftIsBlocked || bottomRightIsBlocked) {
     clearInterval(intervalId);
-    //actualiza las vidas
+
     vidas = vidas - 1;
-    puntosVidas = puntosVidas -2;
-    document.getElementById("puntuacionVidas").innerHTML =  puntosVidas ;
+    puntosVidas = puntosVidas - 2;
+    document.getElementById("puntuacionVidas").innerHTML = puntosVidas;
     actualizarVidas();
     inicioMovimientoAutomatico();
 
@@ -408,13 +393,13 @@ function comprobarPersonajeDentroCamino() {
 
   }
 
-  
+
 }
 
 function volverAlMapa() {
   window.location.href = "../../controllers_php/updatePuntosController.php";
 }
 
-function juego(){
+function juego() {
   window.location.href = 'juego.html';
 }
