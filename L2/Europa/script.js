@@ -30,15 +30,18 @@ const mensajesObjetos = {
     libro1H5: 'Es un álbum de fotos.',
     llave: 'Has encontrado una llave.',
     aerogenerador: '¡Buscaste en el armario y encontraste el aerogenerador!',
-    bombilla: "Has encontrado una bombilla y la has guardado."
+    bombilla: "Has encontrado una bombilla y la has guardado.",
+    veleta: '¡Es una veleta! Este instrumento se utiliza para conocer la dirección del viento',
+    botanica: 'Es una estantería con libros de botánica. Aquí pone que para plantar tomates se necesitan ocho horas de luz directa al día como mínimo. Creo que no nos será de ayuda.',
+    penDrive: 'Hay un pen drive en el ordenador. Aquí está toda la información necesaria para montar y mantener un molino de viento'
     // Agrega más objetos y mensajes según sea necesario
 };
 
 
 // Establecer posiciones iniciales en JavaScript
 character.style.position = 'absolute';
-character.style.left = '550px';
-character.style.top = '675px';
+character.style.left = '120px';
+character.style.top = '300px';
 
 // Función principal para inicializar el juego
 function iniciarJuego() {
@@ -444,8 +447,8 @@ function checkForDoor(){
             ) {
                 // Cambia de habitación aquí
                 console.log(`Cambiando de habitación: de ${currentRoom} a ${nextRoom}`);
-                character.style.top = `450px`;
-                character.style.left = `550px`;
+                character.style.top = `400px`;
+                character.style.left = `680px`;
 
                 changeRoom(nextRoom);
                 
@@ -532,7 +535,10 @@ function manejarObjetos(){
         const urlImagenes = {
             llave: 'imagenes/llave.jfif',
             guia: 'imagenes/guia.jfif',
-            bombilla: 'imagenes/bombilla.png'
+            bombilla: 'imagenes/bombilla.png',
+            aerogenerador: 'imagenes/aerogenerador2.png',
+            veleta: 'imagenes/veleta.png',
+            penDrive:'imagenes/penDrive.jpeg'
             // ... Agrega más objetos según sea necesario
         };
     
@@ -549,7 +555,10 @@ function manejarObjetos(){
             { id: 'guia', nombre: 'guia', imagen: 'imagen1.jpg', descripcion: 'Este es el objeto 1' },
             { id: 'llave', nombre: 'llave', imagen: 'llave.jfif', descripcion: 'Este es el objeto 2' },
             { id: 'bombilla', nombre: 'bombilla', imagen: 'bombilla.jfif', descripcion: 'Este es el objeto 3' },
-            { id: 'aerogenerador', nombre: 'aerogenerador', imagen: 'aerogenerador.jpg', descripcion: 'Este es el objeto 4' },
+            { id: 'aerogenerador', nombre: 'aerogenerador', imagen: 'aerogenerador.png', descripcion: 'Este es el objeto 4' },
+            { id: 'veleta', nombre: 'veleta', imagen: 'veleta.png', descripcion: '¡Es una veleta! Este instrumento se utiliza para conocer la dirección del viento'},
+            { id: 'penDrive', nombre: 'penDrive', imagen: 'penDrive.jpeg', descripcion: 'penDrive'},
+
             // Agrega más objetos según sea necesario
         ];
     
@@ -652,7 +661,7 @@ function mostrarBocadillo(mensaje) {
     // Agrega un evento para ocultar el bocadillo después de cierto tiempo (por ejemplo, 3 segundos)
     setTimeout(() => {
         bocadilloInGame.style.display = 'none';
-    }, 3000); // Cambia este valor según la duración que desees para mostrar el bocadillo
+    }, 7000); // Cambia este valor según la duración que desees para mostrar el bocadillo
 }
 // Llama a checkForDoor en cada fotograma
 function update() {
