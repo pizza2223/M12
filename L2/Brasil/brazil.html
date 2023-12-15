@@ -8,6 +8,9 @@
 />
   <link rel="stylesheet" href="style.css">
  <meta charset="UTF-8">
+ <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>Document</title>
  <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,33 +56,34 @@
     </div>
     <img id="jefebrasil" src="imagenes/brasilboss.png" alt="">
 
-
     <button type="button" id="botonlistoexplicacion" class="btn btn-success animate__animated animate__pulse" onclick="postintro()">¡YA ESTOY LISTO!</button>
 </div>
  <div id="all" class="all">
 
     <div id="inicioJuego" class="ventanaInicio">
       <h1 class="animate__animated animate__zoomInDown" id="bienvenido">Little Runners Brazil</h1>
-      <hr style="width: 350px;">
       <button class="animate__animated animate__pulse" id="comenzarJuego" >JUGAR</button>
       <div class="estadisticas animate__animated animate__zoomInUp">
-        <h3>Tus ultimas estadísticas</h3>
-        <p id="tiempoinicio">Tiempo:</p>
-        <p class="puntostexto"></p>
-        <p>Nivel: 1</p>
+        <h3 id="estadisticatitulo">Tus últimas estadísticas</h3>
+        <hr class="separador">
+        <p id="tiempoinicio" class="tiempottexto"></p>
+        <p  id="puntostexto" class="puntostexto"></p>
+        <p id="nivel-inicio" class="nivelestadistica">Nivel: 1</p>
       </div>
-
       
     </div> 
     <div class="contenedorcontador">
       <button id="pausaBtn" onclick="pausarJuego()"></button>
 
-      <p id="counter"></p>
-      <p id="nivel"></p>
+      <p id="counter">0</p>
+      <div class="nivelcontenedor">
+        <p id="nivel"></p>
+      </div>
 
     </div>
     <div class="gameBoxPause">
-      
+      <h2 class="pausadotext animate__animated animate__zoomInDown">¡ Juego Pausado !</h2>
+      <img class="imgpausa" src="imagenes/cafe.gif" alt="">
     </div>
     <div class="gameBox">
       <div class="areadelJuego">
@@ -87,24 +91,28 @@
         <div class="paredizquierda"><img class="paredizquierda" src="imagenes/paredizq.png" alt=""></div>
         <div class="juego" style="z-index: 1;">
           <div id="game" style="z-index: 1;"></div>
-   
+          
         </div>
       </div>
     </div>
     <div id="finjuego" class="ventanaFin">
-      <h1 id="bienvenido">Little Runners Brazil</h1>
-      <hr>
-      <br>
-      <h2 id="ganarperder"></h2>
-      <br>
-      <p id="tiempottexto"></p>
-      <p class="puntostexto"></p>
-      <button id="repetir" onclick="location.reload();">REINICIAR</button>
-      <button id="siguienteJuego" onclick="pantallasiguiente();">SIGUIENTE NIVEL</button>
+      <h1 id="finjuegotitulo">Little Runners Brazil</h1>
+      <hr class="separador">
+      <h2 class="animate__animated animate__tada" id="ganarperder"></h2>
+      <div class="estadisticasfin animate__animated animate__zoomInUp">
+      <p id="tiempottexto" class="tiempottexto"></p>
+      <p id="puntostexto2" class="puntostexto"></p>
+      <p id="niñostotalfin" class="niñostotalfin"></p>
 
-
-      <a id="volverJuego" 
-href = "../../controllers_php/updatePuntosController.php";>VOLVER A INICIO</a>
+      </div>
+      <div class="botonesdelfin">
+        <button id="repetir" class="botones" onclick="reiniciarYRecargar()">REPETIR NIVEL</button><br>
+        <button id="siguienteJuego" class="botones" onclick="pantallasiguiente();">SIGUIENTE NIVEL</button><br>
+        <br>
+        <a class="botones" id="volverJuego" 
+  href = "../../controllers_php/updatePuntosController.php";>VOLVER A INICIO</a>
+  
+      </div>
 
     </div>
 </div>

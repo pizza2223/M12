@@ -1,28 +1,47 @@
 * {
     margin: 0;
     padding: 0;
-   }
+    font-family: 'Roboto', sans-serif;
+    }
    
    #audio{
    display: none
    }
    
-   #nivel{
-    color: white;
+    .nivelcontenedor {
+      background-color: rgb(14, 127, 3);
+      width: 70px;
+      height: 22px;
+      z-index: 11111;
+      margin: 0 auto; /* Utiliza 'auto' para centrar horizontalmente */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+  }
+
+
+#nivel {
+    color: rgb(255, 255, 255);
     margin: 0;
-   }
-   
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
+
    .ventanaFin {
     display: none;
    }
    
    .ventanaFin {
     position: fixed;
-    height: 710px;
+    height: 705px;
     width: 1000px;
     background-color: rgba(0, 0, 0, 0.891);
-    border-radius: 10px;
-    color: white;
+    -webkit-border-radius: 0px 0px 10px 10px;
+    -moz-border-radius: 0px 0px 10px 10px;
+    border-radius: 0px 0px 10px 10px;
+        color: white;
     text-align: center;
     padding: 20px;
     display: flex;
@@ -31,67 +50,119 @@
     align-items: center;
     z-index: 3;
    }
+   .botonesdelfin{
+    margin-top: 10px;
+   }
    
-   
-   #volverJuego {
-    margin-top: 15px;
-    font-size: 20px;
+   .botones{
+    font-size: 18px;
     color: #ffffff;
     font-weight: bold;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
-    font-family: 'Quantico', sans-serif;
-    background: #147FFA;
+    font-family: 'Oswald', sans-serif;
+    border: 2px solid #fff; 
+    background: linear-gradient(to bottom, #FF8529, #FF8529 80%, #954510 100%);    
+    text-decoration: none;
+margin: 13px;
    }
    
+.botones:hover{
+  font-size: 20px;
+  color: #ffffff;
+font-weight: bold;
+padding: 10px 20px;
+border: none;
+border-radius: 50px;
+cursor: pointer;
+font-family: 'Oswald', sans-serif;
+border: 2px solid #fff; /* Contorno blanco */
+
+background: linear-gradient(to bottom, #f69c58, #f28f44 80%, #954510 100%);
+
+text-decoration: none;
+}
+
    .ventanaInicio {
     display: none;
    }
+   #finjuegotitulo{
+    margin-top: 15px;
+    word-spacing: -5.2px;
+    letter-spacing: 5.0px;
+    -webkit-text-stroke: 3px rgb(220, 220, 220);
+    color: #FFFFFF;
+text-shadow: -5px 5px 0px #00e6326f, -10px 10px 0prgba(1, 204, 18, 0.321)12,rgba(0, 189, 41, 0.412)15px 0px #00bd2970;
+color: #ffffff;
+    color: rgb(255, 255, 255);
+    font-family: 'Bebas Neue', sans-serif;    font-size: 70px;
+   }
    
    #bienvenido{
+    margin-top: 100px;
     word-spacing: -5.2px;
-    letter-spacing: -0.7px;
+    letter-spacing: 5.0px;
 
     -webkit-text-stroke: 3px rgb(220, 220, 220);
     color: #FFFFFF;
 text-shadow: -5px 5px 0px #00e6326f, -10px 10px 0prgba(1, 204, 18, 0.321)12,rgba(0, 189, 41, 0.412)15px 0px #00bd2970;
 color: #ffffff;
     color: rgb(255, 255, 255);
-    font-family: 'Quantico', sans-serif;
-    font-size: 70px;
+    font-family: 'Bebas Neue', sans-serif;    font-size: 70px;
    }
 
    #ganarperder{
-    color: rgb(255, 255, 255);
-    font-family: 'Quantico', sans-serif;
-    font-size: 50px;
+    font-family: 'Bebas Neue', sans-serif;    font-size: 70px;
+    font-size: 60px;
    }
 
-   #tiempottexto{
+   .tiempottexto{
     color: rgb(240, 240, 20);
-    font-family: 'Quantico', sans-serif;
-    font-size: 20px;
+    font-family: 'Roboto', sans-serif;   
+     font-size: 20px;
    }
    
-   #puntostexto{
-    color: rgb(65, 248, 15);
-    font-family: 'Quantico', sans-serif;
+   .niñostotalfin{
+    color: rgb(210, 109, 236);
+    font-family: 'Roboto', sans-serif;   
     font-size: 20px;
    }
+   .puntostexto{
+    color: rgb(65, 248, 15);
+    font-family: 'Roboto', sans-serif;    font-size: 20px;
+   }
 .estadisticas{
-  margin-top: 80px;
-  font-family: 'Quantico', sans-serif;
-  border: 6px groove #00E01F;
+  margin-top: 50px;
+  font-family: 'Roboto', sans-serif;
+    border: 6px groove #00E01F;
+  border-radius: 10px;
   padding: 20px;
 }
 
+.estadisticasfin {
+  margin-top: 0;
+  font-family: 'Roboto', sans-serif;
+    border: 6px groove #00E01F;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
    .ventanaInicio {
     position: fixed;
-    height: 760px;
+    height: 818px;
     width: 1000px;
-    background-color: rgba(0, 0, 0, 0.891);
+    background: #0000009f;
+    background: rgba(0, 0, 0, 0.6);
+    background: -moz-linear-gradient(top, rgb(0, 0, 0) 0%, rgba(9, 69, 6, 0.842) 50%, rgba(0, 0, 0, 0.913) 100%);
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.912) 0%, rgba(8, 62, 6, 0.786) 50%, rgba(0, 0, 0, 0.838) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.956) 0%, rgba(5, 47, 3, 0.829) 50%, rgba(0, 0, 0, 0.928) 100%);
+    
     border-radius: 10px;
     color: white;
     text-align: center;
@@ -105,56 +176,35 @@ color: #ffffff;
 
    }
    
-   #siguienteJuego{
-    margin-top: 15px;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Quantico', sans-serif;
-    background: #147FFA;
-   }
-
-   #repetir{
-    margin-top: 15px;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Quantico', sans-serif;
-    background: #147FFA;
-   }
+  
    
    #comenzarJuego {
+    border-radius: 50px;
     margin-top: 15px;
-    font-size: 20px;
+    font-size: 25px;
     color: rgb(255, 255, 255);
     font-weight: bold;
     padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
-    font-family: 'Quantico', sans-serif;
-    background: #147FFA;
-   
-   }
+    font-family: 'Oswald', sans-serif;
+    border: 2px solid #fff; /* Contorno blanco */
+    background: linear-gradient(to bottom, #FF8529, #FF8529 80%, #954510 100%);
+}
+
+
+
    
    #comenzarJuego:hover {
-    font-size: 20px;
+    border-radius: 50px;
+    margin-top: 15px;
+    font-size: 25px;
     color: rgb(255, 255, 255);
     font-weight: bold;
     padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+    border: 2px solid #fff; /* Contorno blanco */
     cursor: pointer;
-    font-family: 'Quantico', sans-serif;
-    background: hsl(212, 56%, 53%);
+    font-family: 'Oswald', sans-serif;
+    background: linear-gradient(to bottom, #f69c58, #f28f44 80%, #954510 100%);
   }
    
    
@@ -186,12 +236,13 @@ color: #ffffff;
     position: relative;
     z-index: 2;
     border-radius: 20px 20px 0px 0px;
-    padding: 10px; /* Agrega un espacio interno al contenedor */
-    text-align: center; /* Centra el texto dentro del contenedor */
+    padding: 10px; 
+    text-align: center; 
+    align-items: center;
   }
   
   #counter {
-    margin: 0; /* Elimina los márgenes por defecto del párrafo */
+    margin: 0; 
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 50px;
     font-weight: bold;
@@ -200,12 +251,28 @@ color: #ffffff;
     text-shadow: 0 0 3px #FFF, 0 0 3px #FFF, 0 0 3px #FFF, 0 0 10px #49ff18, 0 0 10px #49FF18, 0 0 10px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
   }
   
-  #nivel {
-    margin: 0; /* Elimina los márgenes por defecto del párrafo */
-    color: #FFFFFF;
-    background: #262626;
+
+
+  .nivelestadistica{
+    color: rgb(253, 144, 42);
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
   }
-  
+  #estadisticatitulo{
+    font-size: 34px;
+    word-spacing: -5.2px;
+    letter-spacing: 5.0px;
+    -webkit-text-stroke: 2px rgb(220, 220, 220);
+    color: #FFFFFF;
+text-shadow: -5px 5px 0px #00e6326f, -10px 10px 0prgba(1, 204, 18, 0.321)12,rgba(0, 189, 41, 0.412)15px 0px #00bd2970;
+color: #ffffff;
+    color: rgb(255, 255, 255);
+    font-family: 'Bebas Neue', sans-serif; 
+   }
+  .separador{
+    border: 1px solid rgba(21, 255, 0, 0.535);
+
+  }
     .areadelJuego{
     height: 100%;
     margin: 0;
@@ -303,7 +370,6 @@ color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Quantico', sans-serif;
     background: #147FFA;
 }
 
@@ -314,7 +380,6 @@ font-weight: bold;
 border: none;
 border-radius: 5px;
 cursor: pointer;
-font-family: 'Quantico', sans-serif;
 background: hsl(212, 56%, 53%);
 }
 
@@ -324,7 +389,6 @@ background: hsl(212, 56%, 53%);
     margin-right: 31%;
     margin-left: 6%;
     padding-left: 10px;
-    font-family: 'Quantico', sans-serif;
     animation: escribir 5s steps(50) infinite alternate;
     max-width: 178px;
     font-size: 14px;
@@ -333,9 +397,9 @@ background: hsl(212, 56%, 53%);
     position: absolute;
     width: 100%;
     display: flex; 
-    justify-content: center; /* Centra horizontalmente el contenido */
-    align-items: center; /* Centra verticalmente el contenido */
-    text-align: center; /* Alinea el texto al centro */
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
     padding-top: 40px;
 }
 
@@ -348,8 +412,8 @@ background: hsl(212, 56%, 53%);
 .contenedorExplicacionElementos {
     left: 10%;
     display: flex;
-    align-items: flex-start; /* Alinea los elementos en la parte superior */
-    justify-content: flex-start; /* Alinea los elementos en la parte izquierda */
+    align-items: flex-start; 
+    justify-content: flex-start; 
     position: relative;
     top: 0;
     margin-bottom: 500px;
@@ -361,7 +425,6 @@ background: hsl(212, 56%, 53%);
     padding: 10px;
     margin: 10px;
 
-font-family: 'Quantico', sans-serif;
 }
 
   .imgelement{
@@ -373,15 +436,12 @@ font-family: 'Quantico', sans-serif;
     background-color: #007e1c;
   }
 
-
-
-
   .cartelito {
     position: relative;
   background-color: #007e1c;
-  border-radius: 5px; /* Bordes redondeados del cartelito */
-  box-shadow: 0 2px 8px  rgb(0, 255, 55); /* Sombra del cartelito */
-  z-index: 1; /* Asegura que el cartelito esté encima de la imagen */
+  border-radius: 5px; 
+  box-shadow: 0 2px 8px  rgb(0, 255, 55); 
+  z-index: 1; 
 
 }
 #pausaBtn {
@@ -391,27 +451,44 @@ font-family: 'Quantico', sans-serif;
   right: 15px;
   background-color: transparent;
   background-repeat: no-repeat;
-  height: 60px; /* Tamaño deseado en altura */
-  width: 60px; /* Tamaño deseado en anchura */
+  height: 60px; 
+  width: 60px; 
   background-size: cover;
   border: none;
   cursor: pointer;
-  padding: 0; /* Elimina el relleno */
+  padding: 0; 
   background-image: url(imagenes/resume.png);
-  -webkit-border-radius: 25px; /* Mitad del tamaño deseado */
+  -webkit-border-radius: 25px; 
   -moz-border-radius: 25px;
   border-radius: 25px;
-  /* Otros estilos según sea necesario */
 }
 
+.pausadotext{
+  margin-top: 100px;
+  font-family: 'Bebas Neue', sans-serif; 
+  word-spacing: -5.2px;
+  letter-spacing: 5.0px;
+  -webkit-text-stroke: 3px rgb(220, 220, 220);
+  color: #FFFFFF;
+text-shadow: -5px 5px 0px #00e6326f, -10px 10px 0prgba(1, 204, 18, 0.321)12,rgba(0, 189, 41, 0.412)15px 0px #00bd2970;
+color: #ffffff;
+  color: rgb(255, 255, 255);
+  font-family: 'Bebas Neue', sans-serif;    font-size: 70px;
+}
+
+.imgpausa{
+  width: 80px;
+  height: 80px;
+}
 
 .gameBoxPause{
   position: fixed;
   height: 710px;
   width: 1000px;
   background-color: rgba(0, 0, 0, 0.891);
-  border-radius: 10px;
-  color: white;
+  -webkit-border-radius: 0px 0px 10px 10px;
+  -moz-border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 10px 10px;  color: white;
   text-align: center;
   padding: 20px;
   display: flex;
