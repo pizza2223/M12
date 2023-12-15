@@ -18,20 +18,7 @@ progress = 0;
 
 placeAmountOfHints();
 showItemUserIsSearching();
-
-let interval = setInterval(function () {
-    arePositionsEqual();
-    updateClock(); 
-    if(seconds > 10){
-        imgDragable.classList.add('help'); 
-        
-        if(seconds < 12){
-            hints--;
-        changeLightBulb(hints); 
-    }
-    }
- },1000);
-
+checkPositionInterval();
 
  objecInBinAchieved = false;
  
@@ -111,13 +98,24 @@ if ((imgDragable.offsetLeft >= bin.offsetLeft && imgDragable.offsetLeft <= bin.o
 }
 function checkUserWin(){
     if(progress == 100){
-        interval.clearinterval();
-        setCookie("puntos", 25, 1);
+
+       
         let winDiv = document.createElement("div");
         let homeButton = document.createElement("button");
+        let playAgain = document.createElement("button");
+        playAgain.setAttribute("class", "button");
+        playAgain.setAttribute("id", "replayButton");
+        playAgain.innerText = "juga un altre cop";
+        playAgain.addEventListener("click", function() {
+            location.reload();
+          });
+        clock.remove();
+        imgDragable.remove();
         homeButton.setAttribute("class", "button");
+        homeButton.setAttribute("id", "homeButton");
         homeButton.innerText = "surt";
         homeButton.addEventListener("click", function() {
+            setCookie("puntos", 25, 1);
             window.location = "../../controllers_php/updatePuntosController.php"
           });
         winDiv.setAttribute("id", "win"); 
@@ -125,6 +123,7 @@ function checkUserWin(){
         let winMessage = document.createTextNode("Has guanyat!");
         winDiv.appendChild(winMessage);
         winDiv.appendChild(homeButton);
+        winDiv.appendChild(playAgain);
         imgBackground.appendChild(winDiv);
         //window.location = "../../controllers_php/updatePuntosController.php"
 
@@ -153,7 +152,19 @@ function changeItemPosition(){
 
 
 function checkPositionInterval(){
- 
+ setInterval(function () {
+    arePositionsEqual();
+    updateClock(); 
+    if(seconds > 10){
+        imgDragable.classList.add('help'); 
+        
+        if(seconds < 12){
+            hints--;
+        changeLightBulb(hints); 
+    }
+    }
+ },1000);
+
 }
 
 function showItemUserIsSearching()

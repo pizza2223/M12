@@ -14,7 +14,16 @@ body, html {
     width: 150px;
     height: 150px;
 }
-
+#replayButton{
+position: absolute;
+top: 60%;
+left: 221px;
+}
+#homeButton{
+position: absolute;
+top: 60%;
+left: 40px;
+}
 #imgDragable{
   max-width: 100%;
   height: auto;
