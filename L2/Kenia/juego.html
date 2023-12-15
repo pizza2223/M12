@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini juego Kenia</title>
+  <link rel="stylesheet" href="/M12/L2/Kenia/css/css.css">
+</head>
+  
+<body>
+
+
+  <!--CONTENEDOR DE MALIK-->
+  <div id="deco-malik">  
+    <h1 id="textMalik">Necesito ayuda para recuperar <br>
+       el material y poder tener <br> electricidad en Langu</h1>
+    <img src="/M12/L2/Kenia/images/malik.png" id="malik">
+    <img src="/M12/L2/Kenia/images/textoMalikBlanco.png" id="malikSpeechBubble">
+  </div>
+
+  <!--CONTENEDOR DE ARROWS-->
+  <img src="/M12/L2/Kenia/images/keyboardArrows (1).png" id="flechas">
+
+  </div> 
+  <!--CONTENEDOR DE TIEMPO--> 
+  <div id="timer">
+    <h5 class="tiempo">TIEMPO </h5>
+    <div id="temporizador"> </div>
+  </div>
+
+  <!--CONTENEDOR DE PUNTOS-->
+  <div id="puntos">
+    <div id="titulo">
+      <h5>PUNTOS</h5>
+    </div>
+    <div id="puntos-div">
+      <h5 class="puntosObjetos">  Objetos </h5>
+      <h5 class="puntosVidas">  Vidas </h5>
+      <h5 class="puntosTiempo">  Tiempo</h5>
+    </div>
+    <div id="puntuacion-div">
+      <div id="puntuacionObjetos"> </div>
+      <div id="puntuacionVidas"></div>
+      <div id="puntuacionTiempo"></div>
+    </div>
+  </div>
+
+
+  <div id="game">
+
+   <img src="/M12/L2/Kenia/images/banderaMeta.png" id="banderaMeta">
+    <div id="personaje">
+      <img src="/M12/L2/Kenia/images/personaje/personajeDetras.gif" id="imagenPersonaje">
+    </div>
+
+    <div id="cuadrante"></div>
+    <div id="vidas">
+      <img src="/M12/L2/Kenia/images/corazones/corazonPixel-entero.png" id="heart1" class="heart">
+      <img src="/M12/L2/Kenia/images/corazones/corazonPixel-entero.png" id="heart2" class="heart">
+      <img src="/M12/L2/Kenia/images/corazones/corazonPixel-entero.png" id="heart3" class="heart">
+    </div>
+
+    <div id="popup" class="popup">
+      <div id="popupContent" class="popup-content">
+        <!-- Contenido del pop-up -->
+        <div id="ganar">
+          <h1>¡Ganaste!</h1>
+          <h1>Puntuación final: </h1>
+          <div id="sumaPuntos"></div>
+          <h1>¡Corre a mirar los rankings!</h1><br>
+          <button data-action="volver">Volver a jugar</button><br><br>
+          <button onclick="volverAlMapa()">Volver al mapa</button>
+        </div>
+
+        <div id="perder">
+          <h1>¡Perdiste! <br> Te has quedado sin vidas :c</h1> <br>
+          <button data-action="reiniciar">Reiniciar</button> <br><br>
+          <!--<button onclick="volverAlMapa()">Volver al mapa</button>-->
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <script src="/M12/L2/Kenia/js/main.js"></script>
+</body>
+
+</html>

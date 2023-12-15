@@ -8,37 +8,138 @@ body {
   background-size: cover;
 }
 
+button {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  border: 2px solid #fff;
+  background: linear-gradient(to bottom, #FF8529, #FF8529 80%, #954510 100%);
+  text-decoration: none;
+  
+}
+
+#botonJugar {
+  position: absolute;
+  top: 72%;
+  left: 25%;
+
+}
+
+button:hover {
+  font-size: 21px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  border: 2px solid #fff;
+
+  background: linear-gradient(to bottom, #f69c58, #f28f44 80%, #954510 100%);
+
+  text-decoration: none;
+}
+
 #game {
   height: 640px;
   width: 800px;
   background-color: rgba(255, 228, 196, 0.76);
-  /*background-color: rgba(38, 94, 41, 0.89);*/
+  
   border: 2px solid black;
   display: flex;
   align-items: center;
   position: relative;
-
+  
 }
 
-#malik{
+#fondoPrincipal {
+  height: 640px;
+  width: 800px;
+  background-color: rgba(248, 227, 201, 0.664);
+ 
+  border: 2px solid black;
+  background-image: url(/M12/L2/Kenia/images/paisaje4.png);
+  /*
+  border: 2px solid black;
+  background: transparent;
+  backdrop-filter: blur(10px);
+ */
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#laia {
+  position: absolute;
+  top: 17%;
+  left: 55%;
+}
+
+#textLaia {
+  position: absolute;
+  top: 10%;
+  left: 12%;
+  font-size: 25px;
+  text-align: center;
+  z-index: 2;
+}
+#textoAnimacion{
+  position: absolute;
+  top:26%;
+  left: 9%;
+}
+#cartel {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  opacity: 0.90;
+}
+#flechas{
+  position: absolute;
+  top: 4%;
+  left: 63%;
+}
+#malik {
   position: absolute;
   left: 73%;
   top: 28%;
 }
-#malikTexto{
+
+#textMalik {
   position: absolute;
-  left: 72%; 
   top: 20%;
-  
+  left: 73.5%;
+  z-index: 2;
+  text-align: center;
 }
- h1{
-  font-size:medium;
-  font-style: bold;
- }
-h5{
+
+#malikSpeechBubble {
+  position: absolute;
+  left: 72%;
+  top: 20%;
+  width: 14.5%;
+  height: 11%;
+  z-index: 1;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: medium;
+
+}
+
+h5 {
+  font-family: 'Bebas Neue', sans-serif;
   font-size: large;
   margin: 0%;
-} 
+}
+
 #puntos {
   height: 40px;
   width: 300px;
@@ -47,85 +148,51 @@ h5{
   align-items: center;
   position: absolute;
   top: 5%;
-  
+
   padding: 1%;
   display: flex;
-  flex-direction: column; /* Cambiado a columna */
+  flex-direction: column;
+  /* Cambiado a columna */
   /* Añadido espacio entre elementos */
-  align-items: center; /* Centrar elementos horizontalmente */
+  align-items: center;
+  /* Centrar elementos horizontalmente */
 }
 
 #titulo {
-  margin-bottom: 10px; /* Añadido espacio entre título y contenido */
+  margin-bottom: 10px;
+  /* Añadido espacio entre título y contenido */
 }
 
 #puntos-div {
   display: flex;
   flex-direction: row;
-  
-   
+
+
 }
+
 .puntosObjetos,
 .puntosVidas,
 .puntosTiempo {
   margin-right: 5px;
- margin-left: 5px;
+  margin-left: 5px;
 }
+
 #puntuacion-div {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   text-align: center;
-  
-   
+
+
 }
+
 #puntuacionObjetos,
 #puntuacionVidas,
 #puntuacionTiempo {
- margin-right: 25px;
- margin-left: 25px;
-  
+  margin-right: 25px;
+  margin-left: 25px;
+
 }
 
-
-/* Añadido estilo para cada tipo de punto */
-  
-
-
-
-
-/*OBJETOS
-.puntosObjetos{
-  position: absolute;
-  top:5%;
-  left: 35%;
-}
-#puntuacionObjetos{
-  position: absolute;
-  top: 11%;
-  left:35%;
-}
-/*VIDA
-.puntosVidas{
-  position: absolute;
-  top:5%;
-  left: 45%;
-}
-#puntuacionVidas{
-  position: absolute;
-  top: 11%;
-  left:45%;
-}
-/*TIEMPO
-.puntosTiempo{
-  position: absolute;
-  top:5%;
-  left: 55%;
-}
-#puntuacionTiempo{
-  position: absolute;
-  top: 11%;
-  left:55%;
-}
 
 
 /*TEMPORIZADOR*/
@@ -136,26 +203,15 @@ h5{
   backdrop-filter: blur(10px);
   /*border: 2px solid black; */
   display: flex;
-  flex-direction: column; /* Cambiado a columna */
+  flex-direction: column;
+  /* Cambiado a columna */
   align-items: center;
   position: absolute;
-  top: 20%;
-  left: 20%;
+  top: 7%;
+  left: 30%;
   padding: 1%;
 }
 
-/*
-.tiempo{
-  position: absolute;
-  top:20%;
-  left: 20%;
-}
-#temporizador{
-  position: absolute;
-  top: 26%;
-  left:19.5%;
-}
-*/
 .camino {
   height: 80px;
   width: 100px;
@@ -165,6 +221,14 @@ h5{
   position: absolute;
 }
 
+
+
+
+#banderaMeta {
+  position: absolute;
+  top: 420px;
+  z-index: 4;
+}
 
 #personaje {
   width: 40px;
@@ -226,40 +290,3 @@ h5{
   padding: 20px;
   text-align: center;
 }
-
-
-/*
-#banderaMeta{
-  position: absolute;
-  top: 420px;
- 
-  z-index: 2; 
-}
-#imagenPalo{
-
-  background-image: url('/images/paloPixelart.png');
-  background-size: cover;
-  z-index: 1;
-} 
-
-.placaSolar {
-  width: 50px;
-  height: 50px;
-  background-image: url('/images/placaSolar.png');
-  position: absolute;
-}
-
-.piedra {
-  width: 30px;
-  height: 30px;
-  background-image: url('/images/piedraPixelart.png');
-  position: absolute;
-}
-
-.palo {
-  width: 20px;
-  height: 80px;
-  background-image: url('/images/paloPixelart.png');
-  position: absolute;
-}
-*/
