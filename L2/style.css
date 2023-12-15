@@ -3,7 +3,7 @@ body {
     background-color: #f9f9f9; /* Fondo blanco */
     z-index: 1;
     margin: 0;
-    font-family: 'Bebas Neue', serif;
+    /*font-family: 'Bebas Neue', serif;*/
 
 }
 .navbar {
@@ -15,6 +15,9 @@ font-family: 'Bebas Neue', serif;
 
 }
 
+p{
+  font-family: 'Roboto', sans-serif;
+}
 .inicionubesyjuego{
   margin: 0;
   display: flex;
@@ -119,16 +122,12 @@ width: 300px;
 font-size: 20px;
 padding: 6px;
 }
-h1{
+h1, h3, h4{
 font-family: 'Bebas Neue', serif;
 }
 h2{
   font-family: 'Bebas Neue', serif;
   color: #726f77;
-
-}
-h3{
-  font-family: 'Bebas Neue', serif;
 
 }
 .titulonav {
@@ -139,6 +138,7 @@ h3{
 
 .procesos{
     background: #f9f9f9;
+    
     background-size: cover;
     margin: 0;
     padding: 0;
@@ -249,8 +249,8 @@ h3{
 .boton {
     padding: 5px 15px;
     text-decoration: none;
-    background-color: #147ffa;
-    border: 2px solid #67a9f5;
+    background-color: #ff8529;
+    border: 2px solid #ff913c;
     color: #fdfdfd;
     display: inline-block;
     position: relative;
@@ -305,11 +305,11 @@ h3{
 .despopout{
   font-size: 23px;
 }
-
+/*
 * {
   font-family: 'Bebas Neue', serif;
 }
-  
+  */
   .responsive-cell-block {
     min-height: 75px;
   }

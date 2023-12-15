@@ -28,19 +28,19 @@
         <div class="collapse navbar-collapse text-light justify-content-end" id="navbarNav">
             <ul class="navbar-nav animate__animated animate__zoomInRight">
                 <li class="nav-item">
-                    <a class="nav-link" href="#inicio">Inici</a>
+                    <a class="nav-link" href="#inicio">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#minijuegos">Minijocs</a>
+                    <a class="nav-link" href="#minijuegos">Minijuegos</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#procesos">Sobre el projecte</a>
+                  <a class="nav-link" href="#procesos">Sobre el proyecto</a>
               </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#nosaltres">Nosaltres</a>
+                  <a class="nav-link" href="#nosaltres">Nosotros</a>
               </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contacto">Contacte</a>
+                    <a class="nav-link" href="#contacto">Contacto</a>
                 </li>
                 
             </ul>
@@ -103,9 +103,9 @@
               <p class="despopout">Little runners Brazil</p>
               <div class="overlay"></div>
           </div>
-          <div class="col-md-3" onclick="showPopup('Kènia', 'img/', 'Recupera los materiales de la Laia para tener electricidad en Langu.')">
+          <div class="col-md-3" onclick="showPopup('Kènia', 'img/portfolio/juegoKenia.png', 'Recupera los materiales de la Laia para tener electricidad en Langu.')">
             <h4>Kènia</h4>
-              <img class="minijuegos" src="minijuego2.jpg" alt="Minijuego 2">
+              <img class="minijuegos" src="img/portfolio/juegoKenia.png" alt="Minijuego 2">
               <p class="despopout">Recupera los materiales</p>
               <div class="overlay"></div>
           </div>
@@ -196,9 +196,7 @@
                   <p class="text-blk position">
                     
                   </p>
-                  <p class="text-blk feature-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
+                
                   <div class="social-icons">
                     <a href="" target="_blank">
                       <img class="Linkedinicon" src="img/linkedin.png">
@@ -209,16 +207,14 @@
               <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
                 <div class="card">
                   <div class="team-image-wrapper">
-                    <img class="team-member-image" src="">
+                    <img class="team-member-image" src="img/team/raul.jpg">
                   </div>
                   <p class="text-blk name">
-                    Raul Ruiz
+                    Raul Ruiz de la Fuente
                   </p>
                   <p class="text-blk position">
                   </p>
-                  <p class="text-blk feature-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
+                 
                   <div class="social-icons">
                     <a href="" target="_blank">
                         <img class="Linkedinicon" src="img/linkedin.png">
@@ -230,7 +226,7 @@
               <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
                 <div class="card">
                   <div class="team-image-wrapper">
-                    <img class="team-member-image" src="">
+                    <img class="team-member-image" src="img/team/malena.jpg">
                   </div>
                   <p class="text-blk name">
                     Malena Montecino
@@ -238,9 +234,7 @@
                   <p class="text-blk position">
                     
                   </p>
-                  <p class="text-blk feature-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
+                 
                   <div class="social-icons">
                     <a href="" target="_blank">
                         <img class="Linkedinicon" src="img/linkedin.png">
@@ -252,7 +246,7 @@
               <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
                 <div class="card">
                   <div class="team-image-wrapper">
-                    <img class="team-member-image" src="">
+                    <img class="team-member-image" src="img/team/jack.jpg">
                   </div>
                   <p class="text-blk name">
                     Jack Vickery
@@ -260,9 +254,7 @@
                   <p class="text-blk position">
                     
                   </p>
-                  <p class="text-blk feature-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
+                 
                   <div class="social-icons">
                     <a href="" target="_blank">
                         <img class="Linkedinicon" src="img/linkedin.png">

@@ -1,7 +1,7 @@
 <?php 
 function openBD()
 {
-    $servername = "localhost";
+    $servername = "localhost:3307";
     $username = "root";
     $password = "";
     $conn = new PDO("mysql:host=$servername;dbname=juego", $username, $password);
