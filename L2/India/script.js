@@ -101,11 +101,15 @@ function checkUserWin(){
         setCookie("puntos", 25, 1);
         let winDiv = document.createElement("div");
         winDiv.setAttribute("id", "win"); 
-        winDiv.setAttribute("class", "card"); 
+        winDiv.setAttribute("class", "card");
         let winMessage = document.createTextNode("Has guanyat!");
+        let homeButton = document.createElement("a");
+        homeButton.setAttribute("class", "homeButton");
+        homeButton.setAttribute("href", "../../controllers_php/updatePuntosController.php");
         winDiv.appendChild(winMessage);
-        imgBackground.appendChild(winDiv);
-        window.location = "../../controllers_php/updatePuntosController.php"
+        winDiv.appendChild(homeButton);
+        winDiv.appendChild
+        //window.location = "../../controllers_php/updatePuntosController.php"
 
     }
 }
