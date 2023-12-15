@@ -4,6 +4,9 @@ body, html {
   #imgBin{
     max-width: 100%;
     height: auto;
+    position: absolute;
+    left: 450px;
+    z-index: 2;
   }
 
   #bin {
@@ -11,14 +14,42 @@ body, html {
     width: 150px;
     height: 150px;
 }
-
+#replayButton{
+position: absolute;
+top: 60%;
+left: 221px;
+}
+#homeButton{
+position: absolute;
+top: 60%;
+left: 40px;
+}
 #imgDragable{
   max-width: 100%;
   height: auto;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 #background{
   position: absolute;
-  z-index:-2
+  z-index:-2;
+  left: 0;
+  top: 0;
+}
+#cardObj{
+  width: 190px;
+  height: 254px;
+  top: 600px;
+  left: 1500px;
+  position: absolute;
+}
+#cardProgress{
+  width: 350px;
+  height: 200px;
+  top: 10px;
+  left: 15px;
+  position: absolute;
 }
 #clock{
   position: absolute;
@@ -35,11 +66,6 @@ body, html {
     cursor: grab;
 }
 .card {
-  width: 190px;
-  height: 254px;
-  top: 600px;
-  left: 1500px;
-  position: absolute;
   border-radius: 50px;
   background: #e0e0e0;
   box-shadow: 20px 20px 30px #bebebe,
@@ -48,21 +74,6 @@ body, html {
     justify-content: center;
     align-items: center
  }
- .cardbulbs {
-  width: 190px;
-  height: 254px;
-  top: 600px;
-  left: 1500px;
-  position: absolute;
-  border-radius: 50px;
-  background: #e0e0e0;
-  box-shadow: 20px 20px 30px #bebebe,
-                -20px -20px 60px #ffffff;
-                display: flex;
-    justify-content: center;
-    align-items: center
- }
-
  .help {
     width: 30px;
     height: 30px;
@@ -73,14 +84,10 @@ body, html {
       0 0 20px 5px rgb(255, 136, 0), /* middle magenta */
       0 0 30px 18px rgb(255, 208, 0); /* outer cyan */
  }
- .girl{
-width: 596px;
-height: 861px;
- }
+
  .eye{
 width: 60px;
 height: 60px;
-left: 10px;
 
 position: absolute;
 background:
@@ -101,14 +108,70 @@ margin-top: -7.5px;
  }
 
  .eye:nth-child(1){
-  left: 226px;
-  top: 195px;
+  left: 84px;
+  top: 105px;
   }
 
   .eye:nth-child(2){
-  left: 290px;
-  top: 199px;
+  left: 146px;
+  top: 113px;
   }
-  #alisha{
-    z-index: 10;
+  #girl{
+  height: max-content;
+  width: max-content;
+  position: absolute;
+  top: 240px;
+  left: 10px;
+  }
+  #gameBoard{
+    position: relative;
+    height: 1024px;
+    width: 1024px;
+    top: 0px;
+    left: 400px;
+  }
+  #win
+  {
+position: absolute;
+top: 35%;
+left: 30%;
+font-size: 50px;
+font-weight: bold;
+height: 260px;
+width: 450px;
+  }
+  .button {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    border: 2px solid #fff; 
+    background: linear-gradient(to bottom, #FF8529, #FF8529 80%, #954510 100%);    
+    text-decoration: none;
+    margin: 13px;
+   }
+   .botones:hover{
+    font-size: 21px;
+    color: #ffffff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  border: 2px solid #fff; 
+  
+  background: linear-gradient(to bottom, #f69c58, #f28f44 80%, #954510 100%);
+  
+  text-decoration: none;
+  }
+   
+   #startGameButton {
+  position: absolute;
+  top: 45%;
+  left: 40%;
   }

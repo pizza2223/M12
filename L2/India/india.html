@@ -6,51 +6,44 @@
     <title>Document</title>
 </head>
 <body onload="">
-    
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <div id="gameBoard">
-        
-      
-        
+    <div class="card" id="cardProgress">
+        <link rel="stylesheet" type="text/css" href="styles.css" />
         <div id="energyBar">
             <span style='font-size:30px; color: green;'>&#9851;</span>
             <progress id="load" value="0" max="100" style="background-color: green;"></progress>
         </div>
-        <div id="bulbCard">
-
+        <div id="bulbCard"></div>
+    </div>
+    <div class="card" id="cardObj">
+        <div id="itemToSearch">
+            <img src="" alt="empty" id="imgSearchable">
+        </div> 
+     
+    </div>
+    <div id="girl">
+                        
+        <div class="eye">
+         <div class="pupil"></div>
         </div>
-                    <div class="dragable" id="dragItem">
-                        <img src="img/glassbottle.png" alt="item" id="imgDragable" class="">
-                    </div>
-                    <div id="bin" style="top: 750px; left: 10px;">
-                        <img src="img/pixelBin.png" alt="bin" id="imgBin">
-                    </div>
+        <div class="eye">
+         <div class="pupil"></div>
+        </div>
+        <img id="alisha" src="img/alisha_no_background.png" alt="">
+     </div>
+    <div id="bin" style="top: 669px; left: 10px;">
+        <img src="img/pixelBin.png" alt="bin" id="imgBin">
+    </div>
+    <div id="gameBoard">
+        <button class="button" id="startGameButton">Start Game</button>
                    
-                    <div id="background" style="top: -19px; left: 400px; height: 1024px; width: 1024px;">
-                        <img src="img/dump.png" alt="dump" id="imgBack">
-                        
-                            <h1 id="clock"></h1>
-                        
-                    </div>
+                        <img src="img/glassbottle.png" alt="item" id="imgDragable" style="top: 150px; left: 640px; position: absolute;" class="dragable">
+                    
                    
-                    <div class="card">
-                        <div id="itemToSearch">
-                            <img src="" alt="empty" id="imgSearchable">
-                        </div> 
-                     
+                    <img src="img/dump.png" alt="dump" id="imgBack">
+                    <h1 id="clock"></h1>
+                    <div id="background" style="top: -19px; left: 400px; height: 1024px; width: 1024px;"> 
                     </div>
-
-                    <div class="girl">
-                        
-                       <div class="eye">
-                        <div class="pupil"></div>
-                       </div>
-                       <div class="eye">
-                        <div class="pupil"></div>
-                       </div>
-                       <img id="alisha" src="img/alisha_no_background.png" alt="">
-                    </div>
-                   
+                    
     </div>
     <script src="script.js"></script>
 </body>

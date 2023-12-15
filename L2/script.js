@@ -10,8 +10,7 @@ function habilitarJuego() {
     overlay.style.visibility = 'hidden';
 }
 
-// Agregar evento de clic al botón en el centro
-btnCentro.addEventListener('click', habilitarJuego);
+
 
 
 

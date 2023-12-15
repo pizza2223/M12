@@ -25,22 +25,22 @@
             
         </button>
         <h1 class="titulopagina animate__animated animate__zoomInLeft"; >El món de la Laia</h1>
-        <div class="collapse navbar-collapse text-light justify-content-end" id="navbarNav">
+        <div class="collapse navbar-collapse  justify-content-end" id="navbarNav">
             <ul class="navbar-nav animate__animated animate__zoomInRight">
                 <li class="nav-item">
-                    <a class="nav-link" href="#inicio">Inici</a>
+                    <a class="nav-link" href="#inicio">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#minijuegos">Minijocs</a>
+                    <a class="nav-link" href="#minijuegos">Minijuegos</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#procesos">Sobre el projecte</a>
+                  <a class="nav-link" href="#procesos">Sobre el proyecto</a>
               </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#nosaltres">Nosaltres</a>
+                  <a class="nav-link" href="#nosaltres">Nosotros</a>
               </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contacto">Contacte</a>
+                    <a class="nav-link" href="#contacto">Contacto</a>
                 </li>
                 
             </ul>
@@ -103,22 +103,22 @@
               <p class="despopout">Little runners Brazil</p>
               <div class="overlay"></div>
           </div>
-          <div class="col-md-3" onclick="showPopup('Kènia', 'img/', 'Descripción del Minijuego 1.')">
+          <div class="col-md-3" onclick="showPopup('Kènia', 'img/portfolio/juegoKenia.png', 'Recupera los materiales de la Laia para tener electricidad en Langu.')">
             <h4>Kènia</h4>
-              <img class="minijuegos" src="minijuego2.jpg" alt="Minijuego 2">
-              <p>Descripción del Minijuego 2.</p>
+              <img class="minijuegos" src="img/portfolio/juegoKenia.png" alt="Minijuego 2">
+              <p class="despopout">Recupera los materiales</p>
               <div class="overlay"></div>
           </div>
-          <div class="col-md-3" onclick="showPopup('India', 'img/', 'Descripción del Minijuego 1.')">
+          <div class="col-md-3" onclick="showPopup('India', 'img/portfolio/juegoIndia.png', 'Encuentra los objetos escondidos que son reciclables. No pierdas todas las bombillas, cuanto más bombillas mejor puntuación.')">
             <h4>India</h4>
-              <img class="minijuegos" src="minijuego3.jpg" alt="Minijuego 3">
-              <p>Descripción del Minijuego 3.</p>
+              <img class="minijuegos" src="img/portfolio/juegoIndia.png" alt="Minijuego 3">
+              <p class="despopout">Vertedero</p>
               <div class="overlay"></div>
           </div>
-          <div class="col-md-3" onclick="showPopup('Europa', 'img/portfolio/1.jpg', 'Descripción del Minijuego 1.')">
+          <div class="col-md-3" onclick="showPopup('Europa', 'img/portfolio/juegoEuropa.png', 'Investiga el lugar y consigue los objetos ocultos.')">
             <h4>Europa</h4>
-              <img class="minijuegos" src="minijuego4.jpg" alt="Minijuego 4">
-              <p>Descripción del Minijuego 4.</p>
+              <img class="minijuegos" src="img/portfolio/juegoEuropa.png" alt="Minijuego 4">
+              <p class="despopout">Granja eólica</p>
               <div class="overlay"></div>
 
           </div>
@@ -196,9 +196,7 @@
                   <p class="text-blk position">
                     
                   </p>
-                  <p class="text-blk feature-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
+                
                   <div class="social-icons">
                     <a href="" target="_blank">
                       <img class="Linkedinicon" src="img/linkedin.png">
@@ -209,16 +207,14 @@
               <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
                 <div class="card">
                   <div class="team-image-wrapper">
-                    <img class="team-member-image" src="">
+                    <img class="team-member-image" src="img/team/raul.jpg">
                   </div>
                   <p class="text-blk name">
-                    Raul Ruiz
+                    Raul Ruiz de la Fuente
                   </p>
                   <p class="text-blk position">
                   </p>
-                  <p class="text-blk feature-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
+                 
                   <div class="social-icons">
                     <a href="" target="_blank">
                         <img class="Linkedinicon" src="img/linkedin.png">
@@ -230,7 +226,7 @@
               <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
                 <div class="card">
                   <div class="team-image-wrapper">
-                    <img class="team-member-image" src="">
+                    <img class="team-member-image" src="img/team/malena.jpg">
                   </div>
                   <p class="text-blk name">
                     Malena Montecino
@@ -238,9 +234,7 @@
                   <p class="text-blk position">
                     
                   </p>
-                  <p class="text-blk feature-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
+                 
                   <div class="social-icons">
                     <a href="" target="_blank">
                         <img class="Linkedinicon" src="img/linkedin.png">
@@ -252,7 +246,7 @@
               <div class="responsive-cell-block wk-desk-3 wk-ipadp-3 wk-tab-6 wk-mobile-12 card-container">
                 <div class="card">
                   <div class="team-image-wrapper">
-                    <img class="team-member-image" src="">
+                    <img class="team-member-image" src="img/team/jack.jpg">
                   </div>
                   <p class="text-blk name">
                     Jack Vickery
@@ -260,9 +254,7 @@
                   <p class="text-blk position">
                     
                   </p>
-                  <p class="text-blk feature-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </p>
+                 
                   <div class="social-icons">
                     <a href="" target="_blank">
                         <img class="Linkedinicon" src="img/linkedin.png">

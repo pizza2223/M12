@@ -16,7 +16,10 @@ $passwords = getPasswordByEmails($userName);
         header('Location: ../L2/landing.php'); 
         exit(); 
     } else {
-        echo "false";
+       if($userName == "admin"){
+        header('Location: ../L2/landingAdmin.php'); 
+       }
+        
     }
 
 }
