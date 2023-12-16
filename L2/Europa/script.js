@@ -5,6 +5,7 @@ const paredes = document.querySelectorAll('.pared');
 const puertas = document.querySelectorAll('.puerta');
 const flechas = document.querySelectorAll('.flecha');
 const puertas1 = document.querySelectorAll('.puerta1');
+const wasdDiv = document.getElementById('wasd');
 const objetosInspeccionables = document.querySelectorAll('.inspeccionable');
 const objetosConseguibles = document.querySelectorAll('.conseguible');
 const objetosConseguidos = [];
@@ -17,23 +18,34 @@ let puntos;
 
 
 const mensajes = [
-    "¡Hola! Soy Laia",
-    "Estoy emocionada de que estés aquí.",
-    "Estoy emocionada de que estés aquí.",
-    "Explora y descubre los secretos que aguardan.",
-    "Explora y descubre los secretos que aguardan."
+    "¡Hemos aterrizado en Barcelona!",
+    "Estamos en una urbanización en las afueras de la ciudad.",
+    "Estamos en una urbanización en las afueras de la ciudad.",
+    "Nos han pedido ayuda para construir una granja eólica.",
+    "Nos han pedido ayuda para construir una granja eólica.",
+    "Tendremos que investigar el lugar, recaudar información...",
+    "Tendremos que investigar el lugar, recaudar información...",
+    "y encontrar los materiales necesarios para comenzar.",
+    "y encontrar los materiales necesarios para comenzar.",
+    "Tendremos que mirar cada zona con cuidado para... ",
+    "Tendremos que mirar cada zona con cuidado para... ",
+    "no dejarnos nada que nos resulte útil para la granja.",
+    "no dejarnos nada que nos resulte útil para la granja.",
+    "¡Empecemos!"
 
    
 ];
 const mensajesObjetos = {
     guia: '¡Has conseguido la guía!',
     libro1H5: 'Es un álbum de fotos.',
-    llave: 'Has encontrado una llave.',
-    aerogenerador: '¡Buscaste en el armario y encontraste el aerogenerador!',
+    llave: 'Bajo esta maceta habñia una llave. Quizás podamos abrir alguna puerta por ella',
+    aerogenerador: '¡Hemos encontrado todos los materiales necesarios para contruir un aerogenerador!. Será pequeño pero para empezar nos bastará',
     bombilla: "Has encontrado una bombilla y la has guardado.",
     veleta: '¡Es una veleta! Este instrumento se utiliza para conocer la dirección del viento',
     botanica: 'Es una estantería con libros de botánica. Aquí pone que para plantar tomates se necesitan ocho horas de luz directa al día como mínimo. Creo que no nos será de ayuda.',
-    penDrive: 'Hay un pen drive en el ordenador. Aquí está toda la información necesaria para montar y mantener un molino de viento'
+    penDrive: 'Hay un pen drive en el ordenador. Aquí está toda la información necesaria para montar y mantener un molino de viento',
+    libroAire: 'Hay una libro de energía eólica: Antes de instalar un molino eólico es necesario analizar la dirección, tempratura y fuerza del aire. ¡Genial esto nos será útil',
+    notaContrasenya: 'Hay una nota: el instrumento que sirve para medir la velocidad del viento se llama "anemómetro". Tal vez nos sea útil esta información en algún momento'
     
 };
 
@@ -51,8 +63,11 @@ function iniciarJuego() {
     document.getElementById('siguienteBtn').addEventListener('click', mostrarSiguienteMensaje);    
 
     comenzarJuego();
+
     asignarEventListeners();
     manejarObjetos();
+    const wasdDiv = document.getElementById('wasd');
+    wasdDiv.style.display = currentRoom === 1 ? 'block' : 'none';
 }
 
 // Función para asignar event listeners
@@ -128,7 +143,6 @@ function mostrarSiguienteMensaje() {
         mostrarMensaje(mensajes[indiceMensajeActual]);
     } else {
         // Muestra el mensaje de inicio y oculta el botón de siguiente
-        mostrarMensaje("¡Empecemos!");
         ocultarBotonSiguiente();
         mostrarBotonComenzar();
     }
@@ -344,7 +358,7 @@ function verificarVictoria() {
     const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
 
     if (guiaConseguida && aeroConseguido) {
-        mostrarBocadillo('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
+        mostrarBocadillo('¡Has ganado! Has conseguido todo lo necesario para empezar a construir la granja. ¡Felicidades!');
         switch(tiempoTranscurrido){
             case tiempoTranscurrido <= 30 && tiempoTranscurrido:
                 puntos = 25;
@@ -366,8 +380,10 @@ function verificarVictoria() {
                 break;
                 default: puntos = 1;
         }
-        setCookie('puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
-        window.location.href = '../../controllers_php/updatePuntosController.php';
+        setTimeout(() => {
+            setCookie('Puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
+            window.location.href = '../../controllers_php/updatePuntosController.php';
+        }, 3000); // 3 segundos
     }
 }
 objetosConseguibles.forEach((objeto) => {
@@ -439,7 +455,7 @@ function checkForDoor() {
             characterRect.bottom > puertaRect.top
         ) {
             // Determinar la puerta de salida y ajustar la posición del personaje
-            ajustarPosicionPersonajeAlSalir(puerta.id);
+            ajustarPosicionPersonaje(puerta.id);
 
             // Cambia de habitación aquí
             console.log(`Cambiando de habitación: de ${currentRoom} a ${nextRoom}`);
@@ -460,23 +476,23 @@ function changePreviousRoom(previousRoom) {
 
     // Actualiza el estado del juego
     currentRoom = previousRoom;
+    actualizarEstadoWasd();
 
-    ajustarPosicionPersonaje(previousRoom);
     // Ajusta la posición inicial del personaje en la nueva habitación
 
 }
-function ajustarPosicionPersonajeAlSalir(puertaId) {
+function ajustarPosicionPersonaje(puertaId) {
     switch(puertaId) {
         case 'puerta12':
         case 'puerta13':
         case 'puerta15':
-            character.style.top = `${parseInt(character.style.top, 10) + 25}px`;
+            character.style.top = `${parseInt(character.style.top, 10) + 35}px`;
             break;
         case 'puerta14':
-            character.style.left = `${parseInt(character.style.left, 10) + 25}px`;
+            character.style.left = `${parseInt(character.style.left, 10) + 35}px`;
             break;
         case 'puerta16':
-            character.style.left = `${parseInt(character.style.left, 10) - 25}px`;
+            character.style.left = `${parseInt(character.style.left, 10) - 35}px`;
             break;
         default:
             // Posición predeterminada si no es una de las puertas específicas
@@ -637,6 +653,7 @@ function changeRoom(nextRoom) {
 
     // Actualiza el estado del juego
     currentRoom = nextRoom;
+    actualizarEstadoWasd();
 
 }
 function mostrarBocadillo(mensaje) {
@@ -653,6 +670,13 @@ function mostrarBocadillo(mensaje) {
 }
 function ocultarDialog() {
     document.getElementById('dialog').style.display = 'none';
+}
+function actualizarEstadoWasd() {
+    if (currentRoom === 1) {
+        wasdDiv.style.display = 'block';
+    } else {
+        wasdDiv.style.display = 'none';
+    }
 }
 // Llama a checkForDoor en cada fotograma
 function update() {

@@ -34,6 +34,8 @@
         </div>
         <div id="game-container" >
 
+            <div id="wasd"></div>
+
             <div id="habitacion1" class="habitacion">
                 <div id="character"></div>
                 <div class="pared" id="bordeDer"></div>
@@ -88,6 +90,7 @@
                 <!-- Elementos específicos de la habitación 4 (habitacion vacía) -->
             <div id="habitacion4" class="habitacion" style="display: none;">
                 <div class="flecha" data-previous-room="1"></div>
+                <div id="notaContrasenya" class="inspeccionable"></div>
                 <div id="puerta5" class="puerta"data-next-room="5"></div>
             </div>
                         <!-- Elementos específicos de la habitación 5 (habitación madera) -->
@@ -111,13 +114,8 @@
             <div id="habitacion8" class="habitacion" style="display: none;">
                 <div class="flecha" data-previous-room="1"></div>
                 <!-- Esto no es la puerta, es el cajón, pero tiene la misma función -->
-                <div id="puerta9" class="puerta"data-next-room="9"></div>
+                <div id="libroAire" class="conseguible"></div>
             </div>
-                        <!-- Interior del cajón -->
-                    <div id="habitacion9" class="habitacion" style="display: none;">
-                        <div class="flecha" data-previous-room="8"></div>
-                        <div id="bombilla" class="conseguible"></div>
-                    </div>
             <!--puerta con contraseña-->
             <div id="habitacion10" class="habitacion" style="display: none;">
                 <div id="puerta11" class="puerta" data-next-room="11"></div>
