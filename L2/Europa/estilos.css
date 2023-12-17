@@ -418,15 +418,15 @@ body {
 }
 #llave{
     position: absolute;
-    width: 3.5%;
-    height: 4.5%;
+    width: 5.5%;
+    height: 5.5%;
     top:24%;
     left: 75.5%;
 }
 #veleta{
     position: absolute;
-    width: 3.3%;
-    height: 2.5%;
+    width: 4.3%;
+    height: 3.5%;
     top:55.4%;
     left: 48%;
 }
@@ -488,7 +488,7 @@ body {
 }
 #libroMolinos{
     position: absolute;
-    width: 4%;
+    width: 7%;
     height: 10%;
     top:82%;
     left: 81%;
