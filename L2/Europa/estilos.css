@@ -210,19 +210,23 @@ body {
     background-color: burlywood;
     background-image: url("imagenes/plano2.png");
     background-size: cover;
-    background-position: center; /* Opcional: centra la imagen */
+    background-position: center; 
     width: 100%;
     height: 100%;
     border-radius: 80px  ;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
-
-#character {
-    width: 20px;
-    height: 20px;
+#character{
+    width: 64px; 
+    height: 64px; 
     position: absolute;
-    background-color:black;
 }
+#characterImg {
+    width: 64px;
+    height: 64px; 
+    position: absolute;
+}
+
 
 #bordeDer {
     width: 3px;

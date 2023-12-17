@@ -36,7 +36,7 @@ const mensajes = [
    
 ];
 const mensajesObjetos = {
-    guia: '¡Has conseguido la guía!',
+    guia: 'Es una guía de molinos de viento: debemos asegurarnos de que los molinos se sitúan cerca de una comunidad que pueda aprovecharlos.',
     libro1H5: 'Es un álbum de fotos.',
     llave: 'Bajo esta maceta habñia una llave. Quizás podamos abrir alguna puerta por ella',
     aerogenerador: '¡Hemos encontrado todos los materiales necesarios para contruir un aerogenerador!. Será pequeño pero para empezar nos bastará',
@@ -52,7 +52,7 @@ const mensajesObjetos = {
 
 // Establecer posiciones iniciales en JavaScript
 character.style.position = 'absolute';
-character.style.left = '120px';
+character.style.left = '125px';
 character.style.top = '300px';
 
 // Función para inicializar el juego
@@ -217,6 +217,11 @@ puertaConContrasena.addEventListener('click', () => {
     dialog.style.display = 'block';
 });
     document.addEventListener('keydown', manejarTeclaPresionada);
+    document.addEventListener('keyup', function(event) {
+        if (['w', 'a', 's', 'd'].includes(event.key)) {
+            stopAnimation(); 
+        }
+    });
 
     document.getElementById('siguienteBtn').addEventListener('click', mostrarSiguienteMensaje);
     for (const puerta of puertas) {
@@ -242,19 +247,22 @@ function manejarTeclaPresionada(event) {
     if (event.key === 'w') {
         if (canMove(character, 'w', speed)) {
             character.style.top = `${parseInt(character.style.top, 10) - speed}px`;
-            console.log('moviendose hacia arriba')
-        }
+            startAnimation('up');
+                }
     } else if (event.key === 's') {
         if (canMove(character, 's', speed)) {
             character.style.top = `${parseInt(character.style.top, 10) + speed}px`;
-        }
+            startAnimation('down');
+                }
     } else if (event.key === 'a') {
         if (canMove(character, 'a', speed)) {
             character.style.left = `${parseInt(character.style.left, 10) - speed}px`;
+            startAnimation('left');
         }
     } else if (event.key === 'd') {
         if (canMove(character, 'd', speed)) {
             character.style.left = `${parseInt(character.style.left, 10) + speed}px`;
+            startAnimation('right');
         }
     }
 }
@@ -677,6 +685,37 @@ function actualizarEstadoWasd() {
     } else {
         wasdDiv.style.display = 'none';
     }
+}
+const frames = {
+    down: ['/L2/Europa/imagenes/abajo.jpg', '/L2/Europa/imagenes/abajo1.jpg', '/L2/Europa/imagenes/abajo2.jpg'],
+    up: ['/L2/Europa/imagenes/arriba.jpg', '/L2/Europa/imagenes/arriba1.jpg', '/L2/Europa/imagenes/arriba2.jpg'],
+    left: ['/L2/Europa/imagenes/izquierda.jpg', '/L2/Europa/imagenes/izquierda1.jpg', '/L2/Europa/imagenes/izquierda2.jpg'],
+    right: ['/L2/Europa/imagenes/derecha.jpg', '/L2/Europa/imagenes/derecha1.jpg', '/L2/Europa/imagenes/derecha2.jpg']
+};
+let currentFrame = 0;
+let animationIntervalId; // Guarda el ID del intervalo de animación actual
+let currentDirection = null; // Guarda la dirección actual del personaje
+
+function animateCharacter(direction) {
+    const character = document.getElementById('characterImg');
+    character.src = frames[direction][currentFrame];
+    currentFrame = (currentFrame + 1) % frames[direction].length;
+}
+
+function startAnimation(direction) {
+    if (currentDirection !== direction) {
+        currentDirection = direction; // Actualiza la dirección actual
+        clearInterval(animationIntervalId); // Limpia el intervalo anterior
+        currentFrame = 0; // Reinicia el índice de cuadros
+        animationIntervalId = setInterval(() => {
+            animateCharacter(direction)
+        }, 500); // Cambia la imagen cada 500ms
+    }
+}
+
+function stopAnimation() {
+    clearInterval(animationIntervalId); // Detén cualquier animación existente
+    currentDirection = null; // Limpia la dirección actual
 }
 // Llama a checkForDoor en cada fotograma
 function update() {
