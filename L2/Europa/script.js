@@ -36,7 +36,7 @@ const mensajes = [
    
 ];
 const mensajesObjetos = {
-    guia: 'Es una guía de molinos de viento: debemos asegurarnos de que los molinos se sitúan cerca de una comunidad que pueda aprovecharlos.',
+    libroMolinos: 'Es una guía de molinos de viento: debemos asegurarnos de que los molinos se sitúan cerca de una comunidad que pueda aprovecharlos.',
     libro1H5: 'Es un álbum de fotos.',
     llave: 'Bajo esta maceta habñia una llave. Quizás podamos abrir alguna puerta por ella',
     aerogenerador: '¡Hemos encontrado todos los materiales necesarios para contruir un aerogenerador!. Será pequeño pero para empezar nos bastará',
@@ -243,7 +243,8 @@ puertaConContrasena.addEventListener('click', () => {
 
 // Función para manejar el evento de tecla presionada
 function manejarTeclaPresionada(event) {
-    const speed = 10; // Velocidad de movimiento
+    const speed = 5; // Velocidad de movimiento
+
     if (event.key === 'w') {
         if (canMove(character, 'w', speed)) {
             character.style.top = `${parseInt(character.style.top, 10) - speed}px`;
@@ -361,39 +362,7 @@ objetosConseguibles.forEach((objeto) => {
     });
 });
 
-function verificarVictoria() {
-    const guiaConseguida = objetosConseguidos.some(objeto => objeto.id === 'guia');
-    const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
 
-    if (guiaConseguida && aeroConseguido) {
-        mostrarBocadillo('¡Has ganado! Has conseguido todo lo necesario para empezar a construir la granja. ¡Felicidades!');
-        switch(tiempoTranscurrido){
-            case tiempoTranscurrido <= 30 && tiempoTranscurrido:
-                puntos = 25;
-                break;
-            case tiempoTranscurrido <= 45 && tiempoTranscurrido > 30:
-                puntos = 20;
-                break;
-            case tiempoTranscurrido <= 65 && tiempoTranscurrido > 45:
-                puntos = 15;
-                break;
-            case tiempoTranscurrido <= 80 && tiempoTranscurrido > 65:
-                puntos = 10;
-                break;
-            case tiempoTranscurrido <= 95 && tiempoTranscurrido > 80:
-                puntos = 5;
-                break;
-            case tiempoTranscurrido > 95:
-                puntos = 0;
-                break;
-                default: puntos = 1;
-        }
-        setTimeout(() => {
-            setCookie('Puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
-            window.location.href = '../../controllers_php/updatePuntosController.php';
-        }, 3000); // 3 segundos
-    }
-}
 objetosConseguibles.forEach((objeto) => {
     objeto.addEventListener('click', () => {
         // Obtiene un identificador único del objeto 
@@ -523,7 +492,7 @@ function manejarObjetos(){
             console.log('Objeto Conseguido:', objetoConseguido);
             console.log( objetosConseguidos);
     
-            verificarVictoria();
+            verificarVictoria(objetoId);
             agregarObjetoConseguido(objetoId);
     
         });
@@ -563,11 +532,12 @@ function manejarObjetos(){
     function obtenerURLImagen(objetoId) {
         const urlImagenes = {
             llave: 'imagenes/llave.jfif',
-            guia: 'imagenes/guia.jfif',
+            libroMolinos: 'imagenes/libroMolinos1.jfif',
             bombilla: 'imagenes/bombilla.png',
             aerogenerador: 'imagenes/aerogenerador2.png',
             veleta: 'imagenes/veleta.png',
-            penDrive:'imagenes/penDrive.jpeg'
+            penDrive:'imagenes/penDrive.jpeg',
+            libroAire: 'imagenes/libroMolinos.png'
 
         };
     
@@ -578,24 +548,35 @@ function manejarObjetos(){
     function encontrarObjetoPorId(id) {
         
         const objetosDisponibles = [
-            { id: 'guia', nombre: 'guia', imagen: 'imagen1.jpg', descripcion: 'Este es el objeto 1' },
+            { id: 'libroMolinos', nombre: 'libroMolinos', imagen: 'imagen1.jpg', descripcion: 'Este es el objeto 1' },
             { id: 'llave', nombre: 'llave', imagen: 'llave.jfif', descripcion: 'Este es el objeto 2' },
-            { id: 'bombilla', nombre: 'bombilla', imagen: 'bombilla.jfif', descripcion: 'Este es el objeto 3' },
             { id: 'aerogenerador', nombre: 'aerogenerador', imagen: 'aerogenerador.png', descripcion: 'Este es el objeto 4' },
             { id: 'veleta', nombre: 'veleta', imagen: 'veleta.png', descripcion: '¡Es una veleta! Este instrumento se utiliza para conocer la dirección del viento'},
             { id: 'penDrive', nombre: 'penDrive', imagen: 'penDrive.jpeg', descripcion: 'penDrive'},
+            { id: 'libroAire', nombre: 'libroAire', imagen: 'imagen2.jpg', descripcion: 'libroAire'},
+
+
 
         ];
     
         return objetosDisponibles.find(objeto => objeto.id === id);
     }
 }
-function verificarVictoria(indiceMensajeActual) {
-    const guiaConseguida = objetosConseguidos.some(objeto => objeto.id === 'guia');
+function verificarVictoria(objetoId) {
+    const libroMolinosConseguida = objetosConseguidos.some(objeto => objeto.id === 'libroMolinos');
     const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
+    const veletaConseguida = objetosConseguidos.some(objeto => objeto.id === 'veleta');
+    const penDriveConseguido = objetosConseguidos.some(objeto => objeto.id === 'penDrive');
+    const libroAireConseguido = objetosConseguidos.some(objeto => objeto.id === 'libroAire');
 
-    if (guiaConseguida && aeroConseguido) {
-        mostrarBocadillo('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
+
+
+
+    if (libroMolinosConseguida && aeroConseguido && veletaConseguida && penDriveConseguido && libroAireConseguido) {
+        mostrarBocadillo(mensajesObjetos[objetoId]);
+        setTimeout(() => {
+        }, 7000);
+        mostrarBocadillo('¡Has ganado! Ese era el último objeto que nos hacía falta. Has conseguido todo lo necesario para comenzar a construir la granja. ¡Felicidades!');
         switch(tiempoTranscurrido){
             case tiempoTranscurrido <= 30 && tiempoTranscurrido:
                 puntos = 25;
@@ -617,8 +598,10 @@ function verificarVictoria(indiceMensajeActual) {
                 break;
                 default: puntos = 1;
         }
-        setCookie('Puntos', puntos, 30); 
-        window.location.href = '../../controllers_php/updatePuntosController.php';
+        setTimeout(() => {
+            setCookie('Puntos', puntos, 30); 
+            window.location.href = '../../controllers_php/updatePuntosController.php';
+        }, 5000); 
         
     }
     return indiceMensajeActual
@@ -687,10 +670,16 @@ function actualizarEstadoWasd() {
     }
 }
 const frames = {
-    down: ['/L2/Europa/imagenes/abajo.jpg', '/L2/Europa/imagenes/abajo1.jpg', '/L2/Europa/imagenes/abajo2.jpg'],
-    up: ['/L2/Europa/imagenes/arriba.jpg', '/L2/Europa/imagenes/arriba1.jpg', '/L2/Europa/imagenes/arriba2.jpg'],
-    left: ['/L2/Europa/imagenes/izquierda.jpg', '/L2/Europa/imagenes/izquierda1.jpg', '/L2/Europa/imagenes/izquierda2.jpg'],
-    right: ['/L2/Europa/imagenes/derecha.jpg', '/L2/Europa/imagenes/derecha1.jpg', '/L2/Europa/imagenes/derecha2.jpg']
+    down: ['/L2/Europa/imagenes/abajo.png', '/L2/Europa/imagenes/abajo1.png','/L2/Europa/imagenes/abajo.png', '/L2/Europa/imagenes/abajo2.png'],
+    up: ['/L2/Europa/imagenes/arriba.png', '/L2/Europa/imagenes/arriba1.png', '/L2/Europa/imagenes/arriba.png','/L2/Europa/imagenes/arriba2.png'],
+    left: ['/L2/Europa/imagenes/izquierda.png', '/L2/Europa/imagenes/izquierda1.png','/L2/Europa/imagenes/izquierda.png', '/L2/Europa/imagenes/izquierda2.png'],
+    right: ['/L2/Europa/imagenes/derecha.png', '/L2/Europa/imagenes/derecha1.png','/L2/Europa/imagenes/derecha.png', '/L2/Europa/imagenes/derecha2.png']
+};
+const staticDirectionImages = {
+    'w': '/L2/Europa/imagenes/arriba.png',
+    'a' : '/L2/Europa/imagenes/izquierda.png',
+    's': '/L2/Europa/imagenes/abajo.png',
+    'd': '/L2/Europa/imagenes/derecha.png'
 };
 let currentFrame = 0;
 let animationIntervalId; // Guarda el ID del intervalo de animación actual
@@ -709,8 +698,12 @@ function startAnimation(direction) {
         currentFrame = 0; // Reinicia el índice de cuadros
         animationIntervalId = setInterval(() => {
             animateCharacter(direction)
-        }, 500); // Cambia la imagen cada 500ms
+        }, 200); // Cambia la imagen cada 500ms
     }
+}
+function changeCharacterImage(key) {
+    const character = document.getElementById('characterImg');
+    character.src = staticDirectionImages[key];
 }
 
 function stopAnimation() {
