@@ -38,14 +38,14 @@ const mensajes = [
 const mensajesObjetos = {
     libroMolinos: 'Es una guía de molinos de viento: debemos asegurarnos de que los molinos se sitúan cerca de una comunidad que pueda aprovecharlos.',
     libro1H5: 'Es un álbum de fotos.',
-    llave: 'Bajo esta maceta habñia una llave. Quizás podamos abrir alguna puerta por ella',
+    llave: 'Bajo esta maceta había una llave. Quizás podamos abrir alguna puerta con ella',
     aerogenerador: '¡Hemos encontrado todos los materiales necesarios para contruir un aerogenerador!. Será pequeño pero para empezar nos bastará',
     bombilla: "Has encontrado una bombilla y la has guardado.",
     veleta: '¡Es una veleta! Este instrumento se utiliza para conocer la dirección del viento',
     botanica: 'Es una estantería con libros de botánica. Aquí pone que para plantar tomates se necesitan ocho horas de luz directa al día como mínimo. Creo que no nos será de ayuda.',
     penDrive: 'Hay un pen drive en el ordenador. Aquí está toda la información necesaria para montar y mantener un molino de viento',
     libroAire: 'Hay una libro de energía eólica: Antes de instalar un molino eólico es necesario analizar la dirección, tempratura y fuerza del aire. ¡Genial esto nos será útil',
-    notaContrasenya: 'Hay una nota: el instrumento que sirve para medir la velocidad del viento se llama "anemómetro". Tal vez nos sea útil esta información en algún momento: A lo mejor para abrir alguna puerta...'
+    notaContrasenya: 'Hay una nota: el instrumento que sirve para medir la velocidad del viento se llama "anemómetro". Tal vez sea la respuesta a un acertijo, o una contraseña...'
     
 };
 
@@ -618,7 +618,7 @@ puertaConContrasena.addEventListener('click', () => {
 });
 function verificarContrasena() {
     const contrasenaIngresada = document.getElementById('passwordInput').value;
-    if (contrasenaIngresada === '123') { // Suponiendo que '123' es la contraseña correcta
+    if (contrasenaIngresada === 'anemometro' ||contrasenaIngresada === 'anemómetro' ) { // Suponiendo que '123' es la contraseña correcta
         console.log('Contraseña correcta. Cambiando de habitación...');
         changeRoom(11);
         ocultarDialog();
