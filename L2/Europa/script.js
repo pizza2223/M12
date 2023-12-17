@@ -45,7 +45,7 @@ const mensajesObjetos = {
     botanica: 'Es una estantería con libros de botánica. Aquí pone que para plantar tomates se necesitan ocho horas de luz directa al día como mínimo. Creo que no nos será de ayuda.',
     penDrive: 'Hay un pen drive en el ordenador. Aquí está toda la información necesaria para montar y mantener un molino de viento',
     libroAire: 'Hay una libro de energía eólica: Antes de instalar un molino eólico es necesario analizar la dirección, tempratura y fuerza del aire. ¡Genial esto nos será útil',
-    notaContrasenya: 'Hay una nota: el instrumento que sirve para medir la velocidad del viento se llama "anemómetro". Tal vez nos sea útil esta información en algún momento'
+    notaContrasenya: 'Hay una nota: el instrumento que sirve para medir la velocidad del viento se llama "anemómetro". Tal vez nos sea útil esta información en algún momento: A lo mejor para abrir alguna puerta...'
     
 };
 
@@ -128,12 +128,12 @@ function mostrarPantallaInicio() {
     const casillasObjetos = document.getElementById('casillas-objetos-conseguidos');
     casillasObjetos.style.display = 'none';
 
-    // Muestra la pantalla de inicio y otros elementos según sea necesario
+
     const pantallaInicial = document.getElementById('pantalla-inicial');
     pantallaInicial.style.display = 'block';
-    pantallaInicial.style.display = 'flex'; // Cambia a flex para centrar vertical y horizontalmente
-    pantallaInicial.style.alignItems = 'center'; // Centra verticalmente
-    pantallaInicial.style.justifyContent = 'center'; // Centra horizontalmente
+    pantallaInicial.style.display = 'flex'; 
+    pantallaInicial.style.alignItems = 'center'; 
+    pantallaInicial.style.justifyContent = 'center'; 
 
 }
 function mostrarSiguienteMensaje() {
@@ -150,7 +150,7 @@ function mostrarSiguienteMensaje() {
     
     function mostrarMensaje(mensaje) {
         const bocadillo = document.getElementById('bocadillo');
-        bocadillo.innerText = mensaje;// Cambia textContent por innerText
+        bocadillo.innerText = mensaje;
         bocadillo.classList.add('mensaje'); 
     }
     
@@ -202,15 +202,11 @@ function iniciarContadorTiempo() {
         if (tiempoElement) {
             tiempoElement.textContent = tiempoTranscurrido;
         }
-
-        console.log(`Tiempo transcurrido: ${tiempoTranscurrido} segundos`);
-
     }, 1000);
 }
 function asignarEventListeners() {
     const puertaConContrasena = document.getElementById('puerta11');
 const dialog = document.getElementById('dialog');
-const passwordInput = document.getElementById('passwordInput');
 
 puertaConContrasena.addEventListener('click', () => {
     // Mostrar el cuadro de diálogo
@@ -243,7 +239,7 @@ puertaConContrasena.addEventListener('click', () => {
 
 // Función para manejar el evento de tecla presionada
 function manejarTeclaPresionada(event) {
-    const speed = 5; // Velocidad de movimiento
+    const speed = 7; // Velocidad de movimiento
 
     if (event.key === 'w') {
         if (canMove(character, 'w', speed)) {
