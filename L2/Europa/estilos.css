@@ -64,6 +64,15 @@ body {
     max-width: 300px;
     text-align: center;
 }
+#wasd{
+    width: 315px;
+    height: 350px;
+    background-image: url('imagenes/wasd.png');
+    top:-300px;
+    left: 950px;
+    position: absolute;
+    background-size: cover;
+}
 #bocadilloInGame{
     margin-top: -120px;
     width: 1100px;
@@ -151,7 +160,7 @@ body {
     width: 147px;
     height: 700px;
     padding: 10px;
-    top: 70px;
+    top: 0px;
     left: 1250px;
     box-sizing: border-box;
     position: absolute;
@@ -201,19 +210,23 @@ body {
     background-color: burlywood;
     background-image: url("imagenes/plano2.png");
     background-size: cover;
-    background-position: center; /* Opcional: centra la imagen */
+    background-position: center; 
     width: 100%;
     height: 100%;
     border-radius: 80px  ;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
-
-#character {
-    width: 20px;
-    height: 20px;
+#character{
+    width: 64px; 
+    height: 64px; 
     position: absolute;
-    background-color:black;
 }
+#characterImg {
+    width: 64px;
+    height: 64px; 
+    position: absolute;
+}
+
 
 #bordeDer {
     width: 3px;
@@ -284,7 +297,7 @@ body {
     height: 15%;
     position: absolute;
     background-color: #0c0c0c;
-    left: 48%;
+    left: 47.5%;
     top:67%;
 }
 #abajoA{
@@ -301,7 +314,7 @@ body {
     position: absolute;
     background-color: #0c0c0c;
     left:86.3%;
-    top:67%;
+    top:66.5%;
 }
 #derB{
     width: 19.7px;
@@ -405,15 +418,15 @@ body {
 }
 #llave{
     position: absolute;
-    width: 3.5%;
-    height: 4.5%;
+    width: 5.5%;
+    height: 5.5%;
     top:24%;
     left: 75.5%;
 }
 #veleta{
     position: absolute;
-    width: 3.3%;
-    height: 2.5%;
+    width: 4.3%;
+    height: 3.5%;
     top:55.4%;
     left: 48%;
 }
@@ -445,12 +458,19 @@ body {
     border-radius: 80px  ;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
-#puerta5{
-    width: 8%;
-    height: 20%;
+#notaContrasenya{
+    width: 5%;
+    height: 5%;
     position: absolute;
-    top: 35%;
-    left: 25.5%;
+    top: 64%;
+    left: 69%;
+}
+#puerta5{
+    width: 9.5%;
+    height: 33%;
+    position: absolute;
+    top: 34%;
+    left: 45.9%;
     
 }
 /*Estilos de la habitación 31*/
@@ -466,9 +486,9 @@ body {
     border-radius: 80px  ;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
-#guia{
+#libroMolinos{
     position: absolute;
-    width: 4%;
+    width: 7%;
     height: 10%;
     top:82%;
     left: 81%;
@@ -493,17 +513,17 @@ body {
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
 #puerta7{
-    width: 20%;
-    height: 45%;
+    width: 7%;
+    height: 7.5%;
     position: absolute;
-    top: 40%;
-    left: 38.5%;
+    top: 53%;
+    left: 83%;
 }
 /*Estilos de la habitación 41*/
 
 #habitacion7{
     background-color: chocolate;
-    background-image:url("imagenes/habitacion7.png");
+    background-image:url("imagenes/almacen.png");
     background-position: center; /* Opcional: centra la imagen */
     background-size: cover;
     width: 100%;
@@ -512,11 +532,11 @@ body {
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
 #aerogenerador{
-    width: 3%;
-    height: 5%;
+    width: 28%;
+    height: 56.5%;
     position: absolute;
-    top: 50%;
-    left: 31%;
+    top: 23%;
+    left: 36.3%;
 }
 
 /*Estilos de la habitación 51*/
@@ -530,31 +550,14 @@ body {
     border-radius: 80px  ;
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
-#puerta9{
+#libroAire{
     width: 13%;
     height: 8%;
     position: absolute;
-    top: 23%;
-    left: 30%;
+    top: 23.5%;
+    left: 73%;
 }
 /* Es el cajón con la bombilla dentro*/
-#habitacion9{
-    background-color: white;
-    background-image:url("imagenes/cajonConBombilla.png");
-    background-position: center; /* Opcional: centra la imagen */
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    border-radius: 80px  ;
-    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
-}
-#bombilla{
-    width: 23%;
-    height: 38%;
-    position: absolute;
-    top: 30%;
-    left: 38%;
-}
 
 /*habitacion 10 (puerta contraseña)*/
 #habitacion10{

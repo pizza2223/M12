@@ -5,6 +5,7 @@ const paredes = document.querySelectorAll('.pared');
 const puertas = document.querySelectorAll('.puerta');
 const flechas = document.querySelectorAll('.flecha');
 const puertas1 = document.querySelectorAll('.puerta1');
+const wasdDiv = document.getElementById('wasd');
 const objetosInspeccionables = document.querySelectorAll('.inspeccionable');
 const objetosConseguibles = document.querySelectorAll('.conseguible');
 const objetosConseguidos = [];
@@ -17,30 +18,41 @@ let puntos;
 
 
 const mensajes = [
-    "¡Hola! Soy Laia",
-    "Estoy emocionada de que estés aquí.",
-    "Estoy emocionada de que estés aquí.",
-    "Explora y descubre los secretos que aguardan.",
-    "Explora y descubre los secretos que aguardan."
+    "¡Hemos aterrizado en Barcelona!",
+    "Estamos en una urbanización en las afueras de la ciudad.",
+    "Estamos en una urbanización en las afueras de la ciudad.",
+    "Nos han pedido ayuda para construir una granja eólica.",
+    "Nos han pedido ayuda para construir una granja eólica.",
+    "Tendremos que investigar el lugar, recaudar información...",
+    "Tendremos que investigar el lugar, recaudar información...",
+    "y encontrar los materiales necesarios para comenzar.",
+    "y encontrar los materiales necesarios para comenzar.",
+    "Tendremos que mirar cada zona con cuidado para... ",
+    "Tendremos que mirar cada zona con cuidado para... ",
+    "no dejarnos nada que nos resulte útil para la granja.",
+    "no dejarnos nada que nos resulte útil para la granja.",
+    "¡Empecemos!"
 
    
 ];
 const mensajesObjetos = {
-    guia: '¡Has conseguido la guía!',
+    libroMolinos: 'Es una guía de molinos de viento: debemos asegurarnos de que los molinos se sitúan cerca de una comunidad que pueda aprovecharlos.',
     libro1H5: 'Es un álbum de fotos.',
-    llave: 'Has encontrado una llave.',
-    aerogenerador: '¡Buscaste en el armario y encontraste el aerogenerador!',
+    llave: 'Bajo esta maceta había una llave. Quizás podamos abrir alguna puerta con ella',
+    aerogenerador: '¡Hemos encontrado todos los materiales necesarios para contruir un aerogenerador!. Será pequeño pero para empezar nos bastará',
     bombilla: "Has encontrado una bombilla y la has guardado.",
     veleta: '¡Es una veleta! Este instrumento se utiliza para conocer la dirección del viento',
     botanica: 'Es una estantería con libros de botánica. Aquí pone que para plantar tomates se necesitan ocho horas de luz directa al día como mínimo. Creo que no nos será de ayuda.',
-    penDrive: 'Hay un pen drive en el ordenador. Aquí está toda la información necesaria para montar y mantener un molino de viento'
+    penDrive: 'Hay un pen drive en el ordenador. Aquí está toda la información necesaria para montar y mantener un molino de viento',
+    libroAire: 'Hay una libro de energía eólica: Antes de instalar un molino eólico es necesario analizar la dirección, tempratura y fuerza del aire. ¡Genial esto nos será útil',
+    notaContrasenya: 'Hay una nota: el instrumento que sirve para medir la velocidad del viento se llama "anemómetro". Tal vez sea la respuesta a un acertijo, o una contraseña...'
     
 };
 
 
 // Establecer posiciones iniciales en JavaScript
 character.style.position = 'absolute';
-character.style.left = '120px';
+character.style.left = '125px';
 character.style.top = '300px';
 
 // Función para inicializar el juego
@@ -51,8 +63,11 @@ function iniciarJuego() {
     document.getElementById('siguienteBtn').addEventListener('click', mostrarSiguienteMensaje);    
 
     comenzarJuego();
+
     asignarEventListeners();
     manejarObjetos();
+    const wasdDiv = document.getElementById('wasd');
+    wasdDiv.style.display = currentRoom === 1 ? 'block' : 'none';
 }
 
 // Función para asignar event listeners
@@ -113,12 +128,12 @@ function mostrarPantallaInicio() {
     const casillasObjetos = document.getElementById('casillas-objetos-conseguidos');
     casillasObjetos.style.display = 'none';
 
-    // Muestra la pantalla de inicio y otros elementos según sea necesario
+
     const pantallaInicial = document.getElementById('pantalla-inicial');
     pantallaInicial.style.display = 'block';
-    pantallaInicial.style.display = 'flex'; // Cambia a flex para centrar vertical y horizontalmente
-    pantallaInicial.style.alignItems = 'center'; // Centra verticalmente
-    pantallaInicial.style.justifyContent = 'center'; // Centra horizontalmente
+    pantallaInicial.style.display = 'flex'; 
+    pantallaInicial.style.alignItems = 'center'; 
+    pantallaInicial.style.justifyContent = 'center'; 
 
 }
 function mostrarSiguienteMensaje() {
@@ -128,7 +143,6 @@ function mostrarSiguienteMensaje() {
         mostrarMensaje(mensajes[indiceMensajeActual]);
     } else {
         // Muestra el mensaje de inicio y oculta el botón de siguiente
-        mostrarMensaje("¡Empecemos!");
         ocultarBotonSiguiente();
         mostrarBotonComenzar();
     }
@@ -136,7 +150,7 @@ function mostrarSiguienteMensaje() {
     
     function mostrarMensaje(mensaje) {
         const bocadillo = document.getElementById('bocadillo');
-        bocadillo.innerText = mensaje;// Cambia textContent por innerText
+        bocadillo.innerText = mensaje;
         bocadillo.classList.add('mensaje'); 
     }
     
@@ -188,21 +202,22 @@ function iniciarContadorTiempo() {
         if (tiempoElement) {
             tiempoElement.textContent = tiempoTranscurrido;
         }
-
-        console.log(`Tiempo transcurrido: ${tiempoTranscurrido} segundos`);
-
     }, 1000);
 }
 function asignarEventListeners() {
     const puertaConContrasena = document.getElementById('puerta11');
 const dialog = document.getElementById('dialog');
-const passwordInput = document.getElementById('passwordInput');
 
 puertaConContrasena.addEventListener('click', () => {
     // Mostrar el cuadro de diálogo
     dialog.style.display = 'block';
 });
     document.addEventListener('keydown', manejarTeclaPresionada);
+    document.addEventListener('keyup', function(event) {
+        if (['w', 'a', 's', 'd'].includes(event.key)) {
+            stopAnimation(); 
+        }
+    });
 
     document.getElementById('siguienteBtn').addEventListener('click', mostrarSiguienteMensaje);
     for (const puerta of puertas) {
@@ -224,23 +239,27 @@ puertaConContrasena.addEventListener('click', () => {
 
 // Función para manejar el evento de tecla presionada
 function manejarTeclaPresionada(event) {
-    const speed = 10; // Velocidad de movimiento
+    const speed = 7; // Velocidad de movimiento
+
     if (event.key === 'w') {
         if (canMove(character, 'w', speed)) {
             character.style.top = `${parseInt(character.style.top, 10) - speed}px`;
-            console.log('moviendose hacia arriba')
-        }
+            startAnimation('up');
+                }
     } else if (event.key === 's') {
         if (canMove(character, 's', speed)) {
             character.style.top = `${parseInt(character.style.top, 10) + speed}px`;
-        }
+            startAnimation('down');
+                }
     } else if (event.key === 'a') {
         if (canMove(character, 'a', speed)) {
             character.style.left = `${parseInt(character.style.left, 10) - speed}px`;
+            startAnimation('left');
         }
     } else if (event.key === 'd') {
         if (canMove(character, 'd', speed)) {
             character.style.left = `${parseInt(character.style.left, 10) + speed}px`;
+            startAnimation('right');
         }
     }
 }
@@ -339,37 +358,7 @@ objetosConseguibles.forEach((objeto) => {
     });
 });
 
-function verificarVictoria() {
-    const guiaConseguida = objetosConseguidos.some(objeto => objeto.id === 'guia');
-    const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
 
-    if (guiaConseguida && aeroConseguido) {
-        mostrarBocadillo('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
-        switch(tiempoTranscurrido){
-            case tiempoTranscurrido <= 30 && tiempoTranscurrido:
-                puntos = 25;
-                break;
-            case tiempoTranscurrido <= 45 && tiempoTranscurrido > 30:
-                puntos = 20;
-                break;
-            case tiempoTranscurrido <= 65 && tiempoTranscurrido > 45:
-                puntos = 15;
-                break;
-            case tiempoTranscurrido <= 80 && tiempoTranscurrido > 65:
-                puntos = 10;
-                break;
-            case tiempoTranscurrido <= 95 && tiempoTranscurrido > 80:
-                puntos = 5;
-                break;
-            case tiempoTranscurrido > 95:
-                puntos = 0;
-                break;
-                default: puntos = 1;
-        }
-        setCookie('puntos', puntos, 30); // 30 días de expiración, ajusta según sea necesario
-        window.location.href = '../../controllers_php/updatePuntosController.php';
-    }
-}
 objetosConseguibles.forEach((objeto) => {
     objeto.addEventListener('click', () => {
         // Obtiene un identificador único del objeto 
@@ -439,7 +428,7 @@ function checkForDoor() {
             characterRect.bottom > puertaRect.top
         ) {
             // Determinar la puerta de salida y ajustar la posición del personaje
-            ajustarPosicionPersonajeAlSalir(puerta.id);
+            ajustarPosicionPersonaje(puerta.id);
 
             // Cambia de habitación aquí
             console.log(`Cambiando de habitación: de ${currentRoom} a ${nextRoom}`);
@@ -460,23 +449,23 @@ function changePreviousRoom(previousRoom) {
 
     // Actualiza el estado del juego
     currentRoom = previousRoom;
+    actualizarEstadoWasd();
 
-    ajustarPosicionPersonaje(previousRoom);
     // Ajusta la posición inicial del personaje en la nueva habitación
 
 }
-function ajustarPosicionPersonajeAlSalir(puertaId) {
+function ajustarPosicionPersonaje(puertaId) {
     switch(puertaId) {
         case 'puerta12':
         case 'puerta13':
         case 'puerta15':
-            character.style.top = `${parseInt(character.style.top, 10) + 25}px`;
+            character.style.top = `${parseInt(character.style.top, 10) + 35}px`;
             break;
         case 'puerta14':
-            character.style.left = `${parseInt(character.style.left, 10) + 25}px`;
+            character.style.left = `${parseInt(character.style.left, 10) + 35}px`;
             break;
         case 'puerta16':
-            character.style.left = `${parseInt(character.style.left, 10) - 25}px`;
+            character.style.left = `${parseInt(character.style.left, 10) - 35}px`;
             break;
         default:
             // Posición predeterminada si no es una de las puertas específicas
@@ -499,7 +488,7 @@ function manejarObjetos(){
             console.log('Objeto Conseguido:', objetoConseguido);
             console.log( objetosConseguidos);
     
-            verificarVictoria();
+            verificarVictoria(objetoId);
             agregarObjetoConseguido(objetoId);
     
         });
@@ -539,11 +528,12 @@ function manejarObjetos(){
     function obtenerURLImagen(objetoId) {
         const urlImagenes = {
             llave: 'imagenes/llave.jfif',
-            guia: 'imagenes/guia.jfif',
+            libroMolinos: 'imagenes/libroMolinos1.jfif',
             bombilla: 'imagenes/bombilla.png',
             aerogenerador: 'imagenes/aerogenerador2.png',
             veleta: 'imagenes/veleta.png',
-            penDrive:'imagenes/penDrive.jpeg'
+            penDrive:'imagenes/penDrive.jpeg',
+            libroAire: 'imagenes/libroMolinos.png'
 
         };
     
@@ -554,24 +544,35 @@ function manejarObjetos(){
     function encontrarObjetoPorId(id) {
         
         const objetosDisponibles = [
-            { id: 'guia', nombre: 'guia', imagen: 'imagen1.jpg', descripcion: 'Este es el objeto 1' },
+            { id: 'libroMolinos', nombre: 'libroMolinos', imagen: 'imagen1.jpg', descripcion: 'Este es el objeto 1' },
             { id: 'llave', nombre: 'llave', imagen: 'llave.jfif', descripcion: 'Este es el objeto 2' },
-            { id: 'bombilla', nombre: 'bombilla', imagen: 'bombilla.jfif', descripcion: 'Este es el objeto 3' },
             { id: 'aerogenerador', nombre: 'aerogenerador', imagen: 'aerogenerador.png', descripcion: 'Este es el objeto 4' },
             { id: 'veleta', nombre: 'veleta', imagen: 'veleta.png', descripcion: '¡Es una veleta! Este instrumento se utiliza para conocer la dirección del viento'},
             { id: 'penDrive', nombre: 'penDrive', imagen: 'penDrive.jpeg', descripcion: 'penDrive'},
+            { id: 'libroAire', nombre: 'libroAire', imagen: 'imagen2.jpg', descripcion: 'libroAire'},
+
+
 
         ];
     
         return objetosDisponibles.find(objeto => objeto.id === id);
     }
 }
-function verificarVictoria(indiceMensajeActual) {
-    const guiaConseguida = objetosConseguidos.some(objeto => objeto.id === 'guia');
+function verificarVictoria(objetoId) {
+    const libroMolinosConseguida = objetosConseguidos.some(objeto => objeto.id === 'libroMolinos');
     const aeroConseguido = objetosConseguidos.some(objeto => objeto.id === 'aerogenerador');
+    const veletaConseguida = objetosConseguidos.some(objeto => objeto.id === 'veleta');
+    const penDriveConseguido = objetosConseguidos.some(objeto => objeto.id === 'penDrive');
+    const libroAireConseguido = objetosConseguidos.some(objeto => objeto.id === 'libroAire');
 
-    if (guiaConseguida && aeroConseguido) {
-        mostrarBocadillo('¡Has ganado! Has conseguido la guía y el aerogenerador. ¡Felicidades!');
+
+
+
+    if (libroMolinosConseguida && aeroConseguido && veletaConseguida && penDriveConseguido && libroAireConseguido) {
+        mostrarBocadillo(mensajesObjetos[objetoId]);
+        setTimeout(() => {
+        }, 7000);
+        mostrarBocadillo('¡Has ganado! Ese era el último objeto que nos hacía falta. Has conseguido todo lo necesario para comenzar a construir la granja. ¡Felicidades!');
         switch(tiempoTranscurrido){
             case tiempoTranscurrido <= 30 && tiempoTranscurrido:
                 puntos = 25;
@@ -593,8 +594,10 @@ function verificarVictoria(indiceMensajeActual) {
                 break;
                 default: puntos = 1;
         }
-        setCookie('Puntos', puntos, 30); 
-        window.location.href = '../../controllers_php/updatePuntosController.php';
+        setTimeout(() => {
+            setCookie('Puntos', puntos, 30); 
+            window.location.href = '../../controllers_php/updatePuntosController.php';
+        }, 5000); 
         
     }
     return indiceMensajeActual
@@ -615,7 +618,7 @@ puertaConContrasena.addEventListener('click', () => {
 });
 function verificarContrasena() {
     const contrasenaIngresada = document.getElementById('passwordInput').value;
-    if (contrasenaIngresada === '123') { // Suponiendo que '123' es la contraseña correcta
+    if (contrasenaIngresada === 'anemometro' ||contrasenaIngresada === 'anemómetro' ) { // Suponiendo que '123' es la contraseña correcta
         console.log('Contraseña correcta. Cambiando de habitación...');
         changeRoom(11);
         ocultarDialog();
@@ -637,6 +640,7 @@ function changeRoom(nextRoom) {
 
     // Actualiza el estado del juego
     currentRoom = nextRoom;
+    actualizarEstadoWasd();
 
 }
 function mostrarBocadillo(mensaje) {
@@ -653,6 +657,54 @@ function mostrarBocadillo(mensaje) {
 }
 function ocultarDialog() {
     document.getElementById('dialog').style.display = 'none';
+}
+function actualizarEstadoWasd() {
+    if (currentRoom === 1) {
+        wasdDiv.style.display = 'block';
+    } else {
+        wasdDiv.style.display = 'none';
+    }
+}
+const frames = {
+    down: ['/L2/Europa/imagenes/abajo.png', '/L2/Europa/imagenes/abajo1.png','/L2/Europa/imagenes/abajo.png', '/L2/Europa/imagenes/abajo2.png'],
+    up: ['/L2/Europa/imagenes/arriba.png', '/L2/Europa/imagenes/arriba1.png', '/L2/Europa/imagenes/arriba.png','/L2/Europa/imagenes/arriba2.png'],
+    left: ['/L2/Europa/imagenes/izquierda.png', '/L2/Europa/imagenes/izquierda1.png','/L2/Europa/imagenes/izquierda.png', '/L2/Europa/imagenes/izquierda2.png'],
+    right: ['/L2/Europa/imagenes/derecha.png', '/L2/Europa/imagenes/derecha1.png','/L2/Europa/imagenes/derecha.png', '/L2/Europa/imagenes/derecha2.png']
+};
+const staticDirectionImages = {
+    'w': '/L2/Europa/imagenes/arriba.png',
+    'a' : '/L2/Europa/imagenes/izquierda.png',
+    's': '/L2/Europa/imagenes/abajo.png',
+    'd': '/L2/Europa/imagenes/derecha.png'
+};
+let currentFrame = 0;
+let animationIntervalId; // Guarda el ID del intervalo de animación actual
+let currentDirection = null; // Guarda la dirección actual del personaje
+
+function animateCharacter(direction) {
+    const character = document.getElementById('characterImg');
+    character.src = frames[direction][currentFrame];
+    currentFrame = (currentFrame + 1) % frames[direction].length;
+}
+
+function startAnimation(direction) {
+    if (currentDirection !== direction) {
+        currentDirection = direction; // Actualiza la dirección actual
+        clearInterval(animationIntervalId); // Limpia el intervalo anterior
+        currentFrame = 0; // Reinicia el índice de cuadros
+        animationIntervalId = setInterval(() => {
+            animateCharacter(direction)
+        }, 200); // Cambia la imagen cada 500ms
+    }
+}
+function changeCharacterImage(key) {
+    const character = document.getElementById('characterImg');
+    character.src = staticDirectionImages[key];
+}
+
+function stopAnimation() {
+    clearInterval(animationIntervalId); // Detén cualquier animación existente
+    currentDirection = null; // Limpia la dirección actual
 }
 // Llama a checkForDoor en cada fotograma
 function update() {
