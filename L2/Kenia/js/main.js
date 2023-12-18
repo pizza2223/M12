@@ -1,3 +1,4 @@
+// Variables del juego
 let game = document.getElementById('game');
 let personaje = document.getElementById('personaje');
 let leftPos = 630;
@@ -7,24 +8,27 @@ let intervalId = null;
 let vidas = 3;
 let juegoEnCurso = true;
 const imagenPersonaje = document.getElementById('imagenPersonaje');
+let direction = 'up'; // La dirección del movimiento controlado por teclado
 
-// VARIABLES DE PUNTUACIÓN
-let puntosVidas = 6; // resta 2 puntos por vida perdida
-let puntosObjetos = 0; //suma  2 puntos por objeto recogido
-let puntosTiempo; //resta 0.5 por s que pasa
+// Variables de puntuación
+let puntosVidas = 6;
+let puntosObjetos = 0;
+let puntosTiempo;
 let puntosTiempoMax = 13;
 let puntosXsegundo = 0.5;
 
-let gameTimer; // Variable para almacenar el temporizador
-let tiempoTranscurrido = 0; // Variable para almacenar el tiempo transcurrido en segundos
+// Variables del temporizador
+let gameTimer;
+let tiempoTranscurrido = 0;
 let colisionConObjeto = false;
 console.log(tiempoTranscurrido);
 
-//PUNTUACIONES INICIALES
+//Puntuación
 document.getElementById("puntuacionVidas").innerHTML = puntosVidas;
 document.getElementById('puntuacionObjetos').innerHTML = puntosObjetos;
 document.getElementById("puntuacionTiempo").innerHTML = 13;
 
+// Inicialización y configuración
 iniciarTemporizador();
 crearMapa();
 actualizarPosicionPersonaje();
@@ -34,10 +38,10 @@ spawnObjeto("/M12/L2/Kenia/images/objetos/piedra.png");
 spawnObjeto("/M12/L2/Kenia/images/objetos/paloBuenoB.png");
 spawnObjeto("/M12/L2/Kenia/images/objetos/placasolarBuenaB.png");
 
-
 inicioMovimientoAutomatico(); // que se mueva desde el principio
 movimientoPersonaje();
 
+// Funciones de puntuación
 function puntuacionFinal() {
 
   let sumaPuntos;
@@ -47,7 +51,6 @@ function puntuacionFinal() {
 
 }
 
-// Agregar función para iniciar el temporizador
 function iniciarTemporizador() {
   document.getElementById('temporizador').innerHTML = "[ " + tiempoTranscurrido + " segundos  ] ";
   gameTimer = setInterval(() => {
@@ -81,6 +84,7 @@ function actualizarVidas() {
   perder();
 }
 
+// Funciones de ganar y perder
 function ganar() {
   if (leftPos === 0) {
     detenerTemporizador();
@@ -90,14 +94,44 @@ function ganar() {
   }
 }
 
-
-
 function perder() {
   if (vidas === 0) {
     detenerTemporizador();
     popupFuncion('perder');
   }
 }
+
+
+function popupFuncion(resultado) {
+  juegoEnCurso = false;
+
+  const popup = document.getElementById('popup');
+  popup.style.display = 'block';
+
+  const popupContent = document.getElementById('popupContent');
+
+  if (resultado === 'ganar') {
+
+    popupContent.innerHTML = document.getElementById('ganar').innerHTML;
+  } else if (resultado === 'perder') {
+
+    popupContent.innerHTML = document.getElementById('perder').innerHTML;
+  }
+
+  const botones = popupContent.querySelectorAll('button');
+  botones.forEach((boton) => {
+    boton.addEventListener('click', (event) => {
+      const accion = event.target.getAttribute('data-action');
+      if (accion === 'volver') {
+        location.reload();
+      } else if (accion === 'reiniciar') {
+        location.reload();
+      }
+    });
+  });
+}
+
+// Funciones de mapa
 function crearMapa() {
   arrayCamino = [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -124,6 +158,8 @@ function crearMapa() {
     }
   }
 }
+
+// Funciones de personaje
 function actualizarPosicionPersonaje() {
 
   ganar();
@@ -162,7 +198,6 @@ function movimiento(direction, step) {
 }
 
 
-
 function movimientoPersonaje() {
   document.addEventListener('keydown', (event) => {
     if (juegoEnCurso) {
@@ -172,23 +207,30 @@ function movimientoPersonaje() {
 
       switch (event.key) {
         case 'ArrowLeft':
+          direction = 'left';
           intervalId = movimiento('left', 10);
           imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeIzquierda.gif";
           break;
         case 'ArrowRight':
+          direction = 'right';
           intervalId = movimiento('right', 10);
           imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeDerecha.gif";
           break;
         case 'ArrowUp':
+          direction = 'up';
           intervalId = movimiento('up', 10);
           imagenPersonaje.src = "/M12/L2/Kenia/images/personaje/personajeDetras.gif";
           break;
         case 'ArrowDown':
+          direction = 'down';
           intervalId = movimiento('down', 10);
           imagenPersonaje.src = " /M12/L2/Kenia/images/personaje/personajeDelante.gif";
           break;
         default:
-
+          // Si se presiona una tecla que no sea flecha, reiniciar el movimiento automático con la dirección actual
+          if (direction) {
+            intervalId = movimiento(direction, 10);
+          }
           break;
       }
 
@@ -198,7 +240,53 @@ function movimientoPersonaje() {
   });
 }
 
+function comprobarPersonajeDentroCamino() {
+  const personajeWidth = personaje.offsetWidth;
+  const personajeHeight = personaje.offsetHeight;
+  const leftTop = leftPos;
+  const leftBottom = topPos;
+  const rightTop = leftPos + personajeWidth;
+  const rightBottom = topPos + personajeHeight;
 
+  //1
+  const topLeftColumn = Math.floor((leftTop - 10) / 100);
+  const topLeftRow = Math.floor((leftBottom - 10) / 80);
+  // //2
+  const topRightColumn = Math.floor((rightTop) / 100);
+  const topRightRow = Math.floor((leftBottom - 10) / 80);
+  // //3
+  const bottomLeftColumn = Math.floor((leftTop - 10) / 100); //lado
+  const bottomLeftRow = Math.floor((rightBottom - 10) / 80); //abajo
+  // //4
+  const bottomRightColumn = Math.floor((rightTop - 10) / 100);
+  const bottomRightRow = Math.floor((rightBottom - 10) / 80);
+
+  //blocked si es la posición 0
+  const topLeftIsBlocked = arrayCamino[topLeftRow][topLeftColumn] === 0;
+  const topRightIsBlocked = arrayCamino[topRightRow][topRightColumn] === 0;
+  const bottomLeftIsBlocked = arrayCamino[bottomLeftRow][bottomLeftColumn] === 0;
+  const bottomRightIsBlocked = arrayCamino[bottomRightRow][bottomRightColumn] === 0;
+
+  if (topLeftIsBlocked || topRightIsBlocked || bottomLeftIsBlocked || bottomRightIsBlocked) {
+    clearInterval(intervalId);
+
+    vidas = vidas - 1;
+    puntosVidas = puntosVidas - 2;
+    document.getElementById("puntuacionVidas").innerHTML = puntosVidas;
+    actualizarVidas();
+    inicioMovimientoAutomatico();
+
+    //restablece la posición
+    leftPos = 630;
+    topPos = 600;
+    actualizarPosicionPersonaje();
+
+  }
+
+
+}
+
+// Funciones de objetos
 function spawnObjeto(imagenSrc) {
   const imagenObjeto = document.createElement('img');
   imagenObjeto.src = imagenSrc;
@@ -321,80 +409,7 @@ function verificarEsquinasEnCamino(objetoLeft, objetoTop, imagenObjeto) {
   return esquinasBloqueadas;
 }
 
-function popupFuncion(resultado) {
-  juegoEnCurso = false;
-
-  const popup = document.getElementById('popup');
-  popup.style.display = 'block';
-
-  const popupContent = document.getElementById('popupContent');
-
-  if (resultado === 'ganar') {
-
-    popupContent.innerHTML = document.getElementById('ganar').innerHTML;
-  } else if (resultado === 'perder') {
-
-    popupContent.innerHTML = document.getElementById('perder').innerHTML;
-  }
-
-  const botones = popupContent.querySelectorAll('button');
-  botones.forEach((boton) => {
-    boton.addEventListener('click', (event) => {
-      const accion = event.target.getAttribute('data-action');
-      if (accion === 'volver') {
-        location.reload();
-      } else if (accion === 'reiniciar') {
-        location.reload();
-      }
-    });
-  });
-}
-
-function comprobarPersonajeDentroCamino() {
-  const personajeWidth = personaje.offsetWidth;
-  const personajeHeight = personaje.offsetHeight;
-  const leftTop = leftPos;
-  const leftBottom = topPos;
-  const rightTop = leftPos + personajeWidth;
-  const rightBottom = topPos + personajeHeight;
-
-  //1
-  const topLeftColumn = Math.floor((leftTop - 10) / 100);
-  const topLeftRow = Math.floor((leftBottom - 10) / 80);
-  // //2
-  const topRightColumn = Math.floor((rightTop) / 100);
-  const topRightRow = Math.floor((leftBottom - 10) / 80);
-  // //3
-  const bottomLeftColumn = Math.floor((leftTop - 10) / 100); //lado
-  const bottomLeftRow = Math.floor((rightBottom - 10) / 80); //abajo
-  // //4
-  const bottomRightColumn = Math.floor((rightTop - 10) / 100);
-  const bottomRightRow = Math.floor((rightBottom - 10) / 80);
-
-  //blocked si es la posición 0
-  const topLeftIsBlocked = arrayCamino[topLeftRow][topLeftColumn] === 0;
-  const topRightIsBlocked = arrayCamino[topRightRow][topRightColumn] === 0;
-  const bottomLeftIsBlocked = arrayCamino[bottomLeftRow][bottomLeftColumn] === 0;
-  const bottomRightIsBlocked = arrayCamino[bottomRightRow][bottomRightColumn] === 0;
-
-  if (topLeftIsBlocked || topRightIsBlocked || bottomLeftIsBlocked || bottomRightIsBlocked) {
-    clearInterval(intervalId);
-
-    vidas = vidas - 1;
-    puntosVidas = puntosVidas - 2;
-    document.getElementById("puntuacionVidas").innerHTML = puntosVidas;
-    actualizarVidas();
-    inicioMovimientoAutomatico();
-
-    //restablece la posición
-    leftPos = 630;
-    topPos = 600;
-    actualizarPosicionPersonaje();
-
-  }
-
-
-}
+//Funciones de redirección
 
 function volverAlMapa() {
   window.location.href = "../../controllers_php/updatePuntosController.php";
