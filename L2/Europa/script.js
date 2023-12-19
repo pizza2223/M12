@@ -666,10 +666,10 @@ function actualizarEstadoWasd() {
     }
 }
 const frames = {
-    down: ['/L2/Europa/imagenes/abajo.png', '/L2/Europa/imagenes/abajo1.png','/L2/Europa/imagenes/abajo.png', '/L2/Europa/imagenes/abajo2.png'],
-    up: ['/L2/Europa/imagenes/arriba.png', '/L2/Europa/imagenes/arriba1.png', '/L2/Europa/imagenes/arriba.png','/L2/Europa/imagenes/arriba2.png'],
-    left: ['/L2/Europa/imagenes/izquierda.png', '/L2/Europa/imagenes/izquierda1.png','/L2/Europa/imagenes/izquierda.png', '/L2/Europa/imagenes/izquierda2.png'],
-    right: ['/L2/Europa/imagenes/derecha.png', '/L2/Europa/imagenes/derecha1.png','/L2/Europa/imagenes/derecha.png', '/L2/Europa/imagenes/derecha2.png']
+    down: ['/M12/L2/Europa/imagenes/abajo.png', '/M12/L2/Europa/imagenes/abajo1.png','/M12/L2/Europa/imagenes/abajo.png', '/M12/L2/Europa/imagenes/abajo2.png'],
+    up: ['/M12/L2/Europa/imagenes/arriba.png', '/M12/L2/Europa/imagenes/arriba1.png', '/M12/L2/Europa/imagenes/arriba.png','/M12/L2/Europa/imagenes/arriba2.png'],
+    left: ['/M12/L2/Europa/imagenes/izquierda.png', '/M12/L2/Europa/imagenes/izquierda1.png','/M12/L2/Europa/imagenes/izquierda.png', '/M12/L2/Europa/imagenes/izquierda2.png'],
+    right: ['/M12/L2/Europa/imagenes/derecha.png', '/M12/L2/Europa/imagenes/derecha1.png','/M12/L2/Europa/imagenes/derecha.png', '/M12/L2/Europa/imagenes/derecha2.png']
 };
 const staticDirectionImages = {
     'w': '/L2/Europa/imagenes/arriba.png',
